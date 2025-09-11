@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pfsgh consult</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-header{
+            padding: 40px 0;
+            /* border: 2px solid black; */
+            text-align: center;
+
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            padding-top: 40px;
+            /* margin-bottom: 60px; */
+            /* padding: 25px; */
+            /* border: 2px solid black; */
+        }
+        .lead{
+            margin-top: -35px;
+            /* padding: 25px 0; */
+            /* padding-top: 30px; */
+            /* padding: 25px 0; */
+            
+            /* border: 2px solid black; */
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            background: white;
+            border: 1px solid #e9ecef;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-light);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            font-size: 2rem;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon:hover {
+            background: var(--accent-color);
+            color: #fff;
+            transition: rotate 0.3s ease;
+            transform: rotate(360deg)
+        }
+
+        .feature-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .feature-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-link:hover {
+            color: #5a4bcf;
+            transform: translateX(5px);
+        }
+
+
+        .first-section.process {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+
+
+        }
+
+        .container {
+            /* width: 100vw; */
+            max-width: 1200px;
+            margin: 0 auto;
+
+        }
+
+        /* .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        } */
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .process-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            transition: height 0.4s ease;
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .process-card:hover::before {
+            height: 100%;
+            opacity: 0.05;
+        }
+
+        .card-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(252, 112, 19, 0.3);
+        }
+
+        .card-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 15px 30px rgba(252, 112, 19, 0.3);
+            transition: transform 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .process-card:hover .card-image {
+            transform: translateY(-5px);
+        }
+
+        .process-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .process-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .card-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(252, 112, 19, 0.4);
+        }
+
+
+
+
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+            transition: all 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card:hover::before {
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+        }
+
+        .service-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card:hover .service-icon img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover .service-badge {
+            opacity: 1;
+        }
+
+
+
+
+
+
+        /* .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            background: #e5620f;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(252, 112, 19, 0.4);
+        } */
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+ */
+
+
+
+
+
+/* testimonials */
+
+
+
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+        }
+
+        /* .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            font-weight: 300;
+        } */
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(44, 62, 80, 0.15);
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--primary-color);
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .client-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .client-details h5 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .client-company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .star-rating {
+            color: #ffc107;
+            font-size: 1rem;
+        }
+
+
+
+
+
+        .stats-row {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #ecf0f1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: var(--accent-color);
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        
+
+        /* Contact Section Styles */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            /* background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.03"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'); */
+            pointer-events: none;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-section .section-subtitle {
+            color: #bdc3c7;
+        }
+
+        .contact-info {
+            padding: 40px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .contact-details h5 {
+            margin-bottom: 8px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .contact-details p {
+            margin-bottom: 5px;
+            color: #ecf0f1;
+            font-size: 1.1rem;
+        }
+
+        .contact-details small {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .expertise-badges {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .expertise-badges h6 {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .expertise-badge {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: none;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .contact-form .form-label {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-form .form-control,
+        .contact-form .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form .form-control:focus,
+        .contact-form .form-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(252, 112, 19, 0.15);
+        }
+
+        .contact-form .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
+        }
+
+        .floating-contact-icon {
+            animation: contactFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes contactFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .process-card {
+                padding: 30px 20px;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+                min-height: 250px;
+            }
+
+
+
+            .testimonials-section {
+                padding: 60px 0;
+            }
+            
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+            
+            .client-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                padding: 60px 0;
+            }
+
+            .contact-form-wrapper {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .contact-item:hover {
+                transform: none;
+            }
+        }
+        
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+
+    <!-- Top Contact Bar  -->
+    <div class="top-bar py-2">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap align-items-center gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-envelope me-2"></i>
+                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone me-2"></i>
+                            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
+                            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span>Zibra Street, Pokuase, Accra</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-clock me-2"></i>
+                            <span class="small">09am-05pm, Mon-Fri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
+        <div class="container-fluid">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <div class="logo">
+                    <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
+                </div>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow">
+                            <li><a class="dropdown-item" href="#about">Our Story</a></li>
+                            <li><a class="dropdown-item" href="#team">Our Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#process">Our Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#insights">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- CTA Button -->
+                <a href="#quote" class="btn btn-custom px-4 py-2">
+                    Request Quote <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <section id="home">
+        <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel"
+            data-bs-interval="5000">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner h-100">
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url('./images/img1.jpg');">
+                    <div class="carousel-content text-white">
+                        <div class="container-fluid">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-7 col-xl-6">
+                                    <h1 class="carousel-title display-1 fw-bold">
+                                        Compliance Made<br>
+                                        Simple, <span style="color: var(--accent-color);">Success Made</span><br>
+                                        Certain
+                                    </h1>
+                                    <p class="carousel-subtitle lead mb-4">
+                                        Expert consulting services to ensure your business stays compliant while
+                                        achieving sustainable growth and success.
+                                    </p>
+                                    <a href="#services" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
+                                        Discover Our Services
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item"
+                    style="background-image: url('./images/img24.jpg');">
+                    <div class="carousel-content text-white">
+                        <div class="container-fluid">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-7 col-xl-6">
+                                    <h1 class="carousel-title display-1 fw-bold">
+                                        Strategic <span style="color: var(--accent-color);">Business</span><br>
+                                        Consulting Solutions
+                                    </h1>
+                                    <p class="carousel-subtitle lead mb-4">
+                                        Transform your business with our expert guidance, innovative strategies, and
+                                        proven methodologies.
+                                    </p>
+                                    <a href="#about" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
+                                        Learn More About Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url('./images/img4.jpg');">
+                    <div class="carousel-content text-white">
+                        <div class="container-fluid">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-7 col-xl-6">
+                                    <h1 class="carousel-title display-1 fw-bold">
+                                        Your <span style="color: var(--accent-color);">Trusted</span><br>
+                                        Partner for Growth
+                                    </h1>
+                                    <p class="carousel-subtitle lead mb-4">
+                                        Experience the difference with our personalized approach to business consulting
+                                        and compliance management.
+                                    </p>
+                                    <a href="#contact" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
+                                        Get Started Today
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Content Sections-->
+    <section class="first-section d-flex align-items-center scroll-offset" id="">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-header choose-us">
+                        <h2 class="section-title">Why Choose Us</h2>
+                            <p class="lead text-muted">
+                                what drives us and why we do what we do.
+                            </p>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Food Quality -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Expertise in Food Safety & Quality</h3>
+                                <p class="feature-description">
+                                    Decades of scientific knowledge and industry experience ensure your
+                                    food products meet the highest standards of safety, quality, and compliance.
+
+                                </p>
+                                <a href="#programs" class="feature-link">
+                                    Learn More <i class="fas fa-shield-alt text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Innovative Solutions-->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-leaf text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Innovative & Sustainable Solutions</h3>
+                                <p class="feature-description">
+                                    We combine cutting-edge science with sustainable practices to deliver
+                                    solutions that support both business growth and a healthier planet.
+
+                                </p>
+                                <a href="#research" class="feature-link">
+                                    Explore Our Solutions <i class="fas fa-leaf text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Partner -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-handshake text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Trusted Partner in Compliance</h3>
+                                <p class="feature-description">
+                                    From regulatory guidance to process optimization, we help you
+                                    navigate complex food regulations with confidence and efficiency.
+                                </p>
+                                <a href="#contact" class="feature-link">
+                                    Partner with Us <i class="fas fa-handshake text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    
+
+    <section class="first-section process d-flex  " id="">
+        <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Process & Approach</h2>
+            <p class="lead text-muted">We follow a proven methodology that ensures transparency, effectiveness, and measurable results for every client engagement</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="card-number">1</div>
+                <div class="card-image">
+                    <img src="./images/img7.jpg" alt="Business consultation meeting" loading="lazy">
+                </div>
+                <h3 class="card-title">Discovery & Consultation</h3>
+                <p class="card-description">We begin by understanding your unique business needs, challenges, and goals through detailed consultations and comprehensive assessments to build a solid foundation for success.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">2</div>
+                <div class="card-image">
+                    <img src="./images/img6.jpg" alt="Strategic planning and development" loading="lazy">
+                </div>
+                <h3 class="card-title">Tailored Strategy Development</h3>
+                <p class="card-description">Based on insights gathered, we design customized solutions aligned with industry best practices and regulatory standards to ensure optimal outcomes for your specific situation.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">3</div>
+                <div class="card-image">
+                    <img src="./images/img13.jpg" alt="Team implementation and support" loading="lazy">
+                </div>
+                <h3 class="card-title">Implementation & Support</h3>
+                <p class="card-description">We work closely with your team to put solutions into action while providing continuous guidance, training, and hands-on support throughout the implementation process.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">4</div>
+                <div class="card-image">
+                    <img src="./images/img12.jpg" alt="Data analytics and monitoring" loading="lazy">
+                </div>
+                <h3 class="card-title">Monitoring & Continuous Improvement</h3>
+                <p class="card-description">We track results, ensure compliance, and refine processes to drive sustainable growth and long-term impact while adapting to changing business needs.</p>
+            </div>
+        </div>
+
+        <div class="process-flow">
+            <div class="flow-step">Start</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Discover</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Strategize</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Implement</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Optimize</div>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
+            <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help you achieve your goals</p>
+            <a href="#contact" class="cta-button">Start Your Journey</a>
+        </div>
+    </div>
+
+    </section>
+
+    <section class="first-section d-flex align-items-center scroll-offset" id="services">
+        <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Professional Services</h2>
+            <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized product solutions to help your business thrive in today's competitive market</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-badge">Business</div>
+                <div class="service-icon">
+                    <img src="./images/img7.jpg" alt="Business Planning" loading="lazy">
+                </div>
+                <h3 class="service-title">Drafting of Business Plans</h3>
+                <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Certification</div>
+                <div class="service-icon">
+                    <img src="./images/img20.jpg" alt="FDA GSA Certification" loading="lazy">
+                </div>
+                <h3 class="service-title">FDA & GSA Certification Coaching</h3>
+                <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Processing</div>
+                <div class="service-icon">
+                    <img src="./images/img22.jpeg" alt="Commercial Dehydration" loading="lazy">
+                </div>
+                <h3 class="service-title">Commercial Dehydration</h3>
+                <p class="service-description">Professional food dehydration services using advanced commercial equipment to preserve nutritional value and extend product shelf life.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Consulting</div>
+                <div class="service-icon">
+                    <img src="./images/img13.jpg" alt="Product Development" loading="lazy">
+                </div>
+                <h3 class="service-title">Product Development Guidance</h3>
+                <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Training</div>
+                <div class="service-icon">
+                    <img src="./images/img12.jpg" alt="Safety Training" loading="lazy">
+                </div>
+                <h3 class="service-title">Product Safety & Quality Management Training</h3>
+                <p class="service-description">Comprehensive training programs on food safety protocols, quality control systems, and regulatory compliance for your team.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Product</div>
+                <div class="service-icon">
+                    <img src="./images/img15.jpg" alt="Mango Powder" loading="lazy">
+                </div>
+                <h3 class="service-title">Sale of Mango Powder</h3>
+                <p class="service-description">Premium quality mango powder products for commercial and retail use, processed with advanced dehydration technology.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Product</div>
+                <div class="service-icon">
+                    <img src="./images/img16.jpg" alt="Fruit Fiber Porridge" loading="lazy">
+                </div>
+                <h3 class="service-title">Sale of Instant High Fruit Fibre Porridge</h3>
+                <p class="service-description">Nutritious instant porridge products high in fruit fiber, perfect for health-conscious consumers and institutional buyers.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-badge">Product</div>
+                <div class="service-icon">
+                    <img src="./images/img17.jpg" alt="Rice Porridge" loading="lazy">
+                </div>
+                <h3 class="service-title">Sale of Instant Rice Porridge</h3>
+                <p class="service-description">High-quality instant rice porridge products designed for convenience and nutrition, suitable for various market segments.</p>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Specialized Services</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Quality Assurance</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">FDA</span>
+                            <span class="stat-label">Certified Processes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Get Started?</h3>
+            <p style="margin-bottom: 30px; color: var(--text-light);">Contact us today to discuss how our services can help grow your business</p>
+            <a href="#contact" class="cta-button">Get a Quote</a>
+            <a href="#consultation" class="cta-button secondary">Free Consultation</a>
+        </div>
+    </div>
+
+    </section>
+
+    <section class="testimonials-section">
+        <div class="floating-elements">
+            <i class="fas fa-microscope floating-icon"></i>
+            <i class="fas fa-flask floating-icon"></i>
+            <i class="fas fa-leaf floating-icon"></i>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title display-4">What Our Clients Say</h2>
+                    <p class="section-subtitle">Trusted by industry leaders for innovative food science solutions and expert consultancy services</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Their expertise in food safety protocols transformed our entire production line. The comprehensive HACCP implementation they provided exceeded our expectations and helped us achieve international certification."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">SM</div>
+                            <div class="client-details">
+                                <h5>Sarah Enchill</h5>
+                                <p class="client-company">Quality Director, Premium Foods Ltd.</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Outstanding nutritional analysis and product development support. They helped us launch three successful product lines with precise formulations that met all regulatory requirements."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">DR</div>
+                            <div class="client-details">
+                                <h5>Dr. Robert Chen</h5>
+                                <p class="client-company">R&D Manager, Healthy Harvest Co.</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Professional, knowledgeable, and incredibly thorough. Their sensory evaluation expertise helped us perfect our new flavor profiles and achieve a 40% increase in consumer acceptance."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">EJ</div>
+                            <div class="client-details">
+                                <h5>Emily Johnson</h5>
+                                <p class="client-company">Brand Manager, Taste Innovations</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Their regulatory compliance guidance saved us months of delays. The team's deep understanding of FDA requirements and international standards is unmatched in the industry."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">MR</div>
+                            <div class="client-details">
+                                <h5>Miss Jay</h5>
+                                <p class="client-company">CEO, Global Nutrition Systems</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Exceptional shelf-life studies and preservation solutions. They helped us extend our product's freshness by 60% while maintaining all nutritional values and taste profiles."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">AL</div>
+                            <div class="client-details">
+                                <h5>Amanda Essel</h5>
+                                <p class="client-company">Technical Director, Fresh Foods Corp</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p class="testimonial-text">"Their innovative approach to sustainable packaging solutions helped us reduce environmental impact by 50% while improving product protection. Truly cutting-edge expertise."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">JW</div>
+                            <div class="client-details">
+                                <h5>James Wilson</h5>
+                                <p class="client-company">Sustainability Officer, EcoFood Solutions</p>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title display-4">Ready to Transform Your Food Business?</h2>
+                    <p class="section-subtitle">Let's discuss how our scientific expertise can help you achieve your goals</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Call Us</h5>
+                                <p>+233 24 104 3139</p>
+                                <small>Mon - Fri, 9:00 AM - 5:00 PM </small>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Email Us</h5>
+                                <p>pneumaconsult@gmail.com</p>
+                                <small>We respond within 24 hours</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Visit Us</h5>
+                                <p>Zibra Street, Pokuase<br>Accra, Ghana</p>
+                                <small>By appointment only</small>
+                            </div>
+                        </div>
+
+                        <div class="expertise-badges">
+                            <h6 class="mb-3">Our Expertise</h6>
+                            <span class="badge expertise-badge">Food Safety</span>
+                            <span class="badge expertise-badge">Product Development</span>
+                            <span class="badge expertise-badge">Regulatory Compliance</span>
+                            <span class="badge expertise-badge">Nutritional Analysis</span>
+                            <span class="badge expertise-badge">Sensory Evaluation</span>
+                            <span class="badge expertise-badge">Quality Assurance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name*</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name*</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address*</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="company" class="form-label">Company Name*</label>
+                                <input type="text" class="form-control" id="company" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="service" class="form-label">Service Interested In*</label>
+                                <select class="form-select" id="service" required>
+                                    <option value="">Select a service...</option>
+                                    <option value="food-safety">Food Safety & HACCP</option>
+                                    <option value="product-development">Product Development</option>
+                                    <option value="regulatory">Regulatory Compliance</option>
+                                    <option value="nutritional">Nutritional Analysis</option>
+                                    <option value="sensory">Sensory Evaluation</option>
+                                    <option value="quality">Quality Assurance</option>
+                                    <option value="consulting">General Consulting</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Project Details*</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Tell us about your project, timeline, and specific requirements..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Get Free Consultation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    </section>
+
+    <div class="stats-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Industry Partners</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+
+        
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="company-info">
+                <div class="company-logo">
+                    <img src="./images/logo-retouch.png" alt="Pneuma Food Scientifics Logo" class="logo-image">
+                    <h2 class="company-name">Pneuma Food Scientifics</h2>
+                </div>
+                <p class="company-tagline">Excellence in Food Science Innovation</p>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Food Safety Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> Product Development</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Nutritional Assessment</a></li>
+                        <li><a href="#"><i class="fas fa-clipboard-check"></i> Regulatory Compliance</a></li>
+                        <li><a href="#"><i class="fas fa-award"></i> Quality Assurance</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-industry"></i> Food Manufacturing</a></li>
+                        <li><a href="#"><i class="fas fa-wine-bottle"></i> Beverage Industry</a></li>
+                        <li><a href="#"><i class="fas fa-cheese"></i> Dairy & Dairy Alternatives</a></li>
+                        <li><a href="#"><i class="fas fa-drumstick-bite"></i> Meat & Poultry</a></li>
+                        <li><a href="#"><i class="fas fa-bread-slice"></i> Bakery & Confectionery</a></li>
+                        <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                    </ul>
+                </div>
+
+                <!-- <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div> -->
+                        
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                    
+                    <div class="social-links">
+
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
