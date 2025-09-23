@@ -109,398 +109,6 @@
         }
 
 
-        .first-section.process {
-            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-
-
-        }
-
-        .container {
-            /* width: 100vw; */
-            max-width: 1200px;
-            margin: 0 auto;
-
-        }
-
-        /* .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        } */
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .process-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .process-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-            transition: height 0.4s ease;
-        }
-
-        .process-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .process-card:hover::before {
-            height: 100%;
-            opacity: 0.05;
-        }
-
-        .card-number {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(252, 112, 19, 0.3);
-        }
-
-        .card-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 15px 30px rgba(252, 112, 19, 0.3);
-            transition: transform 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            margin: 0 auto 30px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .process-card:hover .card-image {
-            transform: translateY(-5px);
-        }
-
-        .process-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .process-card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .card-description {
-            color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .process-flow {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 60px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .flow-arrow {
-            font-size: 2rem;
-            color: var(--accent-color);
-            opacity: 0.6;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 80px;
-            padding: 50px 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(252, 112, 19, 0.4);
-        }
-
-
-
-
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--accent-color);
-            transition: all 0.5s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-12px) rotateX(5deg);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card:hover::before {
-            height: 8px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-        }
-
-        .service-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 25px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .service-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.4s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card:hover .service-icon img {
-            transform: scale(1.1);
-            filter: brightness(1.1);
-        }
-
-        .service-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .service-description {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--secondary-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card:hover .service-badge {
-            opacity: 1;
-        }
-
-
-
-
-
-
-        /* .cta-section {
-            text-align: center;
-            margin-top: 80px;
-            padding: 50px 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
-            margin: 0 10px;
-        }
-
-        .cta-button:hover {
-            background: #e5620f;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(252, 112, 19, 0.4);
-        } */
-
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .cta-button.secondary:hover {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        /* .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-weight: 500;
-            margin-top: 5px;
-        }
- */
-
-
 
 
 
@@ -623,40 +231,6 @@
             margin-bottom: 10px;
         }
 
-        .star-rating {
-            color: #ffc107;
-            font-size: 1rem;
-        }
-
-
-
-
-
-        .stats-row {
-            background: var(--primary-color);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #ecf0f1;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
 
         .floating-elements {
             position: absolute;
@@ -686,175 +260,6 @@
         }
 
         
-
-        /* Contact Section Styles */
-        .contact-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
-            color: white;
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            /* background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.03"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'); */
-            pointer-events: none;
-        }
-
-        .contact-section .section-title {
-            color: white;
-        }
-
-        .contact-section .section-subtitle {
-            color: #bdc3c7;
-        }
-
-        .contact-info {
-            padding: 40px 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            flex-shrink: 0;
-            font-size: 1.5rem;
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        .contact-details h5 {
-            margin-bottom: 8px;
-            color: white;
-            font-weight: 600;
-        }
-
-        .contact-details p {
-            margin-bottom: 5px;
-            color: #ecf0f1;
-            font-size: 1.1rem;
-        }
-
-        .contact-details small {
-            color: #bdc3c7;
-            font-size: 0.9rem;
-        }
-
-        .expertise-badges {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-        }
-
-        .expertise-badges h6 {
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .expertise-badge {
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 8px 16px;
-            margin: 5px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: none;
-        }
-
-        .contact-form-wrapper {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .contact-form .form-label {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .contact-form .form-control,
-        .contact-form .form-select {
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 12px 16px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-form .form-control:focus,
-        .contact-form .form-select:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 0.2rem rgba(252, 112, 19, 0.15);
-        }
-
-        .contact-form .btn-primary {
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-form .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(252, 112, 19, 0.3);
-        }
-
-        .floating-contact-icon {
-            animation: contactFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes contactFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-
-
-
-
 
 
 
@@ -1010,10 +415,10 @@
                         <a class="nav-link" href="#process">Our Process</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="./service.html">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#insights">Insights</a>
+                        <a class="nav-link" href="./blog.html">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -1021,9 +426,11 @@
                 </ul>
 
                 <!-- CTA Button -->
-                <a href="#quote" class="btn btn-custom px-4 py-2">
+                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
                     Request Quote <i class="fas fa-arrow-right ms-2"></i>
                 </a>
+
+                
             </div>
         </div>
     </nav>
@@ -1057,7 +464,7 @@
                                         Expert consulting services to ensure your business stays compliant while
                                         achieving sustainable growth and success.
                                     </p>
-                                    <a href="#services" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
+                                    <a href="./service.html" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
                                         Discover Our Services
                                     </a>
                                 </div>
@@ -1264,123 +671,133 @@
 
     <section class="first-section d-flex align-items-center scroll-offset" id="services">
         <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Our Professional Services</h2>
-            <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized product solutions to help your business thrive in today's competitive market</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-badge">Business</div>
-                <div class="service-icon">
-                    <img src="./images/img7.jpg" alt="Business Planning" loading="lazy">
-                </div>
-                <h3 class="service-title">Drafting of Business Plans</h3>
-                <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
+            <div class="section-header">
+                <h2 class="section-title">Our Professional Services</h2>
+                <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized
+                    product solutions to help your business thrive in today's competitive market</p>
             </div>
-
-            <div class="service-card">
-                <div class="service-badge">Certification</div>
-                <div class="service-icon">
-                    <img src="./images/img20.jpg" alt="FDA GSA Certification" loading="lazy">
+    
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-badge">Business</div>
+                    <div class="service-icon">
+                        <img src="./images/img7.jpg" alt="Business Planning" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Drafting of Business Plans</h3>
+                    <p class="service-description">Comprehensive business plan development with market analysis, financial
+                        projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
                 </div>
-                <h3 class="service-title">FDA & GSA Certification Coaching</h3>
-                <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Processing</div>
-                <div class="service-icon">
-                    <img src="./images/img22.jpeg" alt="Commercial Dehydration" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Certification</div>
+                    <div class="service-icon">
+                        <img src="./images/img20.jpg" alt="FDA GSA Certification" loading="lazy">
+                    </div>
+                    <h3 class="service-title">FDA & GSA Certification Coaching</h3>
+                    <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring
+                        compliance with regulatory standards and successful certification outcomes.</p>
                 </div>
-                <h3 class="service-title">Commercial Dehydration</h3>
-                <p class="service-description">Professional food dehydration services using advanced commercial equipment to preserve nutritional value and extend product shelf life.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Consulting</div>
-                <div class="service-icon">
-                    <img src="./images/img13.jpg" alt="Product Development" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Processing</div>
+                    <div class="service-icon">
+                        <img src="./images/img22.jpeg" alt="Commercial Dehydration" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Commercial Dehydration</h3>
+                    <p class="service-description">Professional food dehydration services using advanced commercial
+                        equipment to preserve nutritional value and extend product shelf life.</p>
                 </div>
-                <h3 class="service-title">Product Development Guidance</h3>
-                <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Training</div>
-                <div class="service-icon">
-                    <img src="./images/img12.jpg" alt="Safety Training" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Consulting</div>
+                    <div class="service-icon">
+                        <img src="./images/img13.jpg" alt="Product Development" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Product Development Guidance</h3>
+                    <p class="service-description">End-to-end product development support from concept to market launch,
+                        including formulation, testing, and commercialization strategies.</p>
                 </div>
-                <h3 class="service-title">Product Safety & Quality Management Training</h3>
-                <p class="service-description">Comprehensive training programs on food safety protocols, quality control systems, and regulatory compliance for your team.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Product</div>
-                <div class="service-icon">
-                    <img src="./images/img15.jpg" alt="Mango Powder" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Training</div>
+                    <div class="service-icon">
+                        <img src="./images/img12.jpg" alt="Safety Training" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Product Safety & Quality Management Training</h3>
+                    <p class="service-description">Comprehensive training programs on food safety protocols, quality control
+                        systems, and regulatory compliance for your team.</p>
                 </div>
-                <h3 class="service-title">Sale of Mango Powder</h3>
-                <p class="service-description">Premium quality mango powder products for commercial and retail use, processed with advanced dehydration technology.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Product</div>
-                <div class="service-icon">
-                    <img src="./images/img16.jpg" alt="Fruit Fiber Porridge" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Product</div>
+                    <div class="service-icon">
+                        <img src="./images/img15.jpg" alt="Mango Powder" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Sale of Mango Powder</h3>
+                    <p class="service-description">Premium quality mango powder products for commercial and retail use,
+                        processed with advanced dehydration technology.</p>
                 </div>
-                <h3 class="service-title">Sale of Instant High Fruit Fibre Porridge</h3>
-                <p class="service-description">Nutritious instant porridge products high in fruit fiber, perfect for health-conscious consumers and institutional buyers.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-badge">Product</div>
-                <div class="service-icon">
-                    <img src="./images/img17.jpg" alt="Rice Porridge" loading="lazy">
+    
+                <div class="service-card">
+                    <div class="service-badge">Product</div>
+                    <div class="service-icon">
+                        <img src="./images/img16.jpg" alt="Fruit Fiber Porridge" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Sale of Instant High Fruit Fibre Porridge</h3>
+                    <p class="service-description">Nutritious instant porridge products high in fruit fiber, perfect for
+                        health-conscious consumers and institutional buyers.</p>
                 </div>
-                <h3 class="service-title">Sale of Instant Rice Porridge</h3>
-                <p class="service-description">High-quality instant rice porridge products designed for convenience and nutrition, suitable for various market segments.</p>
+    
+                <div class="service-card">
+                    <div class="service-badge">Product</div>
+                    <div class="service-icon">
+                        <img src="./images/img17.jpg" alt="Rice Porridge" loading="lazy">
+                    </div>
+                    <h3 class="service-title">Sale of Instant Rice Porridge</h3>
+                    <p class="service-description">High-quality instant rice porridge products designed for convenience and
+                        nutrition, suitable for various market segments.</p>
+                </div>
             </div>
-        </div>
-
-        <div class="stats-row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">8+</span>
-                            <span class="stat-label">Specialized Services</span>
+    
+            <div class="stats-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-item">
+                                <span class="stat-number">8+</span>
+                                <span class="stat-label">Specialized Services</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Quality Assurance</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Support Available</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-item">
+                                <span class="stat-number">FDA</span>
+                                <span class="stat-label">Certified Processes</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Quality Assurance</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Support Available</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">FDA</span>
-                            <span class="stat-label">Certified Processes</span>
-                        </div>
-                    </div>
                 </div>
             </div>
+    
+            <div class="cta-section">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Get Started?</h3>
+                <p style="margin-bottom: 30px; color: var(--text-light);">Contact us today to discuss how our services can
+                    help grow your business</p>
+                <a href="#contact" class="cta-button quote-trigger" onclick="openQuoteModal()">Get a Quote</a>
+                <a href="#free-consultation" class="cta-button secondary">Free Consultation</a>
+            </div>
         </div>
-
-        <div class="cta-section">
-            <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Get Started?</h3>
-            <p style="margin-bottom: 30px; color: var(--text-light);">Contact us today to discuss how our services can help grow your business</p>
-            <a href="#contact" class="cta-button">Get a Quote</a>
-            <a href="#consultation" class="cta-button secondary">Free Consultation</a>
-        </div>
-    </div>
 
     </section>
 
@@ -1532,7 +949,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
+    <section class="contact-section" id="free-consultation">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
@@ -1589,7 +1006,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                     <div class="contact-form-wrapper">
                         <form class="contact-form">
                             <div class="row">
@@ -1636,7 +1053,7 @@
                             <div class="mb-4">
                                 <label for="message" class="form-label">Project Details*</label>
                                 <textarea class="form-control" id="message" rows="4" placeholder="Tell us about your project, timeline, and specific requirements..." required></textarea>
-                            </div>
+                            </div>   
 
                             <button type="submit" class="btn btn-primary btn-lg w-100">
                                 <i class="fas fa-paper-plane me-2"></i>
@@ -1683,6 +1100,182 @@
             </div>
         </div>
         <br><br><br>
+
+
+        
+    <!-- Quote Modal -->
+    <div class="modal-overlay" id="quoteModal" >
+        <div class="modal-container" >
+            <div class="modal-header">
+                <button class="close-btn" >&times;</button>
+                <h2 class="modal-title">Request a Quote</h2>
+                <p class="modal-subtitle">Tell us about your project and we'll provide a customized solution</p>
+            </div>
+
+            <div class="modal-body">
+                <form id="quoteForm">
+                    <!-- Personal Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company" class="required">Company Name</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Industry</label>
+                            <select id="industry" name="industry">
+                                <option value="">Select Industry</option>
+                                <option value="food-beverage">Food & Beverage</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="agriculture">Agriculture</option>
+                                <option value="retail">Retail</option>
+                                <option value="technology">Technology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Services Selection -->
+                    <div class="form-group">
+                        <label class="required">Services Needed</label>
+                        <div class="service-selection">
+                            <div class="service-checkbox" >
+                                <input type="checkbox" name="services" value="business-plans">
+                                <span>Business Plan Drafting</span>
+                            </div>
+                            <div class="service-checkbox" >
+                                <input type="checkbox" name="services" value="certification">
+                                <span>FDA & GSA Certification</span>
+                            </div>
+                            <div class="service-checkbox" =>
+                                <input type="checkbox" name="services" value="dehydration">
+                                <span>Commercial Dehydration</span>
+                            </div>
+                            <div class="service-checkbox" >
+                                <input type="checkbox" name="services" value="product-development">
+                                <span>Product Development</span>
+                            </div>
+                            <div class="service-checkbox" >
+                                <input type="checkbox" name="services" value="safety-training">
+                                <span>Safety Training</span>
+                            </div>
+                            <div class="service-checkbox" >
+                                <input type="checkbox" name="services" value="mango-powder">
+                                <span>Mango Powder Products</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="fruit-porridge">
+                                <span>Fruit Fiber Porridge</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="rice-porridge">
+                                <span>Rice Porridge</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div class="form-group">
+                        <label for="projectDescription" class="required">Project Description</label>
+                        <textarea id="projectDescription" name="projectDescription" placeholder="Please describe your project requirements, goals, and any specific needs..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select Timeline</option>
+                                <option value="urgent">Urgent (1-2 weeks)</option>
+                                <option value="fast">Fast Track (3-4 weeks)</option>
+                                <option value="standard">Standard (1-2 months)</option>
+                                <option value="flexible">Flexible (2+ months)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select Budget Range</option>
+                                <option value="under-5k">Under GHC5,000</option>
+                                <option value="5k-10k">GHC5,000 - GHC10,000</option>
+                                <option value="10k-25k">GHC10,000 - GHC25,000</option>
+                                <option value="25k-50k">GHC25,000 - GHC50,000</option>
+                                <option value="over-50k">Over GHC50,000</option>
+                                <option value="discuss">Prefer to discuss</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Priority -->
+                    <div class="form-group">
+                        <label>Project Priority</label>
+                        <div class="priority-selector">
+                            <div class="priority-option low" onclick="selectPriority(this, 'low')">
+                                <i class="fas fa-clock"></i> Low
+                            </div>
+                            <div class="priority-option medium" onclick="selectPriority(this, 'medium')">
+                                <i class="fas fa-bolt"></i> Medium
+                            </div>
+                            <div class="priority-option high" onclick="selectPriority(this, 'high')">
+                                <i class="fas fa-fire"></i> High
+                            </div>
+                        </div>
+                        <input type="hidden" id="priority" name="priority" value="">
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional details, special requirements, or questions you'd like to share..."></textarea>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btnn btn-secondary" >Cancel</button>
+                        <button type="submit" class="btnn btn-primary">
+                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                            Submit Quote Request
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="success-title">Quote Request Submitted!</h3>
+                    <p class="success-text">
+                        Thank you for your interest in PFS services. We've received your quote request and will get back to you within 24 hours with a customized proposal.
+                    </p>
+                    <button class="btn btn-primary"  style="margin-top: 20px;">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
         
     <footer class="footer">
@@ -1735,15 +1328,7 @@
                     </ul>
                 </div>
 
-                <!-- <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    </ul>
-                </div> -->
+                
                         
                     <div class="footer-section">
                         <h3>Follow Us</h3>

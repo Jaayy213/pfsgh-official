@@ -1,4 +1,4 @@
-// Enhanced Sticky Navbar using Bootstrap classes
+// Sticky Navbar using Bootstrap classes
 const navbar = document.getElementById('mainNavbar');
 const topBar = document.querySelector('.top-bar');
 const topBarHeight = topBar.offsetHeight;
@@ -26,7 +26,7 @@ window.addEventListener('scroll', function () {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// Bootstrap Scrollspy enhancement
+// Scrollspy enhancement
 const scrollSpyEl = document.querySelector('[data-bs-spy="scroll"]');
 if (scrollSpyEl) {
     const scrollSpy = bootstrap.ScrollSpy.getInstance(scrollSpyEl) || new bootstrap.ScrollSpy(scrollSpyEl);
@@ -55,7 +55,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Enhanced Bootstrap Carousel with animation reset
+//  Carousel with animation reset
 const carousel = document.getElementById('heroCarousel');
 carousel.addEventListener('slide.bs.carousel', function (e) {
     const activeSlide = e.relatedTarget;
