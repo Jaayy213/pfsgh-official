@@ -8,7 +8,322 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+<style>
+    :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-orange: #f59e0b;
+            --dark-gray: #1f2937;
+            --medium-gray: #6b7280;
+            --light-gray: #f9fafb;
+        }
+
+    main{
+        padding-top: 35px;
+    }
+    /* Card Animations */
+        .animated-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        .animated-card:nth-child(1) { animation-delay: 0.1s; }
+        .animated-card:nth-child(2) { animation-delay: 0.2s; }
+        .animated-card:nth-child(3) { animation-delay: 0.3s; }
+        .animated-card:nth-child(4) { animation-delay: 0.4s; }
+        .animated-card:nth-child(5) { animation-delay: 0.5s; }
+        .animated-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+
+        /* Blog Card Styles */
+        .blog-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-category {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .blog-meta {
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-widget:hover {
+            transform: translateY(-3px);
+        }
+
+        .widget-title {
+            color: var(--dark-gray);
+            font-weight: 700;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .widget-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        .category-link {
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .category-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .category-link:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post {
+            border-bottom: 1px solid #e9ecef;
+            padding: 1rem 0;
+        }
+
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post-thumb {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 8px;
+        }
+
+        .recent-post-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+        }
+
+        /* Newsletter Widget */
+        .newsletter-widget {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)) !important;
+        }
+
+      
+        .newsletter-widget .widget-title::before {
+            color: var(--accent-orange);
+        }
+
+        /* Search Input */
+        .search-input {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
+        }
+
+
+        /* Fullscreen dark overlay */
+.video-modal {
+  display: flex; /* center child */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8); /* dark backdrop */
+  z-index: 9999;
+}
+
+
+
+/* Video Section */
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.video-header h2 {
+  font-size: 1.8rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.video-header h2 i {
+  color: #ff0000; /* YouTube red */
+}
+
+.subscribe-btn {
+  background: #ff0000;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.subscribe-btn:hover {
+  background: #cc0000;
+}
+
+
+.video-section {
+  padding: 50px 20px;
+  background: #f9f9f9;
+}
+
+.video-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.video-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+}
+
+.video-card p {
+  padding: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+        /* .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.2);
+        } */
+
+</style>
+<body>
+    <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
 
     <!-- Top Contact Bar  -->
     <div class="top-bar py-2">
@@ -82,7 +397,7 @@
                         <a class="nav-link" href="./service.html">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./blog.html">Blog</a>
+                        <a class="nav-link" href="#blog">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./contact.html">Contact</a>
@@ -90,12 +405,389 @@
                 </ul>
 
                 <!-- CTA Button -->
-                <a href="#quote" class="btn btn-custom px-4 py-2">
+                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
                     Request Quote <i class="fas fa-arrow-right ms-2"></i>
                 </a>
+
+                
             </div>
         </div>
     </nav>
+<!-- Main Content -->
+    <main id="blog">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Content Area -->
+                <div class="col-lg-8">
+                    <!-- Latest Articles Section -->
+                    <section id="articles" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Latest Articles</h2>
+                            <p class="section-subtitle">Discover our most recent insights and thought leadership pieces covering industry trends, best practices, and strategic guidance.</p>
+                        </div>
+                        
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="card blog-card animated-card">
+                                    <div class="blog-image">
+                                        <img src="./images/img30.jpg" alt="pictire">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <span class="blog-category">Project</span>
+                                            <span class="blog-meta">2025-Present</span>
+                                            <span class="blog-meta">8 min read</span>
+                                        </div>
+                                        <h3 class="h4 fw-bold mb-3">GIZ MOVE (Rice & Cashew Value Chain Project)</h3>
+                                        <p class="text-muted mb-3">
+                                            Developing 4 innovative cashew-based products for commercialization, significantly boosting local value addition.
+                                        </p>
+                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="col-12">
+                                <div class="card blog-card animated-card">
+                                    <div class="blog-image">
+                                        <img src="./images/img24.jpg" alt="pictire">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <span class="blog-category">Recognition</span>
+                                            <span class="blog-meta">2021-2022</span>
+                                            <span class="blog-meta">5 min read</span>
+                                        </div>
+                                        <h3 class="h4 fw-bold mb-3">International Collaboration & Recognition</h3>
+                                        <p class="text-muted mb-3">Our collaboration with McGill University through the Mastercard Foundation Scholars Program has brought international expertise directly to Ghana's
+                                            agribusiness sector.Between 2021-2022, we hosted 2 McGill Mastercard Foundation interns who contributed significantly to our HACCP/SQF systems development and digital
+                                            transformation initiatives, strengthening our commitment to African entrepreneurs and West African businesses.
+                                        </p>
+                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card blog-card animated-card">
+                                    <div class="blog-image">
+                                        <img src="./images/img24.jpg" alt="picture">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <span class="blog-category">Collaboration</span>
+                                            <span class="blog-meta">2022-2023</span>
+                                            <span class="blog-meta">10 min read</span>
+                                        </div>
+                                        <h3 class="h4 fw-bold mb-3">EU SME Capacity Building</h3>
+                                        <p class="text-muted mb-3">
+                                            Trained 30 SMEs in Ghana to integrate Good Manufacturing Practices(GMPs) and robust Quality Assurance measures    
+                                        </p>
+                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card blog-card animated-card">
+                                    <div class="blog-image">
+                                        <img src="./images/img24.jpg" alt="picture">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <span class="blog-category">Sustainability</span>
+                                            <span class="blog-meta">2021-2022</span>
+                                            <span class="blog-meta">9 min read</span>
+                                        </div>
+                                        <h3 class="h4 fw-bold mb-3">SME Quality Support Program</h3>
+                                        <p class="text-muted mb-3">Successfully guided 15 SMEs to achieve full GMP integration and FDA compliance, opening new market opportunities.</p>
+                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-3">Search</h5>
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="Search articles..." id="searchInput">
+                                <button class="btn btn-primary" type="button" id="searchButton">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-3">Categories</h5>
+                            <div class="d-flex flex-column">
+                                <a href="#articles" class="category-link">Latest Articles</a>
+                                <a href="#videos" class="category-link">Video Content</a>
+                                <a href="#insights" class="category-link">Industry Insights</a>
+                                <a href="#" class="category-link">Strategic Planning</a>
+                                <a href="#" class="category-link">Digital Transformation</a>
+                                <a href="#" class="category-link">Innovation</a>
+                                <a href="#" class="category-link">Market Analysis</a>
+                                <a href="#" class="category-link">Sustainability</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-3">Recent Updates</h5>
+                            <div class="recent-post d-flex gap-3">
+                                <div class="recent-post-thumb"></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="recent-post-title">New Partnership Announcement</h6>
+                                    <small class="recent-post-date">March 22, 2025</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex gap-3">
+                                <div class="recent-post-thumb"></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="recent-post-title">Q1 Performance Review</h6>
+                                    <small class="recent-post-date">March 20, 2025</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex gap-3">
+                                <div class="recent-post-thumb"></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="recent-post-title">Industry Award Recognition</h6>
+                                    <small class="recent-post-date">March 18, 2025</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex gap-3">
+                                <div class="recent-post-thumb"></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="recent-post-title">AI Innovation Summit</h6>
+                                    <small class="recent-post-date">March 16, 2025</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex gap-3">
+                                <div class="recent-post-thumb"></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="recent-post-title">Sustainability Report Launch</h6>
+                                    <small class="recent-post-date">March 14, 2025</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-3">Stay Updated</h5>
+                            <p class="mb-4 opacity-75">Get our latest insights delivered directly to your inbox.</p>
+                            <form id="newsletterForm">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your email address" required>
+                                </div>
+                                <button type="submit" class="btn btn-warning fw-semibold w-100">
+                                    Subscribe Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links Widget -->
+                    <div class="sidebar-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-3">Quick Links</h5>
+                            <div class="d-flex flex-column gap-2">
+                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                    <i class="fas fa-download"></i>
+                                    Download Our Brochure
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                    <i class="fas fa-calendar-day"></i>
+                                    Schedule a Consultation
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                    <i class="fas fa-phone"></i>
+                                    Contact Our Team
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                    <i class="fab fa-linkedin"></i>
+                                    Follow on LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Widget -->
+                    <div class="sidebar-widget">
+                        <div class="card-body p-4">
+                            <h5 class="widget-title mb-4">Our Impact</h5>
+                            <div class="row text-center g-3">
+                                <div class="col-6">
+                                    <div class="p-3">
+                                        <h3 class="fw-bold text-primary mb-1">500+</h3>
+                                        <small class="text-muted">Entrepreneurs Trained</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3">
+                                        <h3 class="fw-bold text-primary mb-1">20+</h3>
+                                        <small class="text-muted">Startups Certified</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3">
+                                        <h3 class="fw-bold text-primary mb-1">16+</h3>
+                                        <small class="text-muted">Accelerator Mentorships</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3">
+                                        <h3 class="fw-bold text-primary mb-1">30</h3>
+                                        <small class="text-muted">Products Commercialized</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>      
+    
+    
+    
+<!-- Video Section -->
+<!-- Video Section -->
+<section class="video-section">
+  <div class="video-header">
+    <h2><i class="fab fa-youtube"></i> Watch Our Latest & Past Videos</h2>
+    <a href="https://www.youtube.com/@pfspneumafoodscientifics7717" target="_blank" class="subscribe-btn">
+      <i class="fab fa-youtube"></i> Subscribe
+    </a>
+  </div>
+  <div class="video-grid">
+
+    <!-- Normal YouTube video (16:9) -->
+    <div class="video-card">
+      <div class="video-wrapper standard">
+        <iframe src="https://www.youtube.com/embed/GlIR_ndBGRs" 
+                title="Company Highlights - September"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+      <p>Grate & Slice with Ease! | Okro, Ginger, Turmeric, Garlic, Cassava & Potatoes—Fast & Effortless!</p>
+    </div>
+
+    <!-- YouTube Shorts video (9:16) -->
+    <div class="video-card">
+      <div class="video-wrapper shorts">
+        <iframe src="https://www.youtube.com/embed/KqgsmcCUZvE" 
+                title="PFS DEHYDRATION SERVICES : Washing and Drying Tigernuts"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+      <p>PFS DEHYDRATION SERVICES : Washing and Drying Tigernuts</p>
+    </div>
+
+  </div>
+</section>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="company-info">
+                <div class="company-logo">
+                    <img src="./images/logo-retouch.png" alt="Pneuma Food Scientifics Logo" class="logo-image">
+                    <h2 class="company-name">Pneuma Food Scientifics</h2>
+                </div>
+                <p class="company-tagline">Excellence in Food Science Innovation</p>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Food Safety Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> Product Development</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Nutritional Assessment</a></li>
+                        <li><a href="#"><i class="fas fa-clipboard-check"></i> Regulatory Compliance</a></li>
+                        <li><a href="#"><i class="fas fa-award"></i> Quality Assurance</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-industry"></i> Food Manufacturing</a></li>
+                        <li><a href="#"><i class="fas fa-wine-bottle"></i> Beverage Industry</a></li>
+                        <li><a href="#"><i class="fas fa-cheese"></i> Dairy & Dairy Alternatives</a></li>
+                        <li><a href="#"><i class="fas fa-drumstick-bite"></i> Meat & Poultry</a></li>
+                        <li><a href="#"><i class="fas fa-bread-slice"></i> Bakery & Confectionery</a></li>
+                        <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                    </ul>
+                </div>
+
+                
+                        
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                    
+                    <div class="social-links">
+
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
