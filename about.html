@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Pneuma Food Scientifics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* :root { */
+            /* Define brand colors from the PDF */
+            /* --primary-color: #5d2b70;
+            --secondary-color: #f7a500;
+            --accent-color: #890f91;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f4f2f6;
+        } */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden; */
+        }
+
+        /* h1, h2, h3, h4 {
+            font-weight: 700;
+        } */
+
+        .container {
+            max-width: 1140px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+/* Hero Section */
+        .hero-section {
+            /* background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); */
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(137, 15, 145, 0.7)), 
+                              url('./images/img6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Intro Section --- */
+        .intro-section {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .intro-content {
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        .section-content {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .card-custom {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card-custom:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-custom.animate-in {
+            animation: slideInUp 0.8s forwards;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .card-custom:hover .icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .icon-wrapper i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card-title-custom {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .card-text-custom {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        .values-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .value-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .value-item.animate-in {
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .value-item:hover {
+            background: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transform: translateX(10px);
+        }
+
+        .value-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-right: 16px;
+        }
+
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .value-description {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        
+        
+        /* --- Our Story Section --- */
+        .story-section {
+            background: linear-gradient(135deg, rgba(247, 165, 0, 0.05), rgba(137, 15, 145, 0.05));
+            padding: 80px 0;
+        }
+        
+        .story-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .story-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        /* why choose us section */
+.about-why-choose-us {
+    background: #f8fafc;
+    padding: 80px 0;
+}
+
+
+/* Client Success Section */
+
+        .success-section {
+            padding: 80px 0;
+        }
+
+
+        .success-client {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .section-description {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 900px;
+        }
+
+        .client-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 0;
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .client-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .client-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+        }
+
+        .client-content {
+            padding: 25px;
+        }
+
+        .client-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .client-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+
+
+
+        .video-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .video-card:hover {
+            transform: scale(1.03);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .video-card:hover .video-overlay {
+            background: rgba(0,0,0,0.6);
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+        }
+
+        .video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+        }
+
+        .video-info h5 {
+            margin: 0 0 5px 0;
+            font-weight: 600;
+        }
+
+        .video-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+
+        /* The Modal (background) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+/* Modal Content (the video box) */
+.modal-content {
+    position: relative;
+    background-color: #000;
+    margin: 5% auto; 
+    padding: 0;
+    width: 90%;
+    max-width: 800px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* The Close Button */
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #fff;
+    background: #e00;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 33px;
+    z-index: 1001; 
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    background: #b00;
+    text-decoration: none;
+}
+
+#modalVideoPlayer {
+    display: block; 
+    width: 90%;
+    max-height: 70vh; 
+}
+
+
+@media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .card-custom {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+
+    <!-- Top Contact Bar  -->
+    <div class="top-bar py-2">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap align-items-center gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-envelope me-2"></i>
+                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone me-2"></i>
+                            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
+                            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span>Zibra Street, Pokuase, Accra</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-clock me-2"></i>
+                            <span class="small">09am-05pm, Mon-Fri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
+        <div class="container-fluid">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <div class="logo">
+                    <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
+                </div>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./process.html">Our Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- CTA Button -->
+                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
+                    Request Quote <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center hero-content">
+                    <h1 class="hero-title animate-fade-in">About Pneuma Food Scientifics</h1>
+                    <p class="hero-subtitle animate-fade-in">We are Ghana's leading product innovation and entrepreneurial training hub, transforming ideas into reality for agribusiness startups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- intro section  -->
+    <section class="intro-section section-padding" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="intro-content">
+                        <h2 class="section-title">Who We Are</h2>
+                        <p class="lead">
+                            Pneuma Food Scientifics (PFS), established in 2018, is Ghana's most promising product innovation and entrepreneurial training hub. We transform ideas into market-ready products for startups and SMEs in the food, cosmetics, and herbal sectors, serving Ghanaian market. Our comprehensive, science-driven approach fosters sustainable business and community transformation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+    <!-- Vision & Mission Section -->
+    <section class="section-content">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card-custom" data-delay="0">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h2 class="card-title-custom">Our Vision</h2>
+                        <p class="card-text-custom">
+                            To become West Africa’s leading product development and compliance hub for food, cosmetics, wellness, and herbal enterprises.
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-custom" data-delay="200">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h2 class="card-title-custom">Our Mission</h2>
+                        <p class="card-text-custom">
+                            To provide scientifically grounded solutions, regulatory systems, and sustainable production support that
+                            transform Ghanaian ideas into marketable and impactful products. We strive to build lasting partnerships, foster innovation, and maintain the highest standards of integrity in everything we do.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values mission Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark mb-3">Our Core Values</h2>
+                <p class="lead text-muted">The principles that guide our decisions and actions</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="0">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-shield-alt value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Scientific Integrity</h3>
+                                <p class="value-description">We conduct business with honesty, transparency, and ethical standards in all our interactions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="100">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-lightbulb value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Practical, Impact-Oriented Innovation</h3>
+                                <p class="value-description">We embrace creativity and continuous improvement to stay ahead of industry trends.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="200">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-trophy value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Regulatory Excellence</h3>
+                                <p class="value-description">We are committed to delivering superior quality in every project and exceeding expectations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="300">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-users value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Collaboration</h3>
+                                <p class="value-description">We believe in teamwork, open communication, and building strong relationships.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="400">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-leaf value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Sustainability</h3>
+                                <p class="value-description">We prioritize environmental responsibility and long-term positive impact on society.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-item" data-delay="500">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-heart value-icon"></i>
+                            <div>
+                                <h3 class="value-title">Customer Focus</h3>
+                                <p class="value-description">We put our customers at the center of everything we do, ensuring their success is our success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+
+    <section class="story-section section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="./images/missZee.jpg" alt="Zeenatu Suglo Adams, Founder & CEO">
+                </div>
+                <div class="col-lg-6 story-text">
+                    <h3>PFS: A Story of Passion and Impact</h3>
+                    <p>
+                        <strong>Zeenatu Suglo Adams</strong> is not only a food scientist but a visionary leader who transformed her challenges
+                        into a purposeful solution
+                    </p>
+                    <p>
+                        After years of witnessing passionate entrepreneurs struggle with product development, regulatory barriers,
+                        and lack of quality infrastructure, she resolved to build what was missing: a holistic support system for
+                        SMEs in Ghana. Pneuma Food Scientifics (PFS) was established out of a deep commitment to excellence,
+                        access, and transformation
+                    </p>
+                    <p>
+                        Zeenatu founded PFS with her scientific knowledge, persistence, and a strong belief in the potential of
+                        African brands. Today, she leads a multidisciplinary team that supports hundreds of businesses through
+                        science, compliance, and innovation
+                    </p>
+                    <p>
+                        PFS's journey is a testament to Zeenatu's vision of empowering entrepreneurs, fostering innovation,
+                        and driving sustainable growth in Ghana's food and wellness sectors. Her leadership continues to inspire
+                        a new generation of African innovators. 
+                    </p>
+                    <blockquote class="blockquote" style="font-size:1.1rem; font-style:italic; border-left:4px solid #f7a500; padding-left:1rem; margin-top:1rem;">
+                         "This is what sustains me, what brings me joy, and what defines my legacy.
+                         I am proud of the work I do." <br> <span style="font-weight:600;">- Zeenatu Suglo Adams</span>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Content Sections-->
+    <section class="first-section d-flex align-items-center scroll-offset about-why-choose-us" id="">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-header choose-us">
+                        <h2 class="section-title">Why Choose Us</h2>
+                            <p class="lead text-muted">
+                                what drives us and why we do what we do.
+                            </p>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Food Quality -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Expertise in Food Safety & Quality</h3>
+                                <p class="feature-description">
+                                    Decades of scientific knowledge and industry experience ensure your
+                                    food products meet the highest standards of safety, quality, and compliance.
+
+                                </p>
+                                <a href="#programs" class="feature-link">
+                                    Learn More <i class="fas fa-shield-alt text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Innovative Solutions-->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-leaf text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Innovative & Sustainable Solutions</h3>
+                                <p class="feature-description">
+                                    We combine cutting-edge science with sustainable practices to deliver
+                                    solutions that support both business growth and a healthier planet.
+
+                                </p>
+                                <a href="#research" class="feature-link">
+                                    Explore Our Solutions <i class="fas fa-leaf text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Partner -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-handshake text-success"></i>
+                                </div>
+                                <h3 class="feature-title">Trusted Partner in Compliance</h3>
+                                <p class="feature-description">
+                                    From regulatory guidance to process optimization, we help you
+                                    navigate complex food regulations with confidence and efficiency.
+                                </p>
+                                <a href="#contact" class="feature-link">
+                                    Partner with Us <i class="fas fa-handshake text-success"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+
+    <section class="success-section">
+        <div class="container">
+        <div class="success-client">
+            <h2 class="section-title">Client Success Stories</h2>
+            <p class="section-description">
+                We partner with African startups (home and abroad), leveraging our food science expertise to transform innovative ideas into market-ready products across Ghana.
+            </p>
+
+            <div class="row">
+                <!-- Client 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="./images/img36.jpg"
+                                 alt="Pronto Waakye Product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">AMJ Abish - USA</h4>
+                            <p class="client-description">FDA Approved Express Waakye in 15 mins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="./images/img30.jpg" 
+                                 alt="Sweepolac Product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Healthy Leap Foods - Accra, Ghana</h4>
+                            <p class="client-description">FDA Approved Instant Sweet Potato Complementary Foods.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="./images/img37.jpg" 
+                                 alt="Mango Juice Products">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">KnZee Ltd - Wa, Ghana</h4>
+                            <p class="client-description">FDA Approved Natural Mango Juice Juice.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="./images/img29.jpg"
+                                 alt="Yogurt Product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Body Cool Cream - Kumasi, Ghana</h4>
+                            <p class="client-description">FDA Approved Body Cool Cream</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="video-section">
+    <h3 class="video-title">Watch Client Video Testimonials</h3>
+    <div class="row">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="video-card" onclick="playVideo('video1')"> 
+                
+                <video class="video-card-background" muted loop playsinline preload="metadata">
+                    <source src="./images/pronto.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h5>AMJ Abish Success Story</h5>
+                    <p>From concept to FDA approval • 3:45</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="video-card" onclick="playVideo('video2')">
+                <video class="video-card-background" muted loop playsinline preload="metadata">
+                    <source src="./images/docVid.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h5>Healthy Leap Foods Journey</h5>
+                    <p>Creating nutritious complementary foods • 4:20</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="video-card" onclick="playVideo('video3')">
+                <video class="video-card-background" muted loop playsinline preload="metadata">
+                    <source src="./images/pronto.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h5>KnZee Ltd Partnership</h5>
+                    <p>Bringing natural juices to market • 5:10</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="company-info">
+                <div class="company-logo">
+                    <img src="./images/logo-retouch.png" alt="Pneuma Food Scientifics Logo" class="logo-image">
+                    <h2 class="company-name">Pneuma Food Scientifics</h2>
+                </div>
+                <p class="company-tagline">Excellence in Food Science Innovation</p>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Food Safety Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> Product Development</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Nutritional Assessment</a></li>
+                        <li><a href="#"><i class="fas fa-clipboard-check"></i> Regulatory Compliance</a></li>
+                        <li><a href="#"><i class="fas fa-award"></i> Quality Assurance</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-industry"></i> Food Manufacturing</a></li>
+                        <li><a href="#"><i class="fas fa-wine-bottle"></i> Beverage Industry</a></li>
+                        <li><a href="#"><i class="fas fa-cheese"></i> Dairy & Dairy Alternatives</a></li>
+                        <li><a href="#"><i class="fas fa-drumstick-bite"></i> Meat & Poultry</a></li>
+                        <li><a href="#"><i class="fas fa-bread-slice"></i> Bakery & Confectionery</a></li>
+                        <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                    </ul>
+                </div>
+
+                
+                        
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                
+                    <div class="social-links">
+
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <video id="modalVideoPlayer" width="100%" controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/about.js"></script>
+    
+</body>
+</html>
