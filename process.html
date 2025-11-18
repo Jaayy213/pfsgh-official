@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@
             overflow-x: hidden;
         }
 
-         /* Hero */
+        /* Hero */
         .hero {
             background: white;
             padding: 0;
@@ -54,14 +55,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(251,54,64,0.1);
+            background: rgba(251, 54, 64, 0.1);
             color: var(--secondary);
             padding: 8px 16px;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 25px;
-            border: 1px solid rgba(251,54,64,0.2);
+            border: 1px solid rgba(251, 54, 64, 0.2);
         }
 
         .hero h1 {
@@ -127,7 +128,7 @@
             right: -50%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -139,14 +140,21 @@
             left: -20%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(251,54,64,0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(251, 54, 64, 0.2) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 8s ease-in-out infinite reverse;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 30px); }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, 30px);
+            }
         }
 
         .hero-visual {
@@ -165,16 +173,16 @@
         }
 
         .step-preview {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             padding: 25px 20px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .step-preview:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-5px);
         }
 
@@ -235,7 +243,7 @@
             background: white;
             border-radius: 20px;
             padding: 35px 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
             position: relative;
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -247,7 +255,7 @@
         .process-box:hover {
             border-color: var(--secondary);
             transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(251,54,64,0.15);
+            box-shadow: 0 15px 50px rgba(251, 54, 64, 0.15);
         }
 
         .step-num {
@@ -264,13 +272,13 @@
             justify-content: center;
             font-weight: 900;
             font-size: 1.3rem;
-            box-shadow: 0 5px 20px rgba(251,54,64,0.4);
+            box-shadow: 0 5px 20px rgba(251, 54, 64, 0.4);
         }
 
         .step-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, rgba(251,54,64,0.1), rgba(36,123,160,0.1));
+            background: linear-gradient(135deg, rgba(251, 54, 64, 0.1), rgba(36, 123, 160, 0.1));
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -288,7 +296,7 @@
             line-height: 1.3;
         }
 
-        .process-box > p {
+        .process-box>p {
             font-size: 0.9rem;
             color: #666;
             line-height: 1.6;
@@ -491,6 +499,7 @@
         }
     </style>
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
 
     <!-- Top Contact Bar  -->
@@ -584,8 +593,9 @@
                     <span>Trusted by 20+ FDA-Certified Startups</span>
                 </div>
                 <h1>Transform Your <span class="highlight">Agribusiness</span> Vision</h1>
-                <p>From concept to commercialization in 4 proven steps. We've helped startups achieve FDA certification and market success across Ghana and West Africa with our comprehensive support system.</p>
-                
+                <p>From concept to commercialization in 4 proven steps. We've helped startups achieve FDA certification
+                    and market success across Ghana and West Africa with our comprehensive support system.</p>
+
                 <div class="hero-stats">
                     <div class="hero-stat">
                         <div class="hero-stat-num">500+</div>
@@ -601,33 +611,33 @@
                     </div>
                 </div>
             </div>
-
             <div class="hero-right">
                 <div class="hero-visual">
                     <div class="process-steps-preview">
                         <div class="step-preview">
-                            <div class="step-preview-icon">💡</div>
+                            <div class="step-preview-icon"><i class="fas fa-lightbulb"></i></div>
                             <div class="step-preview-num">STEP 1</div>
                             <div class="step-preview-title">Idea Assessment</div>
                         </div>
                         <div class="step-preview">
-                            <div class="step-preview-icon">🧪</div>
+                            <div class="step-preview-icon"><i class="fas fa-flask"></i></div>
                             <div class="step-preview-num">STEP 2</div>
                             <div class="step-preview-title">Development</div>
                         </div>
                         <div class="step-preview">
-                            <div class="step-preview-icon">✓</div>
+                            <div class="step-preview-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="step-preview-num">STEP 3</div>
                             <div class="step-preview-title">Certification</div>
                         </div>
                         <div class="step-preview">
-                            <div class="step-preview-icon">🚀</div>
+                            <div class="step-preview-icon"><i class="fas fa-rocket"></i></div>
                             <div class="step-preview-num">STEP 4</div>
                             <div class="step-preview-title">Scale & Launch</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -648,7 +658,8 @@
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3>Idea Assessment & Market Evaluation</h3>
-                    <p>Comprehensive evaluation of your product concept, market potential, and technical feasibility for Ghana and West African markets.</p>
+                    <p>Comprehensive evaluation of your product concept, market potential, and technical feasibility for
+                        Ghana and West African markets.</p>
                     <button class="expand-btn" onclick="openModal('modal1')">
                         View Details <i class="fas fa-arrow-right"></i>
                     </button>
@@ -661,7 +672,8 @@
                         <i class="fas fa-flask"></i>
                     </div>
                     <h3>Product Development & Formulation</h3>
-                    <p>Complete R&D support from formulation to packaging design, ensuring compliance with Ghanaian standards and international best practices.</p>
+                    <p>Complete R&D support from formulation to packaging design, ensuring compliance with Ghanaian
+                        standards and international best practices.</p>
                     <button class="expand-btn" onclick="openModal('modal2')">
                         View Details <i class="fas fa-arrow-right"></i>
                     </button>
@@ -674,7 +686,8 @@
                         <i class="fas fa-certificate"></i>
                     </div>
                     <h3>Market Preparation & Compliance</h3>
-                    <p>Simplified certification process, guiding you through Ghana FDA and GSA registration to meet all safety and legal standards.</p>
+                    <p>Simplified certification process, guiding you through Ghana FDA and GSA registration to meet all
+                        safety and legal standards.</p>
                     <button class="expand-btn" onclick="openModal('modal3')">
                         View Details <i class="fas fa-arrow-right"></i>
                     </button>
@@ -687,7 +700,8 @@
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3>Scale, Launch & Growth</h3>
-                    <p>Ongoing support to scale production, expand product lines, and access new markets across Ghana and West Africa.</p>
+                    <p>Ongoing support to scale production, expand product lines, and access new markets across Ghana
+                        and West Africa.</p>
                     <button class="expand-btn" onclick="openModal('modal4')">
                         View Details <i class="fas fa-arrow-right"></i>
                     </button>
@@ -697,35 +711,35 @@
     </section>
 
     <div class="stats-row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-item">
-                                <span class="stat-number">500+</span>
-                                <span class="stat-label">Entrepreneurs Trained</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-item">
-                                <span class="stat-number">30+</span>
-                                <span class="stat-label">Products Commercialized</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-item">
-                                <span class="stat-number">20+</span>
-                                <span class="stat-label">Startups Certified</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-item">
-                                <span class="stat-number">6+</span>
-                                <span class="stat-label">Years of experience</span>
-                            </div>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Entrepreneurs Trained</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">Products Commercialized</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Startups Certified</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Years of experience</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
     <!-- CTA -->
     <section class="cta">
@@ -755,7 +769,10 @@
                 <div class="modal-body">
                     <div class="detail-section">
                         <h6><i class="fas fa-info-circle"></i> Overview</h6>
-                        <p>We begin your journey with a comprehensive evaluation of your product concept, assessing its market potential, technical feasibility, and regulatory requirements for Ghana and West African markets. Our food science expertise ensures your idea has a solid foundation for success.</p>
+                        <p>We begin your journey with a comprehensive evaluation of your product concept, assessing its
+                            market potential, technical feasibility, and regulatory requirements for Ghana and West
+                            African markets. Our food science expertise ensures your idea has a solid foundation for
+                            success.</p>
                     </div>
 
                     <div class="detail-section">
@@ -796,7 +813,9 @@
                 <div class="modal-body">
                     <div class="detail-section">
                         <h6><i class="fas fa-info-circle"></i> Overview</h6>
-                        <p>Our comprehensive R&D support transforms your concept into a market-ready product. We handle everything from formulation to packaging design, ensuring compliance with Ghanaian standards and international best practices including GMP, HACCP, and ISO protocols.</p>
+                        <p>Our comprehensive R&D support transforms your concept into a market-ready product. We handle
+                            everything from formulation to packaging design, ensuring compliance with Ghanaian standards
+                            and international best practices including GMP, HACCP, and ISO protocols.</p>
                     </div>
 
                     <div class="detail-section">
@@ -805,7 +824,8 @@
                             <li>Professional product formulation and recipe development</li>
                             <li>Nutritional analysis and shelf-life testing</li>
                             <li>Sensory evaluation and consumer testing</li>
-                            <li>Dehydration services for fruits, vegetables, and herbs (using our solar dehydration plant)</li>
+                            <li>Dehydration services for fruits, vegetables, and herbs (using our solar dehydration
+                                plant)</li>
                             <li>Quality control and food safety testing</li>
                             <li>Packaging material selection and design development</li>
                             <li>Professional labeling with nutritional information</li>
@@ -840,7 +860,9 @@
                 <div class="modal-body">
                     <div class="detail-section">
                         <h6><i class="fas fa-info-circle"></i> Overview</h6>
-                        <p>We simplify the complex certification process, guiding you through Ghana FDA and GSA registration. Our LinkinLabs digital lab access and certification support ensures your product meets all safety, quality, and legal standards for successful market entry.</p>
+                        <p>We simplify the complex certification process, guiding you through Ghana FDA and GSA
+                            registration. Our LinkinLabs digital lab access and certification support ensures your
+                            product meets all safety, quality, and legal standards for successful market entry.</p>
                     </div>
 
                     <div class="detail-section">
@@ -884,7 +906,10 @@
                 <div class="modal-body">
                     <div class="detail-section">
                         <h6><i class="fas fa-info-circle"></i> Overview</h6>
-                        <p>Your success doesn't end at launch. We provide ongoing support to help you scale production, expand product lines, and access new markets across Ghana and West Africa. Our contract manufacturing and co-packing services enable flexible growth without heavy capital investment.</p>
+                        <p>Your success doesn't end at launch. We provide ongoing support to help you scale production,
+                            expand product lines, and access new markets across Ghana and West Africa. Our contract
+                            manufacturing and co-packing services enable flexible growth without heavy capital
+                            investment.</p>
                     </div>
 
                     <div class="detail-section">
@@ -932,7 +957,9 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3>About Us</h3>
-                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product
+                        development, nutritional analysis, and regulatory compliance. Our expert team delivers
+                        cutting-edge research and practical solutions for the food industry.</p>
                 </div>
 
                 <div class="footer-section">
@@ -965,15 +992,15 @@
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
                         <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
                         <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
-                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->
                     </ul>
                 </div>
 
-                
-                        
-                    <div class="footer-section">
-                        <h3>Follow Us</h3>
-                    
+
+
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+
                     <div class="social-links">
 
                         <a href="#" class="social-link" title="LinkedIn">
@@ -989,14 +1016,15 @@
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
-                    </div>
-                    
                 </div>
+
             </div>
+        </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy
+                | Terms of Service</p>
         </div>
     </footer>
 
@@ -1009,4 +1037,5 @@
         }
     </script>
 </body>
+
 </html>
