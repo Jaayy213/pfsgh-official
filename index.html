@@ -16,9 +16,8 @@
             background-color: white;
         }
 
-        .section-header{
+        .section-header {
             padding: 40px 0;
-            /* border: 2px solid black; */
             text-align: center;
 
         }
@@ -28,29 +27,22 @@
             font-weight: 700;
             color: #333;
             padding-top: 40px;
-            /* margin-bottom: 60px; */
-            /* padding: 25px; */
-            /* border: 2px solid black; */
+
         }
-        .lead{
+
+        .lead {
             margin-top: -35px;
-            /* padding: 25px 0; */
-            /* padding-top: 30px; */
-            /* padding: 25px 0; */
-            
-            /* border: 2px solid black; */
+
         }
 
-        
-
-        
 
 
 
 
-/* testimonials */
 
 
+
+        /* testimonials */
 
         .testimonials-section {
             background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
@@ -69,19 +61,7 @@
             background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
         }
 
-        /* .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 15px;
-            position: relative;
-        }
 
-        .section-subtitle {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            font-weight: 300;
-        } */
 
         .testimonial-card {
             background: white;
@@ -186,16 +166,37 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-icon:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
-        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+
 
 
 
@@ -208,27 +209,27 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            
+
             .process-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .process-card {
                 padding: 30px 20px;
             }
-            
+
             .flow-arrow {
                 transform: rotate(90deg);
             }
 
-            
-            
+
+
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
-            
+
             .service-card {
                 padding: 30px 20px;
                 min-height: 250px;
@@ -239,16 +240,16 @@
             .testimonials-section {
                 padding: 60px 0;
             }
-            
+
             .testimonial-card {
                 padding: 30px 20px;
             }
-            
+
             .client-info {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .stat-number {
                 font-size: 2.5rem;
             }
@@ -276,7 +277,6 @@
                 transform: none;
             }
         }
-        
     </style>
 </head>
 
@@ -359,7 +359,7 @@
                     Request Quote <i class="fas fa-arrow-right ms-2"></i>
                 </a>
 
-                
+
             </div>
         </div>
     </nav>
@@ -403,8 +403,7 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item"
-                    style="background-image: url('./images/img24.jpg');">
+                <div class="carousel-item" style="background-image: url('./images/img24.jpg');">
                     <div class="carousel-content text-white">
                         <div class="container-fluid">
                             <div class="row h-100 align-items-center">
@@ -469,11 +468,11 @@
                 <div class="col-12 text-center">
                     <div class="section-header choose-us">
                         <h2 class="section-title">Why Choose Us</h2>
-                            <p class="lead text-muted">
-                                what drives us and why we do what we do.
-                            </p>
+                        <p class="lead text-muted">
+                            what drives us and why we do what we do.
+                        </p>
                     </div>
-                    
+
                     <div class="row g-4">
                         <!-- Food Quality -->
                         <div class="col-lg-4 col-md-6">
@@ -530,71 +529,80 @@
                     </div>
                 </div>
     </section>
-    
+
 
     <section class="first-section process d-flex  " id="">
         <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Our Process & Approach</h2>
-            <p class="lead text-muted">We follow a proven methodology that ensures transparency, effectiveness, and measurable results for every client engagement</p>
-        </div>
-
-        <div class="process-grid">
-            <div class="process-card">
-                <div class="card-number">1</div>
-                <div class="card-image">
-                    <img src="./images/img7.jpg" alt="Business consultation meeting" loading="lazy">
-                </div>
-                <h3 class="card-title">Discovery & Consultation</h3>
-                <p class="card-description">We begin by understanding your unique business needs, challenges, and goals through detailed consultations and comprehensive assessments to build a solid foundation for success.</p>
+            <div class="section-header">
+                <h2 class="section-title">Our Process & Approach</h2>
+                <p class="lead text-muted">We follow a proven methodology that ensures transparency, effectiveness, and
+                    measurable results for every client engagement</p>
             </div>
 
-            <div class="process-card">
-                <div class="card-number">2</div>
-                <div class="card-image">
-                    <img src="./images/img6.jpg" alt="Strategic planning and development" loading="lazy">
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="card-number">1</div>
+                    <div class="card-image">
+                        <img src="./images/img7.jpg" alt="Business consultation meeting" loading="lazy">
+                    </div>
+                    <h3 class="card-title">Discovery & Consultation</h3>
+                    <p class="card-description">We begin by understanding your unique business needs, challenges, and
+                        goals through detailed consultations and comprehensive assessments to build a solid foundation
+                        for success.</p>
                 </div>
-                <h3 class="card-title">Tailored Strategy Development</h3>
-                <p class="card-description">Based on insights gathered, we design customized solutions aligned with industry best practices and regulatory standards to ensure optimal outcomes for your specific situation.</p>
+
+                <div class="process-card">
+                    <div class="card-number">2</div>
+                    <div class="card-image">
+                        <img src="./images/img6.jpg" alt="Strategic planning and development" loading="lazy">
+                    </div>
+                    <h3 class="card-title">Tailored Strategy Development</h3>
+                    <p class="card-description">Based on insights gathered, we design customized solutions aligned with
+                        industry best practices and regulatory standards to ensure optimal outcomes for your specific
+                        situation.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="card-number">3</div>
+                    <div class="card-image">
+                        <img src="./images/img13.jpg" alt="Team implementation and support" loading="lazy">
+                    </div>
+                    <h3 class="card-title">Implementation & Support</h3>
+                    <p class="card-description">We work closely with your team to put solutions into action while
+                        providing continuous guidance, training, and hands-on support throughout the implementation
+                        process.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="card-number">4</div>
+                    <div class="card-image">
+                        <img src="./images/img12.jpg" alt="Data analytics and monitoring" loading="lazy">
+                    </div>
+                    <h3 class="card-title">Monitoring & Continuous Improvement</h3>
+                    <p class="card-description">We track results, ensure compliance, and refine processes to drive
+                        sustainable growth and long-term impact while adapting to changing business needs.</p>
+                </div>
             </div>
 
-            <div class="process-card">
-                <div class="card-number">3</div>
-                <div class="card-image">
-                    <img src="./images/img13.jpg" alt="Team implementation and support" loading="lazy">
-                </div>
-                <h3 class="card-title">Implementation & Support</h3>
-                <p class="card-description">We work closely with your team to put solutions into action while providing continuous guidance, training, and hands-on support throughout the implementation process.</p>
+            <div class="process-flow">
+                <div class="flow-step">Start</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Discover</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Strategize</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Implement</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Optimize</div>
             </div>
 
-            <div class="process-card">
-                <div class="card-number">4</div>
-                <div class="card-image">
-                    <img src="./images/img12.jpg" alt="Data analytics and monitoring" loading="lazy">
-                </div>
-                <h3 class="card-title">Monitoring & Continuous Improvement</h3>
-                <p class="card-description">We track results, ensure compliance, and refine processes to drive sustainable growth and long-term impact while adapting to changing business needs.</p>
+            <div class="cta-section">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
+                <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help
+                    you achieve your goals</p>
+                <a href="#contact" class="cta-button">Start Your Journey</a>
             </div>
         </div>
-
-        <div class="process-flow">
-            <div class="flow-step">Start</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">Discover</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">Strategize</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">Implement</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">Optimize</div>
-        </div>
-
-        <div class="cta-section">
-            <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
-            <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help you achieve your goals</p>
-            <a href="#contact" class="cta-button">Start Your Journey</a>
-        </div>
-    </div>
 
     </section>
 
@@ -605,7 +613,7 @@
                 <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized
                     product solutions to help your business thrive in today's competitive market</p>
             </div>
-    
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-badge">Business</div>
@@ -613,10 +621,11 @@
                         <img src="./images/img7.jpg" alt="Business Planning" loading="lazy">
                     </div>
                     <h3 class="service-title">Drafting of Business Plans</h3>
-                    <p class="service-description">Comprehensive business plan development with market analysis, financial
+                    <p class="service-description">Comprehensive business plan development with market analysis,
+                        financial
                         projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Certification</div>
                     <div class="service-icon">
@@ -626,7 +635,7 @@
                     <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring
                         compliance with regulatory standards and successful certification outcomes.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Processing</div>
                     <div class="service-icon">
@@ -636,7 +645,7 @@
                     <p class="service-description">Professional food dehydration services using advanced commercial
                         equipment to preserve nutritional value and extend product shelf life.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Consulting</div>
                     <div class="service-icon">
@@ -646,17 +655,18 @@
                     <p class="service-description">End-to-end product development support from concept to market launch,
                         including formulation, testing, and commercialization strategies.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Training</div>
                     <div class="service-icon">
                         <img src="./images/img12.jpg" alt="Safety Training" loading="lazy">
                     </div>
                     <h3 class="service-title">Product Safety & Quality Management Training</h3>
-                    <p class="service-description">Comprehensive training programs on food safety protocols, quality control
+                    <p class="service-description">Comprehensive training programs on food safety protocols, quality
+                        control
                         systems, and regulatory compliance for your team.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Product</div>
                     <div class="service-icon">
@@ -666,7 +676,7 @@
                     <p class="service-description">Premium quality mango powder products for commercial and retail use,
                         processed with advanced dehydration technology.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Product</div>
                     <div class="service-icon">
@@ -676,18 +686,19 @@
                     <p class="service-description">Nutritious instant porridge products high in fruit fiber, perfect for
                         health-conscious consumers and institutional buyers.</p>
                 </div>
-    
+
                 <div class="service-card">
                     <div class="service-badge">Product</div>
                     <div class="service-icon">
                         <img src="./images/img17.jpg" alt="Rice Porridge" loading="lazy">
                     </div>
                     <h3 class="service-title">Sale of Instant Rice Porridge</h3>
-                    <p class="service-description">High-quality instant rice porridge products designed for convenience and
+                    <p class="service-description">High-quality instant rice porridge products designed for convenience
+                        and
                         nutrition, suitable for various market segments.</p>
                 </div>
             </div>
-    
+
             <div class="stats-row">
                 <div class="container">
                     <div class="row">
@@ -718,10 +729,11 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="cta-section">
                 <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Get Started?</h3>
-                <p style="margin-bottom: 30px; color: var(--text-light);">Contact us today to discuss how our services can
+                <p style="margin-bottom: 30px; color: var(--text-light);">Contact us today to discuss how our services
+                    can
                     help grow your business</p>
                 <a href="#contact" class="cta-button quote-trigger" onclick="openQuoteModal()">Get a Quote</a>
                 <a href="#free-consultation" class="cta-button secondary">Free Consultation</a>
@@ -736,12 +748,13 @@
             <i class="fas fa-flask floating-icon"></i>
             <i class="fas fa-leaf floating-icon"></i>
         </div>
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
                     <h2 class="section-title display-4">What Our Clients Say</h2>
-                    <p class="section-subtitle">Trusted by industry leaders for innovative food science solutions and expert consultancy services</p>
+                    <p class="section-subtitle">Trusted by industry leaders for innovative food science solutions and
+                        expert consultancy services</p>
                 </div>
             </div>
 
@@ -749,7 +762,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Their expertise in food safety protocols transformed our entire production line. The comprehensive HACCP implementation they provided exceeded our expectations and helped us achieve international certification."</p>
+                        <p class="testimonial-text">"Their expertise in food safety protocols transformed our entire
+                            production line. The comprehensive HACCP implementation they provided exceeded our
+                            expectations and helped us achieve international certification."</p>
                         <div class="client-info">
                             <div class="client-avatar">SM</div>
                             <div class="client-details">
@@ -770,7 +785,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Outstanding nutritional analysis and product development support. They helped us launch three successful product lines with precise formulations that met all regulatory requirements."</p>
+                        <p class="testimonial-text">"Outstanding nutritional analysis and product development support.
+                            They helped us launch three successful product lines with precise formulations that met all
+                            regulatory requirements."</p>
                         <div class="client-info">
                             <div class="client-avatar">DR</div>
                             <div class="client-details">
@@ -791,7 +808,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Professional, knowledgeable, and incredibly thorough. Their sensory evaluation expertise helped us perfect our new flavor profiles and achieve a 40% increase in consumer acceptance."</p>
+                        <p class="testimonial-text">"Professional, knowledgeable, and incredibly thorough. Their sensory
+                            evaluation expertise helped us perfect our new flavor profiles and achieve a 40% increase in
+                            consumer acceptance."</p>
                         <div class="client-info">
                             <div class="client-avatar">EJ</div>
                             <div class="client-details">
@@ -812,7 +831,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Their regulatory compliance guidance saved us months of delays. The team's deep understanding of FDA requirements and international standards is unmatched in the industry."</p>
+                        <p class="testimonial-text">"Their regulatory compliance guidance saved us months of delays. The
+                            team's deep understanding of FDA requirements and international standards is unmatched in
+                            the industry."</p>
                         <div class="client-info">
                             <div class="client-avatar">MR</div>
                             <div class="client-details">
@@ -833,7 +854,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Exceptional shelf-life studies and preservation solutions. They helped us extend our product's freshness by 60% while maintaining all nutritional values and taste profiles."</p>
+                        <p class="testimonial-text">"Exceptional shelf-life studies and preservation solutions. They
+                            helped us extend our product's freshness by 60% while maintaining all nutritional values and
+                            taste profiles."</p>
                         <div class="client-info">
                             <div class="client-avatar">AL</div>
                             <div class="client-details">
@@ -854,7 +877,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="testimonial-card">
                         <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Their innovative approach to sustainable packaging solutions helped us reduce environmental impact by 50% while improving product protection. Truly cutting-edge expertise."</p>
+                        <p class="testimonial-text">"Their innovative approach to sustainable packaging solutions helped
+                            us reduce environmental impact by 50% while improving product protection. Truly cutting-edge
+                            expertise."</p>
                         <div class="client-info">
                             <div class="client-avatar">JW</div>
                             <div class="client-details">
@@ -874,7 +899,7 @@
             </div>
         </div>
 
-        
+
     </section>
 
     <!-- Contact Section -->
@@ -883,7 +908,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
                     <h2 class="section-title display-4">Ready to Transform Your Food Business?</h2>
-                    <p class="section-subtitle">Let's discuss how our scientific expertise can help you achieve your goals</p>
+                    <p class="section-subtitle">Let's discuss how our scientific expertise can help you achieve your
+                        goals</p>
                 </div>
             </div>
 
@@ -935,7 +961,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6" >
+                <div class="col-lg-6">
                     <div class="contact-form-wrapper">
                         <form class="contact-form">
                             <div class="row">
@@ -948,7 +974,7 @@
                                     <input type="text" class="form-control" id="lastName" required>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email Address*</label>
@@ -981,8 +1007,10 @@
 
                             <div class="mb-4">
                                 <label for="message" class="form-label">Project Details*</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="Tell us about your project, timeline, and specific requirements..." required></textarea>
-                            </div>   
+                                <textarea class="form-control" id="message" rows="4"
+                                    placeholder="Tell us about your project, timeline, and specific requirements..."
+                                    required></textarea>
+                            </div>
 
                             <button type="submit" class="btn btn-primary btn-lg w-100">
                                 <i class="fas fa-paper-plane me-2"></i>
@@ -995,48 +1023,48 @@
         </div>
 
 
-        
+
     </section>
 
     <div class="stats-row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Client Satisfaction</span>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Industry Partners</span>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Industry Partners</span>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br>
+    </div>
+    <br><br><br>
 
 
-        
+
     <!-- Quote Modal -->
-    <div class="modal-overlay" id="quoteModal" >
-        <div class="modal-container" >
+    <div class="modal-overlay" id="quoteModal">
+        <div class="modal-container">
             <div class="modal-header">
-                <button class="close-btn" >&times;</button>
+                <button class="close-btn">&times;</button>
                 <h2 class="modal-title">Request a Quote</h2>
                 <p class="modal-subtitle">Tell us about your project and we'll provide a customized solution</p>
             </div>
@@ -1090,27 +1118,27 @@
                     <div class="form-group">
                         <label class="required">Services Needed</label>
                         <div class="service-selection">
-                            <div class="service-checkbox" >
+                            <div class="service-checkbox">
                                 <input type="checkbox" name="services" value="business-plans">
                                 <span>Business Plan Drafting</span>
                             </div>
-                            <div class="service-checkbox" >
+                            <div class="service-checkbox">
                                 <input type="checkbox" name="services" value="certification">
                                 <span>FDA & GSA Certification</span>
                             </div>
-                            <div class="service-checkbox" =>
+                            <div class="service-checkbox"=>
                                 <input type="checkbox" name="services" value="dehydration">
                                 <span>Commercial Dehydration</span>
                             </div>
-                            <div class="service-checkbox" >
+                            <div class="service-checkbox">
                                 <input type="checkbox" name="services" value="product-development">
                                 <span>Product Development</span>
                             </div>
-                            <div class="service-checkbox" >
+                            <div class="service-checkbox">
                                 <input type="checkbox" name="services" value="safety-training">
                                 <span>Safety Training</span>
                             </div>
-                            <div class="service-checkbox" >
+                            <div class="service-checkbox">
                                 <input type="checkbox" name="services" value="mango-powder">
                                 <span>Mango Powder Products</span>
                             </div>
@@ -1128,7 +1156,9 @@
                     <!-- Project Details -->
                     <div class="form-group">
                         <label for="projectDescription" class="required">Project Description</label>
-                        <textarea id="projectDescription" name="projectDescription" placeholder="Please describe your project requirements, goals, and any specific needs..." required></textarea>
+                        <textarea id="projectDescription" name="projectDescription"
+                            placeholder="Please describe your project requirements, goals, and any specific needs..."
+                            required></textarea>
                     </div>
 
                     <div class="form-row">
@@ -1176,12 +1206,13 @@
                     <!-- Additional Information -->
                     <div class="form-group">
                         <label for="additionalInfo">Additional Information</label>
-                        <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional details, special requirements, or questions you'd like to share..."></textarea>
+                        <textarea id="additionalInfo" name="additionalInfo"
+                            placeholder="Any additional details, special requirements, or questions you'd like to share..."></textarea>
                     </div>
 
                     <!-- Form Actions -->
                     <div class="form-actions">
-                        <button type="button" class="btnn btn-secondary" >Cancel</button>
+                        <button type="button" class="btnn btn-secondary">Cancel</button>
                         <button type="submit" class="btnn btn-primary">
                             <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
                             Submit Quote Request
@@ -1196,9 +1227,10 @@
                     </div>
                     <h3 class="success-title">Quote Request Submitted!</h3>
                     <p class="success-text">
-                        Thank you for your interest in PFS services. We've received your quote request and will get back to you within 24 hours with a customized proposal.
+                        Thank you for your interest in PFS services. We've received your quote request and will get back
+                        to you within 24 hours with a customized proposal.
                     </p>
-                    <button class="btn btn-primary"  style="margin-top: 20px;">
+                    <button class="btn btn-primary" style="margin-top: 20px;">
                         Close
                     </button>
                 </div>
@@ -1211,7 +1243,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-        
+
     <footer class="footer">
         <div class="footer-content">
             <div class="company-info">
@@ -1225,7 +1257,9 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3>About Us</h3>
-                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product
+                        development, nutritional analysis, and regulatory compliance. Our expert team delivers
+                        cutting-edge research and practical solutions for the food industry.</p>
                 </div>
 
                 <div class="footer-section">
@@ -1258,15 +1292,15 @@
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
                         <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
                         <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
-                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->
                     </ul>
                 </div>
 
-                
-                        
-                    <div class="footer-section">
-                        <h3>Follow Us</h3>
-                
+
+
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+
                     <div class="social-links">
 
                         <a href="#" class="social-link" title="LinkedIn">
@@ -1282,14 +1316,15 @@
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
-                    </div>
-                    
                 </div>
+
             </div>
+        </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy
+                | Terms of Service</p>
         </div>
     </footer>
 
