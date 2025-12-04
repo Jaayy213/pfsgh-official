@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "main/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pfsgh consult</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    li
+{% load static %}
 
-</head>
+{% block title %}Contact Us - Pneuma Food Scientifics{% endblock title %}
+
+{% block styles_addon %}
 <style>
-/* Hero Section */
+    /* Hero Section */
         .hero-section {
             background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(137, 15, 145, 0.7)), 
-                              url('./images/img6.jpg');
+                              url('{% static "main/images/img6.jpg" %}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -195,100 +189,10 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-    </style>
+</style>
+{% endblock styles_addon %}
 
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
-
-    
-
-
-
-    <!-- Top Contact Bar  -->
-
-    <div class="top-bar py-2">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="d-flex flex-wrap align-items-center gap-4">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-envelope me-2"></i>
-                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-phone me-2"></i>
-                            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
-                            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-map-marker-alt me-2"></i>
-                            <span>Zibra Street, Pokuase, Accra</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-clock me-2"></i>
-                            <span class="small">09am-05pm, Mon-Fri</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
-        <div class="container-fluid">
-            <!-- Brand/Logo -->
-            <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                <div class="logo">
-                    <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
-                </div>
-            </a>
-
-            <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navigation Links -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./about.html" >About Us</a>              
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./process.html">Our Process</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./service.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-
-                <!-- CTA Button -->
-                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
-                    Request Quote <i class="fas fa-arrow-right ms-2"></i>
-                </a>
-
-                
-            </div>
-        </div>
-    </nav>
-
-
-
-
+{% block content %}
      <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -300,12 +204,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
 
     <!-- Contact Form and Map -->
 
@@ -470,7 +368,7 @@
                                 <label for="service" class="form-label">Service Interested In*</label>
                                 <select class="form-select" id="service" required>
                                     <option value="">Select a service...</option>
-                                    <option value="food-safety">Food Safety & HACCP</option>
+                                    <option value="food-safety">Food Safety &amp; HACCP</option>
                                     <option value="product-development">Product Development</option>
                                     <option value="regulatory">Regulatory Compliance</option>
                                     <option value="nutritional">Nutritional Analysis</option>
@@ -497,99 +395,8 @@
             </div>
         </div>
 
-
-
     </section>
 
 <br><br>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="company-info">
-                <div class="company-logo">
-                    <img src="./images/logo-retouch.png" alt="Pneuma Food Scientifics Logo" class="logo-image">
-                    <h2 class="company-name">Pneuma Food Scientifics</h2>
-                </div>
-                <p class="company-tagline">Excellence in Food Science Innovation</p>
-            </div>
-
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product
-                        development, nutritional analysis, and regulatory compliance. Our expert team delivers
-                        cutting-edge research and practical solutions for the food industry.</p>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Food Safety Analysis</a></li>
-                        <li><a href="#"><i class="fas fa-lightbulb"></i> Product Development</a></li>
-                        <li><a href="#"><i class="fas fa-chart-line"></i> Nutritional Assessment</a></li>
-                        <li><a href="#"><i class="fas fa-clipboard-check"></i> Regulatory Compliance</a></li>
-                        <li><a href="#"><i class="fas fa-award"></i> Quality Assurance</a></li>
-                        <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Industries</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-industry"></i> Food Manufacturing</a></li>
-                        <li><a href="#"><i class="fas fa-wine-bottle"></i> Beverage Industry</a></li>
-                        <li><a href="#"><i class="fas fa-cheese"></i> Dairy & Dairy Alternatives</a></li>
-                        <li><a href="#"><i class="fas fa-drumstick-bite"></i> Meat & Poultry</a></li>
-                        <li><a href="#"><i class="fas fa-bread-slice"></i> Bakery & Confectionery</a></li>
-                        <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
-                    </ul>
-                </div>
-
-
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-
-                    <div class="social-links">
-
-                        <a href="#" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy
-                | Terms of Service</p>
-        </div>
-    </footer>
-
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/script.js"></script>
-</body>
-
-</html>
+{% endblock content %}

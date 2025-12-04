@@ -5,4 +5,4 @@ def blog(request):
     context = {
 
     }
-    return render(request, 'main/blog.html', context)
+    return render(request, 'blog/blog_home.html', context)
