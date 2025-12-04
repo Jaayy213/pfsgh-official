@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "main/css/style.css" %}">
+    {% block styles_addon %}{% endblock styles_addon %}
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+
+    <!-- Top Contact Bar  -->
+    <div class="top-bar py-2">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap align-items-center gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-envelope me-2"></i>
+                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone me-2"></i>
+                            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
+                            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span>Zibra Street, Pokuase, Accra</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-clock me-2"></i>
+                            <span class="small">09am-05pm, Mon-Fri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
+        <div class="container-fluid">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="{% url "home" %}">
+                <div class="logo">
+                    <img src="{% static "main/images/logo-retouch.png" %}" alt="PFSGH Logo" class="img-fluid">
+                </div>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "home" %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "about" %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "process" %}">Our Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "services" %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "blog" %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "contact" %}">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- CTA Button -->
+                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
+                    Request Quote <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+
+
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+
+
+    <!-- Quote Modal -->
+    <div class="modal-overlay" id="quoteModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="close-btn">&times;</button>
+                <h2 class="modal-title">Request a Quote</h2>
+                <p class="modal-subtitle">Tell us about your project and we'll provide a customized solution</p>
+            </div>
+
+            <div class="modal-body">
+                <form id="quoteForm">
+                    <!-- Personal Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company" class="required">Company Name</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Industry</label>
+                            <select id="industry" name="industry">
+                                <option value="">Select Industry</option>
+                                <option value="food-beverage">Food &amp; Beverage</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="agriculture">Agriculture</option>
+                                <option value="retail">Retail</option>
+                                <option value="technology">Technology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Services Selection -->
+                    <div class="form-group">
+                        <label class="required">Services Needed</label>
+                        <div class="service-selection">
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="business-plans">
+                                <span>Business Plan Drafting</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="certification">
+                                <span>FDA &amp; GSA Certification</span>
+                            </div>
+                            <div class="service-checkbox"=>
+                                <input type="checkbox" name="services" value="dehydration">
+                                <span>Commercial Dehydration</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="product-development">
+                                <span>Product Development</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="safety-training">
+                                <span>Safety Training</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="mango-powder">
+                                <span>Mango Powder Products</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="fruit-porridge">
+                                <span>Fruit Fiber Porridge</span>
+                            </div>
+                            <div class="service-checkbox">
+                                <input type="checkbox" name="services" value="rice-porridge">
+                                <span>Rice Porridge</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div class="form-group">
+                        <label for="projectDescription" class="required">Project Description</label>
+                        <textarea id="projectDescription" name="projectDescription"
+                            placeholder="Please describe your project requirements, goals, and any specific needs..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select Timeline</option>
+                                <option value="urgent">Urgent (1-2 weeks)</option>
+                                <option value="fast">Fast Track (3-4 weeks)</option>
+                                <option value="standard">Standard (1-2 months)</option>
+                                <option value="flexible">Flexible (2+ months)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select Budget Range</option>
+                                <option value="under-5k">Under GHC5,000</option>
+                                <option value="5k-10k">GHC5,000 - GHC10,000</option>
+                                <option value="10k-25k">GHC10,000 - GHC25,000</option>
+                                <option value="25k-50k">GHC25,000 - GHC50,000</option>
+                                <option value="over-50k">Over GHC50,000</option>
+                                <option value="discuss">Prefer to discuss</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Priority -->
+                    <div class="form-group">
+                        <label>Project Priority</label>
+                        <div class="priority-selector">
+                            <div class="priority-option low" onclick="selectPriority(this, 'low')">
+                                <i class="fas fa-clock"></i> Low
+                            </div>
+                            <div class="priority-option medium" onclick="selectPriority(this, 'medium')">
+                                <i class="fas fa-bolt"></i> Medium
+                            </div>
+                            <div class="priority-option high" onclick="selectPriority(this, 'high')">
+                                <i class="fas fa-fire"></i> High
+                            </div>
+                        </div>
+                        <input type="hidden" id="priority" name="priority" value="">
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" name="additionalInfo"
+                            placeholder="Any additional details, special requirements, or questions you'd like to share..."></textarea>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btnn btn-secondary">Cancel</button>
+                        <button type="submit" class="btnn btn-primary">
+                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                            Submit Quote Request
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="success-title">Quote Request Submitted!</h3>
+                    <p class="success-text">
+                        Thank you for your interest in PFS services. We've received your quote request and will get back
+                        to you within 24 hours with a customized proposal.
+                    </p>
+                    <button class="btn btn-primary" style="margin-top: 20px;">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="company-info">
+                <div class="company-logo">
+                    <img src="{% static "main/images/logo-retouch.png" %}" alt="Pneuma Food Scientifics Logo" class="logo-image">
+                    <h2 class="company-name">Pneuma Food Scientifics</h2>
+                </div>
+                <p class="company-tagline">Excellence in Food Science Innovation</p>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product
+                        development, nutritional analysis, and regulatory compliance. Our expert team delivers
+                        cutting-edge research and practical solutions for the food industry.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Food Safety Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> Product Development</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Nutritional Assessment</a></li>
+                        <li><a href="#"><i class="fas fa-clipboard-check"></i> Regulatory Compliance</a></li>
+                        <li><a href="#"><i class="fas fa-award"></i> Quality Assurance</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-industry"></i> Food Manufacturing</a></li>
+                        <li><a href="#"><i class="fas fa-wine-bottle"></i> Beverage Industry</a></li>
+                        <li><a href="#"><i class="fas fa-cheese"></i> Dairy &amp; Dairy Alternatives</a></li>
+                        <li><a href="#"><i class="fas fa-drumstick-bite"></i> Meat &amp; Poultry</a></li>
+                        <li><a href="#"><i class="fas fa-bread-slice"></i> Bakery &amp; Confectionery</a></li>
+                        <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
+                    </ul>
+                </div>
+
+
+
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+
+                    <div class="social-links">
+
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy
+                | Terms of Service</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static "main/js/script.js" %}"></script>
+    <script src="{% static "main/js/index.js" %}"></script>
+    {% block extra_js %}{% endblock extra_js %}
+</body>
+
+</html>
