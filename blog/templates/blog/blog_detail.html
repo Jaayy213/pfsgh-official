@@ -1,0 +1,22 @@
+<div class="container my-5">
+    <article>
+
+        <h1 class="fw-bold">{{ post.title }}</h1>
+
+        <div class="text-muted mb-3">
+            <span>{{ post.category.name }}</span> •
+            <span>{{ post.period }}</span> •
+            <span>{{ post.read_time }} min read</span>
+        </div>
+
+        <img src="{{ post.image.url }}" class="img-fluid my-4" alt="">
+
+        <div class="article-body">
+            {{ post.content|safe }}  <!-- CKEditor output -->
+        </div>
+
+        <hr>
+        <a href="{% url 'blog' %}">← Back to Articles</a>
+
+    </article>
+</div>

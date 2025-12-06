@@ -320,6 +320,26 @@
         text-align: center;
         font-weight: 500;
     }
+
+    /* Search results banner */
+    .search-results-banner {
+        background-color: var(--light-blue);
+        border-left: 5px solid var(--primary-blue);
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        color: var(--dark-gray);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-results-banner i {
+        color: var(--accent-orange);
+        font-size: 1.2rem;
+    }
 </style>
 {% endblock styles_addon %}
 
@@ -338,92 +358,90 @@
                                 pieces covering industry trends, best practices, and strategic guidance.</p>
                         </div>
 
+                        <!-- Featured Post -->
+                        {% if featured_post %}
+                        <section class="featured-post mb-5">
+                            <div class="card blog-card featured">
+                                <img src="{{ featured_post.image.url }}" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h2 class="fw-bold">{{ featured_post.title }}</h2>
+                                    <p>{{ featured_post.excerpt }}</p>
+                                    <a href="{% url 'blog_detail' featured_post.slug %}" class="read-more">
+                                        Read Featured <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                        {% endif %}
+
                         <div class="row g-4">
-                            <div class="col-12">
-                                <div class="card blog-card animated-card">
-                                    <div class="blog-image">
-                                        <img src="{% static "main/images/img30.jpg" %}" alt="pictire">
-                                    </div>
-                                    <div class="card-body p-4">
-                                        <div class="d-flex align-items-center gap-3 mb-3">
-                                            <span class="blog-category">Project</span>
-                                            <span class="blog-meta">2025-Present</span>
-                                            <span class="blog-meta">8 min read</span>
-                                        </div>
-                                        <h3 class="h4 fw-bold mb-3">GIZ MOVE (Rice &amp; Cashew Value Chain Project)
-                                        </h3>
-                                        <p class="text-muted mb-3">
-                                            Developing 4 innovative cashew-based products for commercialization,
-                                            significantly boosting local value addition.
-                                        </p>
-                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card blog-card animated-card">
-                                    <div class="blog-image">
-                                        <img src="{% static "main/images/rest2.jpg" %}" alt="Restaurant chef chopping veggies">
-                                    </div>
-                                    <div class="card-body p-4">
-                                        <div class="d-flex align-items-center gap-3 mb-3">
-                                            <span class="blog-category">Regulatory Guidance</span>
-                                            <span class="blog-meta">November 2025</span>
-                                            <span class="blog-meta">9 min read</span>
-                                        </div>
-                                        <h3 class="h4 fw-bold mb-3">How to Get Your Restaurant FDA Certified in
-                                            Ghana: A Step-by-Step Guide</h3>
-                                        <p class="text-muted mb-3">
-                                            A comprehensive walkthrough for new restaurant owners on navigating the
-                                            FDA certification process, from
-                                            facility requirements to final application.
-                                        </p>
-                                        <a href="" class="read-more">Read
-                                            More <i class="fas fa-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="card blog-card animated-card">
-                                    <div class="blog-image">
-                                        <img src="{% static "main//images/img24.jpg" %}" alt="picture">
-                                    </div>
-                                    <div class="card-body p-4">
-                                        <div class="d-flex align-items-center gap-3 mb-3">
-                                            <span class="blog-category">Collaboration</span>
-                                            <span class="blog-meta">2022-2023</span>
-                                            <span class="blog-meta">10 min read</span>
-                                        </div>
-                                        <h3 class="h4 fw-bold mb-3">EU SME Capacity Building</h3>
-                                        <p class="text-muted mb-3">
-                                            Trained 30 SMEs in Ghana to integrate Good Manufacturing Practices(GMPs)
-                                            and robust Quality Assurance measures
-                                        </p>
-                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                                    </div>
+                            <!-- Display search results -->
+                            {% if query %}
+                                <div class="search-results-banner">
+                                    <i class="fas fa-search"></i>
+                                    Search results for: <strong>{{ query }}</strong>
                                 </div>
-                            </div>
+                            {% endif %}
 
-                            <div class="col-12">
-                                <div class="card blog-card animated-card">
-                                    <div class="blog-image">
-                                        <img src="{% static "main/images/img24.jpg" %}" alt="picture">
-                                    </div>
-                                    <div class="card-body p-4">
-                                        <div class="d-flex align-items-center gap-3 mb-3">
-                                            <span class="blog-category">Sustainability</span>
-                                            <span class="blog-meta">2021-2022</span>
-                                            <span class="blog-meta">9 min read</span>
+                            {% for post in page_obj %}
+                                <div class="col-12">
+                                    <div class="card blog-card">
+                                        <div class="blog-image">
+                                            <img src="{{ post.image.url }}" alt="">
                                         </div>
-                                        <h3 class="h4 fw-bold mb-3">SME Quality Support Program</h3>
-                                        <p class="text-muted mb-3">Successfully guided 15 SMEs to achieve full GMP
-                                            integration and FDA compliance, opening new market opportunities.</p>
-                                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                        <div class="card-body">
+                                            <div class="d-flex gap-3 mb-3">
+                                                <span class="blog-category">{{ post.category.name }}</span>
+                                                <span class="blog-meta">{{ post.period|date:"F Y" }}</span>
+                                                <span class="blog-meta">{{ post.read_time }} min read</span>
+                                            </div>
+
+                                            <h3 class="h4 fw-bold">{{ post.title }}</h3>
+                                            <p class="text-muted">{{ post.excerpt }}</p>
+
+                                            <a href="{% url 'blog_detail' post.slug %}" class="read-more">
+                                                Read More <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                {% empty %}
+                                <p>No articles found.</p>
+                            {% endfor %}
                         </div>
+
+                        <!-- Pagination -->
+                        <nav class="mt-4">
+                            <ul class="pagination justify-content-center">
+
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                        Previous
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                                {% for num in page_obj.paginator.page_range %}
+                                <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                        {{ num }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                        Next
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                            </ul>
+                        </nav>
                     </section>
                 </div>
                 <!-- Sidebar -->
@@ -442,22 +460,30 @@
                         </div>
                     </div>
 
-                    <!-- Categories Widget -->
-                    <div class="sidebar-widget">
-                        <div class="card-body p-4">
-                            <h5 class="widget-title mb-3">Categories</h5>
-                            <div class="d-flex flex-column">
-                                <a href="#articles" class="category-link">Latest Articles</a>
-                                <a href="#videos" class="category-link">Video Content</a>
-                                <a href="#insights" class="category-link">Industry Insights</a>
-                                <a href="#" class="category-link">Strategic Planning</a>
-                                <a href="#" class="category-link">Digital Transformation</a>
-                                <a href="#" class="category-link">Innovation</a>
-                                <a href="#" class="category-link">Market Analysis</a>
-                                <a href="#" class="category-link">Sustainability</a>
+                    <!-- Sidebar -->
+                    <aside class="col-lg-4 mb-4">
+
+                        <!-- Categories Widget -->
+                        <div class="sidebar-widget">
+                            <div class="card-body p-4">
+                                <h5 class="widget-title mb-3">Categories</h5>
+                                <div class="d-flex flex-column">
+
+                                    <a href="{% url 'blog' %}" class="category-link">
+                                        Latest Articles
+                                    </a>
+
+                                    {% for cat in categories %}
+                                    <a href="?category={{ cat.name }}" class="category-link">
+                                        {{ cat.name }}
+                                    </a>
+                                    {% endfor %}
+
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    </aside>
 
                     <!-- Recent Posts Widget -->
                     <div class="sidebar-widget">
@@ -618,4 +644,21 @@
 
         </div>
     </section>
+    {% block extra_js %}
+    <script>
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const query = document.getElementById("searchInput").value.trim();
+            if (query) {
+                window.location.href = `/blog/?q=${encodeURIComponent(query)}`;
+            }
+        });
+
+        document.getElementById("searchInput").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                document.getElementById("searchButton").click();
+            }
+        });
+    </script>
+    {% endblock extra_js %}
 {% endblock content %}

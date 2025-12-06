@@ -1,0 +1,70 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+{% load static %}
+
+{% block title %}Add Blog Post{% endblock title %}
+
+{% block dashboard_content %}
+<h2 class="mb-4">Add New Blog Post</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-success">Save</button>
+</form>
+
+{% comment %} <form method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+        <label for="id_title" class="form-label">Title</label>
+        {{ form.title }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_category" class="form-label">Category</label>
+        {{ form.category }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_cover_image" class="form-label">Cover Image</label>
+        {{ form.cover_image }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_excerpt" class="form-label">Short Description</label>
+        {{ form.excerpt }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_content" class="form-label">Content</label>
+        {{ form.content }}
+    </div>
+
+    <div class="form-check mb-3">
+        {{ form.is_featured }}
+        <label class="form-check-label ms-2" for="id_is_featured">Feature this post</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Publish Post</button>
+</form> {% endcomment %}
+{% endblock dashboard_content %}
+
+{% block extra_js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        ClassicEditor.create(document.querySelector('textarea[name="content"]'), {
+            toolbar: [
+                'heading', '|',
+                'bold', 'italic', 'underline', 'strikethrough', '|',
+                'link', 'bulletedList', 'numberedList', 'blockQuote', '|',
+                'insertTable', 'undo', 'redo', 'imageUpload'
+            ],
+            placeholder: 'Write your blog content here...',
+            height: 300
+        }).catch(error => console.error(error));
+    });
+</script>
+{% endblock extra_js %}

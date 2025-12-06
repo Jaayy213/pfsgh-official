@@ -1,0 +1,18 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Dashboard Home{% endblock title %}
+
+{% block dashboard_content %}
+<h2>Welcome to the Blog Dashboard</h2>
+<p>Use the sidebar to manage posts: add, edit, or delete content.</p>
+{% if featured_post %}
+    <div class="featured-post">
+        <h2>{{ featured_post.title }}</h2>
+        <p>{{ featured_post.excerpt }}</p>
+        <a href="{% url 'post_edit' featured_post.pk %}">Edit</a>
+    </div>
+{% else %}
+    <p>No featured posts yet.</p>
+{% endif %}
+
+{% endblock dashboard_content %}
