@@ -1,42 +1,152 @@
 {% extends "blog/dashboard/base_dashboard.html" %}
-{% load static %}
 
-{% block title %}All Blog Posts{% endblock title %}
+{% block title %}Blog Posts - Blog Dashboard{% endblock title %}
 
-{% block dashboard_content %}
-<h2 class="mb-4">All Blog Posts</h2>
+{% block extra_css %}
+.table td img {
+    object-fit: cover;
+}
+{% endblock extra_css %}
 
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Created At</th>
-            <th>Featured</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for post in posts %}
-        <tr>
-            <td>{{ post.title }}</td>
-            <td>{{ post.category.name }}</td>
-            <td>{{ post.created_at|date:"M d, Y" }}</td>
-            <td>{% if post.is_featured %}Yes{% else %}No{% endif %}</td>
-            <td>
-                <a href="{% url 'post_edit' post.pk %}" class="btn btn-sm btn-warning me-1">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
-                <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-danger">
-                    <i class="fas fa-trash-alt"></i> Delete
-                </a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5">No blog posts found.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock dashboard_content %}
+{% block content %}
+<div class="flex-grow-1 p-4" id="content-area">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Manage Posts</h3>
+        <a class="btn btn-primary" href="{% url "create_blog_post" %}">
+            <i class="fas fa-plus me-1"></i> New Post
+        </a>
+        <button id="darkModeToggle" class="btn btn-sm btn-outline-secondary">
+            <i class="fas fa-moon"></i> Dark Mode
+        </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="dashboard-card mb-4">
+        <div class="row g-3">
+
+            <!-- Search -->
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search posts...">
+            </div>
+
+            <!-- Category Filter -->
+            <div class="col-md-3">
+                <select class="form-select">
+                    <option selected>Filter by Category</option>
+                    <option>Food Safety</option>
+                    <option>Product Testing</option>
+                    <option>Consultancy</option>
+                </select>
+            </div>
+
+            <!-- Date Filter -->
+            <div class="col-md-3">
+                <input type="date" class="form-control">
+            </div>
+
+            <!-- Apply Button -->
+            <div class="col-md-2">
+                <button class="btn btn-outline-primary w-100">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Posts Table -->
+    <div class="dashboard-card">
+        <h5 class="mb-3">All Posts</h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Read Time</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" class="rounded" width="60" height="40" alt="{{ post.title }}">
+                            {% else %}
+                                <img src="https://via.placeholder.com/60" class="rounded" width="60" height="40" alt="No image">
+                            {% endif %}
+                        </td>
+
+                        <td>{{ post.title|truncatechars:40 }}</td>
+                        <td>{{ post.category.name|default:"Not set" }}</td>
+                        <td>{{ post.period|date:"M d, Y" }}</td>
+
+                        <td>{{ post.read_time }} min</td>
+
+                        <td>
+                            {% if post.is_featured %}
+                                <span class="badge bg-success">Featured</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Standard</span>
+                            {% endif %}
+                        </td>
+
+                        <td class="text-end">
+                            <a href="{% url "edit_blog_post" post.slug %}" class="btn btn-sm btn-outline-warning me-1">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <a href="{% url "blog_detail" post.slug %}" class="btn btn-sm btn-outline-primary me-1" target="_blank">
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                            <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePostModal-{{ post.slug }}"><i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- DELETE POST CONFIRMATION -->
+                    <div class="modal fade" id="deletePostModal-{{ post.slug }}" tabindex="-1">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content text-center">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                    <div class="modal-body">
+                                        <p class="text-muted">Are you sure you want to delete {{ post.title }}?</p>
+                                        <form action="{% url "delete_blog_post" post.slug %}" method="POST" class="d-inline">
+                                            {% csrf_token %}
+                                            <button class="btn btn-danger w-100 mb-2">
+                                                <i class="fas fa-trash me-1"></i> Delete
+                                            </button>
+                                        </form>
+                                        <button class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">
+                            No posts found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

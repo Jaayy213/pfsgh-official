@@ -13,23 +13,49 @@ body {
 
 /* Top Contact Bar */
 .top-bar {
-    background: var(--primary-color);
-    color: white;
-    font-size: 14px;
+    background-color: #1f2933;
+    color: #f1f5f9;
+    font-size: 0.85rem;
 }
 
 .top-bar a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: #e2e8f0;
 }
 
 .top-bar a:hover {
-    color: var(--accent-color);
+    text-decoration: underline;
 }
 
-.top-bar i {
-    color: var(--accent-color);
+.top-bar .dropdown-menu {
+    font-size: 0.85rem;
+}
+
+.top-bar .dropdown-menu {
+    background-color: #1f2933;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.top-bar .dropdown-item {
+    color: #f1f5f9;
+}
+
+.top-bar .dropdown-item:hover,
+.top-bar .dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+.top-bar .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.top-bar .dropdown-item.text-danger {
+    color: #f87171 !important;
+}
+
+.top-bar .dropdown-item.text-danger:hover {
+    background-color: rgba(248, 113, 113, 0.15);
 }
 
 /* Navbar */

@@ -9,43 +9,130 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static "main/css/style.css" %}">
+    <style>
+        .message-overlay {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+
+        padding: 15px 20px;
+        border-radius: 6px;
+
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+        animation: fadeSlideIn 0.4s ease-out;
+    }
+
+    /* Optional fade + slide animation */
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
     {% block styles_addon %}{% endblock styles_addon %}
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+    {% if messages %}
+    <div class="alert alert-success message-overlay">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-    <!-- Top Contact Bar  -->
+    <!-- Top Contact Bar -->
     <div class="top-bar py-2">
         <div class="container-fluid">
             <div class="row align-items-center">
+
+                <!-- Left: Contact Info -->
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap align-items-center gap-4">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-envelope me-2"></i>
-                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
+                            <a href="mailto:pfsghconsult.com" class="text-decoration-none">
+                                pneumaconsult@gmail.com
+                            </a>
                         </div>
+
                         <div class="d-flex align-items-center">
                             <i class="fas fa-phone me-2"></i>
-                            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
-                            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
+                            <a href="tel:+233241043139" class="text-decoration-none">
+                                +233 24 104 3139
+                            </a>,
+                            <a href="tel:+233503386203" class="text-decoration-none">
+                                +233 50 338 6203
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Right: Location, Time, User -->
                 <div class="col-lg-4">
                     <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
+
                         <div class="d-flex align-items-center">
                             <i class="fas fa-map-marker-alt me-2"></i>
                             <span>Zibra Street, Pokuase, Accra</span>
                         </div>
+
                         <div class="d-flex align-items-center">
                             <i class="fas fa-clock me-2"></i>
-                            <span class="small">09am-05pm, Mon-Fri</span>
+                            <span class="small">09am–05pm, Mon–Fri</span>
                         </div>
+
+                        {% if user.is_authenticated %}
+                        <!-- User Dropdown -->
+                        <div class="dropdown">
+                            <a
+                                href="#"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                                <i class="fas fa-user-circle me-2 fs-5"></i>
+                                <span class="small">
+                                    {{ request.user.email }}
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% comment %} UPDATE LATER !!!! {% endcomment %}
+                                {% comment %} <li>
+                                    <a class="dropdown-item" href="">
+                                        <i class="fas fa-user me-2"></i>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li> {% endcomment %}
+                                <li>
+                                    <form method="POST" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="fas fa-sign-out-alt me-2"></i>
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
@@ -372,6 +459,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="{% static "main/js/script.js" %}"></script>
     <script src="{% static "main/js/index.js" %}"></script>
+    <!-- Flash Messages -->
+    <script>
+        setTimeout(() => {
+            const msg = document.querySelector('.message-overlay');
+            if (msg) {
+                msg.style.transition = "opacity 0.5s ease";
+                msg.style.opacity = "0";
+                setTimeout(() => msg.remove(), 500);
+            }
+        }, 4000);
+    </script>
     {% block extra_js %}{% endblock extra_js %}
 </body>
 

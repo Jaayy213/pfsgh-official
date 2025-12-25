@@ -1,54 +1,150 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dashboard{% endblock title %}</title>
+    <title>{% block title %}{% endblock title %} – Pneuma Food Scientifics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 & FontAwesome -->
+    <!-- Bootstrap & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "blog/css/styles.css" %}">
 
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-    {% block extra_head %}{% endblock extra_head %}
+    <style>
+        .message-overlay {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+
+        padding: 15px 20px;
+        border-radius: 6px;
+
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+        animation: fadeSlideIn 0.4s ease-out;
+    }
+
+    /* Optional fade + slide animation */
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+        {% block extra_css %}{% endblock extra_css %}
+    </style>
 </head>
+
 <body>
-<div class="container-fluid">
-    <div class="row">
+{% if messages %}
+<div class="alert alert-success message-overlay">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
 
-        <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse p-3">
-            <h4 class="mb-4">Dashboard</h4>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2">
-                    <a class="nav-link" href="{% url 'dashboard_home' %}">
-                        <i class="fas fa-home me-2"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link" href="{% url 'post_list' %}">
-                        <i class="fas fa-newspaper me-2"></i> Blog Posts
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link" href="{% url 'post_create' %}">
-                        <i class="fas fa-plus me-2"></i> Add Post
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<!-- TOP NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4">
+    <div class="container-fluid">
 
-        <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-            {% block dashboard_content %}{% endblock dashboard_content %}
-        </main>
+        <span class="navbar-brand fw-semibold">
+            PFS Blog Dashboard
+        </span>
+
+        <div class="ms-auto d-flex align-items-center">
+
+            <!-- User Dropdown -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none"
+                   id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <!-- Avatar -->
+                    {% if request.user.profile.image %}
+                        <img src="{{ request.user.profile.image.url }}"
+                             alt="Profile"
+                             class="rounded-circle me-2"
+                             width="40" height="40"
+                             style="object-fit: cover;">
+                    {% else %}
+                        <div class="avatar-initials me-2">
+                            {{ request.user.first_name|default:request.user.email|slice:":1" }}
+                            {{ request.user.last_name|slice:":1" }}
+                        </div>
+                    {% endif %}
+
+                    <!-- User Info -->
+                    <div class="text-start d-none d-md-block">
+                        <div class="fw-semibold">
+                            {{ request.user.first_name }} {{ request.user.last_name }}
+                        </div>
+                        <small class="text-muted">{{ request.user.email }}</small>
+                    </div>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'user_profile' %}">
+                            <i class="fas fa-user me-2"></i>Profile
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
+</nav>
+
+<div class="d-flex">
+
+    <!-- SIDEBAR -->
+    <div class="dashboard-sidebar">
+        <nav class="nav flex-column">
+            <a class="nav-link {% if request.resolver_match.url_name == 'blog_dashboard' %}active{% endif %}" href="{% url "blog_dashboard" %}"><i class="fas fa-file-alt me-2"></i>Home</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_list' %}active{% endif %}" href="{% url "blog_posts_list" %}"><i class="fas fa-file-alt me-2"></i>Posts</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'blog_categories' %}active{% endif %}" href="{% url "blog_categories"%}"><i class="fas fa-folder me-2"></i>Categories</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_comments' %}active{% endif %}" href="{% url "blog_posts_comments" %}"><i class="fas fa-comments me-2"></i>Comments</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" href="{% url "user_profile" %}"><i class="fas fa-user-circle me-2"></i></i>Profile</a>
+        </nav>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="dashboard-content flex-grow-1">
+        {% block content %}{% endblock content %}
+    </div>
+
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static "blog/js/scripts.js" %}"></script>
+<!-- Flash Messages -->
+<script>
+    setTimeout(() => {
+        const msg = document.querySelector('.message-overlay');
+        if (msg) {
+            msg.style.transition = "opacity 0.5s ease";
+            msg.style.opacity = "0";
+            setTimeout(() => msg.remove(), 500);
+        }
+    }, 4000);
+</script>
+
 {% block extra_js %}{% endblock extra_js %}
+
 </body>
 </html>

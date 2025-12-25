@@ -2,6 +2,7 @@ from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.text import slugify
 import math
+from django.conf import settings
 
 # Blog Category Model
 class BlogCategory(models.Model):
@@ -17,7 +18,7 @@ class BlogCategory(models.Model):
 # Blog Post Model
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
-    category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, related_name='category')
     period = models.DateField()
     read_time = models.PositiveIntegerField(editable=False)
     excerpt = models.TextField()
@@ -48,3 +49,17 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+# Comments Model
+class Comment(models.Model):
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user} on {self.post}"

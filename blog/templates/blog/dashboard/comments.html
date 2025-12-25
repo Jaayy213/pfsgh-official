@@ -1,0 +1,172 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Blog Posts Comments - Blog Dashboard{% endblock title %}
+
+{% block content %}
+<div class="flex-grow-1 p-4" id="content-area">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Manage Comments</h3>
+        <button id="darkModeToggle" class="btn btn-sm btn-outline-secondary">
+            <i class="fas fa-moon"></i> Dark Mode
+        </button>
+    </div>
+
+    <!-- FILTERS CARD -->
+    <div class="dashboard-card mb-4">
+        <div class="row g-3">
+
+            <!-- Search -->
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search comments...">
+            </div>
+
+            <!-- Post Filter -->
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option selected>Filter by Post</option>
+                    <option>Understanding HACCP Principles</option>
+                    <option>Product Testing Requirements</option>
+                    <option>Food Safety Audit Checklist</option>
+                </select>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option selected>Filter by Status</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- COMMENTS TABLE -->
+    <div class="dashboard-card">
+        <h5 class="mb-3">All Comments</h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>User</th>
+                        <th>Comment</th>
+                        <th>Post</th>
+                        <th>Date</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <!-- USER -->
+                        <td>
+                            <strong>
+                                {{ comment.user.get_full_name|default:comment.user.first_name }}
+                            </strong><br>
+                            <small class="text-muted">{{ comment.user.email }}</small>
+                        </td>
+
+                        <!-- COMMENT -->
+                        <td>
+                            <span class="d-inline-block text-truncate" style="max-width: 220px;">
+                                {{ comment.content|truncatechars:40 }}
+                            </span>
+                        </td>
+
+                        <!-- POST -->
+                        <td>{{ comment.post.title|truncatechars:40 }}</td>
+
+                        <!-- DATE -->
+                        <td>{{ comment.created_at|date:"M d, Y" }}</td>
+
+                        <!-- ACTIONS -->
+                        <td class="text-end">
+
+                            <!-- Preview -->
+                            <button
+                                class="btn btn-sm btn-outline-primary me-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#previewCommentModal{{ comment.id }}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+
+                            <!-- Delete -->
+                            <button
+                                class="btn btn-sm btn-outline-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteCommentModal{{ comment.id }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+
+                    <!-- PREVIEW MODAL -->
+                    <div class="modal fade" id="previewCommentModal{{ comment.id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Comment Preview</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <strong>
+                                            {{ comment.user.get_full_name|default:comment.user.first_name }}
+                                        </strong>
+                                        <small class="text-muted">
+                                            ({{ comment.user.email }})
+                                        </small>
+                                    </p>
+                                    <p>{{ comment.content }}</p>
+                                    <p class="text-muted small">
+                                        Posted on {{ comment.created_at|date:"M d, Y H:i" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DELETE MODAL -->
+                    <div class="modal fade" id="deleteCommentModal{{ comment.id }}" tabindex="-1">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete Comment?</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-muted">This action cannot be undone.</p>
+                                    <form action="{% url 'delete_comment' comment.id %}" method='POST'>
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger w-100 mb-2">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </form>
+                                    <button class="btn btn-outline-secondary w-100"
+                                            data-bs-dismiss="modal">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            No comments found.
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
