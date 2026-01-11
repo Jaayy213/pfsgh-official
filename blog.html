@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <style>
+    /* --- UPDATED BRAND VARIABLES --- */
     :root {
-        --primary-blue: #2563eb;
-        --secondary-blue: #1e40af;
-        --light-blue: #dbeafe;
-        --accent-orange: #f59e0b;
-        --dark-gray: #1f2937;
-        --medium-gray: #6b7280;
-        --light-gray: #f9fafb;
+        --primary-blue: #2c3e50;      
+        --secondary-blue: #890F91;    
+        --light-blue: #f3e5f5;        
+        --accent-orange: #FC7013;     
+        --dark-gray: #2c3e50;         
+        --medium-gray: #6c757d;       
+        --light-gray: #f8f9fa;        
     }
 
     main {
@@ -32,29 +33,12 @@
         transition: all 0.3s ease;
     }
 
-    .animated-card:nth-child(1) {
-        animation-delay: 0.1s;
-    }
-
-    .animated-card:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .animated-card:nth-child(3) {
-        animation-delay: 0.3s;
-    }
-
-    .animated-card:nth-child(4) {
-        animation-delay: 0.4s;
-    }
-
-    .animated-card:nth-child(5) {
-        animation-delay: 0.5s;
-    }
-
-    .animated-card:nth-child(6) {
-        animation-delay: 0.6s;
-    }
+    .animated-card:nth-child(1) { animation-delay: 0.1s; }
+    .animated-card:nth-child(2) { animation-delay: 0.2s; }
+    .animated-card:nth-child(3) { animation-delay: 0.3s; }
+    .animated-card:nth-child(4) { animation-delay: 0.4s; }
+    .animated-card:nth-child(5) { animation-delay: 0.5s; }
+    .animated-card:nth-child(6) { animation-delay: 0.6s; }
 
     @keyframes fadeInUp {
         to {
@@ -75,11 +59,13 @@
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        background: white;
     }
 
     .blog-image {
         height: 200px;
-        background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+        /* Updated gradient to use brand colors */
+        background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
         position: relative;
         overflow: hidden;
     }
@@ -96,11 +82,11 @@
     }
 
     .blog-category {
-        background: var(--light-blue);
-        color: var(--primary-blue);
+        background: var(--light-blue); 
+        color: var(--secondary-blue);  
         padding: 0.25rem 0.75rem;
         border-radius: 20px;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.875rem;
     }
 
@@ -110,14 +96,14 @@
     }
 
     .read-more {
-        color: var(--primary-blue);
+        color: var(--accent-orange); /* Updated to Brand Orange */
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
     }
 
     .read-more:hover {
-        color: var(--secondary-blue);
+        color: var(--primary-blue);
         text-decoration: none;
     }
 
@@ -144,17 +130,20 @@
     }
 
     .widget-title {
-        color: var(--dark-gray);
+        color: var(--primary-blue);
         font-weight: 700;
         position: relative;
-        padding-left: 2rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--accent-orange); /* Orange accent line */
     }
 
+    /* Removed the ::before pseudo-element content since we used border-left above for cleaner look, 
+       but keeping the CSS class structure */
     .widget-title::before {
-        content: '';
+        content: ''; 
         position: absolute;
         left: 0;
-        color: var(--accent-orange);
+         
     }
 
     .category-link {
@@ -167,7 +156,8 @@
     }
 
     .category-link:hover {
-        color: var(--primary-blue);
+        color: var(--accent-orange); /* Orange on hover */
+        padding-left: 5px; /* Slight movement effect */
     }
 
     .category-link:last-child {
@@ -194,6 +184,7 @@
         font-size: 0.9rem;
         font-weight: 600;
         margin-bottom: 0.25rem;
+        color: var(--primary-blue);
     }
 
     .recent-post-date {
@@ -204,11 +195,16 @@
     /* Newsletter Widget */
     .newsletter-widget {
         background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)) !important;
+        color: white;
     }
 
-
-    .newsletter-widget .widget-title::before {
-        color: var(--accent-orange);
+    .newsletter-widget .widget-title {
+        color: white;
+        border-left-color: var(--accent-orange);
+    }
+    
+    .newsletter-widget .text-muted {
+        color: rgba(255,255,255, 0.8) !important; /* Force readable text on dark bg */
     }
 
     /* Search Input */
@@ -219,15 +215,35 @@
     }
 
     .search-input:focus {
+        border-color: var(--accent-orange);
+        box-shadow: 0 0 0 0.2rem rgba(252, 112, 19, 0.1);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-blue);
         border-color: var(--primary-blue);
-        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--secondary-blue);
+        border-color: var(--secondary-blue);
+    }
+    
+    
+    .btn-warning {
+        background-color: var(--accent-orange) !important;
+        border-color: var(--accent-orange) !important;
+        color: white !important;
+    }
+    
+    .btn-warning:hover {
+        background-color: #d65a0b !important; /* Darker orange */
     }
 
 
     /* Fullscreen dark overlay */
     .video-modal {
         display: flex;
-        /* center child */
         justify-content: center;
         align-items: center;
         position: fixed;
@@ -236,11 +252,8 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.8);
-        /* dark backdrop */
         z-index: 9999;
     }
-
-
 
     /* Video Section */
     .video-header {
@@ -254,15 +267,14 @@
 
     .video-header h2 {
         font-size: 1.8rem;
-        color: #333;
+        color: var(--primary-blue);
         display: flex;
         align-items: center;
         gap: 10px;
     }
 
     .video-header h2 i {
-        color: #ff0000;
-
+        color: #ff0000; /* YouTube Red */
     }
 
     .subscribe-btn {
@@ -323,14 +335,12 @@
         padding: 15px;
         text-align: center;
         font-weight: 500;
+        color: var(--primary-blue);
     }
 </style>
 
-
-
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
 
-    <!-- Top Contact Bar  -->
     <div class="top-bar py-2">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -363,23 +373,19 @@
         </div>
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
         <div class="container-fluid">
-            <!-- Brand/Logo -->
             <a class="navbar-brand d-flex align-items-center" href="./index.html">
                 <div class="logo">
                     <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
                 </div>
             </a>
 
-            <!-- Mobile Toggle Button -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -402,8 +408,7 @@
                     </li>
                 </ul>
 
-                <!-- CTA Button -->
-                <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="closeQuoteModal()">
+                <a href="./index.html#quote" class="quote-trigger btn btn-custom px-4 py-2">
                     Request Quote <i class="fas fa-arrow-right ms-2"></i>
                 </a>
 
@@ -411,13 +416,10 @@
             </div>
         </div>
     </nav>
-    <!-- Main Content -->
     <main id="blog">
         <div class="container">
             <div class="row g-4">
-                <!-- Content Area -->
                 <div class="col-lg-8">
-                    <!-- Latest Articles Section -->
                     <section id="articles" class="content-section">
                         <div class="section-header">
                             <h2 class="section-title">Latest Articles</h2>
@@ -513,9 +515,7 @@
                         </div>
                     </section>
                 </div>
-                <!-- Sidebar -->
                 <div class="col-lg-4">
-                    <!-- Search Widget -->
                     <div class="sidebar-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-3">Search</h5>
@@ -529,7 +529,6 @@
                         </div>
                     </div>
 
-                    <!-- Categories Widget -->
                     <div class="sidebar-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-3">Categories</h5>
@@ -546,7 +545,6 @@
                         </div>
                     </div>
 
-                    <!-- Recent Posts Widget -->
                     <div class="sidebar-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-3">Recent Updates</h5>
@@ -588,7 +586,6 @@
                         </div>
                     </div>
 
-                    <!-- Newsletter Widget -->
                     <div class="sidebar-widget newsletter-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-3">Stay Updated</h5>
@@ -604,24 +601,23 @@
                         </div>
                     </div>
 
-                    <!-- Quick Links Widget -->
                     <div class="sidebar-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-3">Quick Links</h5>
                             <div class="d-flex flex-column gap-2">
-                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                <a href="./contact.html#download" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
                                     <i class="fas fa-download"></i>
                                     Download Our Brochure
                                 </a>
-                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                <a href="./contact.html#schedule" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
                                     <i class="fas fa-calendar-day"></i>
                                     Schedule a Consultation
                                 </a>
-                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                <a href="./contact.html" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
                                     <i class="fas fa-phone"></i>
                                     Contact Our Team
                                 </a>
-                                <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2">
+                                <a href="https://www.linkedin.com/in/pneuma-food-scientifics-pfs-8878a9287" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin"></i>
                                     Follow on LinkedIn
                                 </a>
@@ -629,7 +625,6 @@
                         </div>
                     </div>
 
-                    <!-- Stats Widget -->
                     <div class="sidebar-widget">
                         <div class="card-body p-4">
                             <h5 class="widget-title mb-4">Our Impact</h5>
@@ -668,7 +663,6 @@
 
 
 
-    <!-- Video Section -->
     <section class="video-section">
         <div class="video-header">
             <h2><i class="fab fa-youtube"></i> Watch Our Latest & Past Videos</h2>
@@ -678,7 +672,6 @@
         </div>
         <div class="video-grid">
 
-            <!-- YouTube video -->
             <div class="video-card">
                 <div class="video-wrapper standard">
                     <iframe src="https://www.youtube.com/embed/GlIR_ndBGRs" title="Company Highlights - September"
@@ -691,7 +684,6 @@
                 </p>
             </div>
 
-            <!-- YouTube video-->
             <div class="video-card">
                 <div class="video-wrapper shorts">
                     <iframe src="https://www.youtube.com/embed/KqgsmcCUZvE"
@@ -754,6 +746,7 @@
                     <ul>
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
                         <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i>+233 50 338 6203</a></li>
                         <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
                     </ul>
                 </div>
@@ -765,11 +758,14 @@
 
                     <div class="social-links">
 
-                        <a href="#" class="social-link" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/pneuma-food-scientifics-pfs-8878a9287" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="social-link" title="Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="social-link" title="X">
+                            <i class="fab fa-x"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@pneuma_foodscientifics" class="social-link" title="TikTok" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-tiktok"></i>
                         </a>
                         <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
                             <i class="fab fa-facebook-f"></i>
@@ -791,7 +787,6 @@
     </footer>
 
 
-    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/index.js"></script>

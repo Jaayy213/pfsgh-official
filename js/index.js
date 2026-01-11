@@ -1,4 +1,3 @@
-
 // subtle animations and interactions
 document.addEventListener('DOMContentLoaded', function () {
     const cards = document.querySelectorAll('.process-card');
@@ -113,6 +112,47 @@ contactIcons.forEach((icon, index) => {
     icon.classList.add('floating-contact-icon');
 });
 
+
+
+(function attachQuoteModalHandlers() {
+  const modal = document.getElementById('quoteModal');
+  if (!modal) return;
+
+  // provide fallback open/close if not defined already
+  if (typeof window.openQuoteModal !== 'function') {
+    window.openQuoteModal = function () {
+      modal.style.display = 'block';
+      document.body.classList.add('modal-open');
+      try { history.replaceState(null, '', location.pathname + location.search); } catch {}
+    };
+  }
+  if (typeof window.closeQuoteModal !== 'function') {
+    window.closeQuoteModal = function () {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+      try { history.replaceState(null, '', location.pathname + location.search); } catch {}
+    };
+  }
+
+  // close button
+  const closeBtn = modal.querySelector('.close-btn');
+  if (closeBtn) closeBtn.addEventListener('click', window.closeQuoteModal);
+
+  // click outside modal-container (overlay) closes modal
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) window.closeQuoteModal();
+  });
+
+  // Escape key closes modal
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') window.closeQuoteModal();
+  });
+
+  // open when arriving with #quote hash
+  if (location.hash === '#quote') {
+    window.openQuoteModal();
+  }
+})();
 
 
 function openQuoteModal() {
