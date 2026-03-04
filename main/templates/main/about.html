@@ -39,7 +39,7 @@
 /* Hero Section */
         .hero-section {
             background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(137, 15, 145, 0.7)), 
-                              url('{% static "main/images/img6.jpg" %}');
+                              url('{% static 'main/images/img6.jpg' %}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -251,6 +251,15 @@
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .founder-img {
+            max-width: 420px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .story-text h3 {
@@ -468,12 +477,35 @@
     to { opacity: 1; transform: scale(1); }
 }
 
+/* The Close Button */
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #fff;
+    background: #e00;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 33px;
+    z-index: 1001; 
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    background: #b00;
+    text-decoration: none;
+}
+
 #modalVideoPlayer {
     display: block; 
     width: 90%;
     max-height: 70vh; 
 }
-
 
 @media (max-width: 768px) {
             .hero-title {
@@ -487,21 +519,8 @@
 {% endblock styles_addon %}
 
 {% block content %}
-
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center hero-content">
-                <h1 class="hero-title animate-fade-in">About Pneuma Food Scientifics</h1>
-                <p class="hero-subtitle animate-fade-in">We are Ghana's leading product innovation and entrepreneurial training hub, transforming ideas into reality for agribusiness startups.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- intro section  -->
+{% include "main/partials/hero.html" %}
+    <!-- intro section  -->
     <section class="intro-section section-padding" id="about">
         <div class="container">
             <div class="row justify-content-center">
@@ -633,7 +652,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="{% static "main/images/missZee.jpg" %}" alt="Zeenatu Suglo Adams, Founder &amp; CEO">
+                    <img src="{% static 'main/images/mz-blur.png' %}" alt="Zeenatu Suglo Adams, Founder & CEO" class="founder-img img-fluid">
                 </div>
                 <div class="col-lg-6 story-text">
                     <h3>PFS: A Story of Passion and Impact</h3>
@@ -692,7 +711,7 @@
                                     food products meet the highest standards of safety, quality, and compliance.
 
                                 </p>
-                                <a href="#programs" class="feature-link">
+                                <a href="./about.html" class="feature-link">
                                     Learn More <i class="fas fa-shield-alt text-success"></i>
                                 </a>
                             </div>
@@ -710,7 +729,7 @@
                                     solutions that support both business growth and a healthier planet.
 
                                 </p>
-                                <a href="#research" class="feature-link">
+                                <a href="./process.html" class="feature-link">
                                     Explore Our Solutions <i class="fas fa-leaf text-success"></i>
                                 </a>
                             </div>
@@ -727,7 +746,7 @@
                                     From regulatory guidance to process optimization, we help you
                                     navigate complex food regulations with confidence and efficiency.
                                 </p>
-                                <a href="#contact" class="feature-link">
+                                <a href="./contact.html" class="feature-link">
                                     Partner with Us <i class="fas fa-handshake text-success"></i>
                                 </a>
                             </div>
@@ -750,12 +769,13 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="client-card">
                         <div class="client-image">
-                            <img src="{% static "main/images/img36.jpg" %}"
+                            <img src="{% static 'main/images/img36.jpg' %}"
                                  alt="Pronto Waakye Product">
                         </div>
                         <div class="client-content">
-                            <h4 class="client-name">AMJ Abish - USA</h4>
+                            <h4 class="client-name">Pronto Waakye</h4>
                             <p class="client-description">FDA Approved Express Waakye in 15 mins.</p>
+                            <a href="https://www.instagram.com/prontowaakye" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Pronto Waakye social"><i class="fas fa-globe me-2"></i>Visit</a>
                         </div>
                     </div>
                 </div>
@@ -764,12 +784,13 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="client-card">
                         <div class="client-image">
-                            <img src="{% static "main/images/img30.jpg" %}" 
+                            <img src="{% static 'main/images/cl7.jpg' %}" 
                                  alt="Sweepolac Product">
                         </div>
                         <div class="client-content">
-                            <h4 class="client-name">Healthy Leap Foods - Accra, Ghana</h4>
+                            <h4 class="client-name">Healthy Leap Foods</h4>
                             <p class="client-description">FDA Approved Instant Sweet Potato Complementary Foods.</p>
+                            <a href="https://www.instagram.com/healthyleapfoods" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Healthy Leap Foods social"><i class="fas fa-globe me-2"></i>Visit</a>
                         </div>
                     </div>
                 </div>
@@ -778,12 +799,13 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="client-card">
                         <div class="client-image">
-                            <img src="{% static "main/images/img37.jpg" %}" 
+                            <img src="{% static 'main/images/img37.jpg' %}" 
                                  alt="Mango Juice Products">
                         </div>
                         <div class="client-content">
-                            <h4 class="client-name">KnZee Ltd - Wa, Ghana</h4>
+                            <h4 class="client-name">KnZee Ltd</h4>
                             <p class="client-description">FDA Approved Natural Mango Juice Juice.</p>
+                            <a href="https://www.instagram.com/knzeeagroltd" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit KnZee Ltd social"><i class="fas fa-globe me-2"></i>Visit</a>
                         </div>
                     </div>
                 </div>
@@ -792,26 +814,147 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="client-card">
                         <div class="client-image">
-                            <img src="{% static "main/images/img29.jpg" %}"
-                                 alt="Yogurt Product">
+                            <img src="{% static 'main/images/img29.jpg' %}"
+                                 alt="body cream">
                         </div>
                         <div class="client-content">
-                            <h4 class="client-name">Body Cool Cream - Kumasi, Ghana</h4>
+                            <h4 class="client-name">Body Cool Cream</h4>
                             <p class="client-description">FDA Approved Body Cool Cream</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Body Cool Cream social"><i class="fas fa-globe me-2"></i>Visit</a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Client 5 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl4.jpg' %}" alt="shea butter product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Tipura-Naturals</h4>
+                            <p class="client-description">FDA Approved pure, unrefined shea butter</p>
+                            <a href="https://www.instagram.com/tipura_naturals" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Tipura-Naturals social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Client 6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl2.jpg' %}" alt="cocoa juice product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Cocoa Pulp Juice</h4>
+                            <p class="client-description">FDA Approved cocoa juice</p>
+                            <a href="https://www.instagram.com/sixpodzcocoajuice" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Green Harvest social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 7 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl8.jpg' %}" alt="Roast and relish">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Roast and Relish</h4>
+                            <p class="client-description">FDA Approved Food</p>
+                            <a href="https://www.instagram.com/roastandrelish" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit KnZee Ltd social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 8 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl9.jpg' %}" alt="Ginger & Hibiscus Organic Infusions">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Ginger & Hibiscus Organic Infusions</h4>
+                            <p class="client-description">FDA Approved Ginger & Hibiscus Organic Infusions</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Herbal Roots social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 9 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl10.jpg' %}" alt="Yogo Max Product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Yogo Max</h4>
+                            <p class="client-description">FDA Approved Yogo Max</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit NutriStart social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 10 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/img30.jpg' %}" alt="sheemah instant rice porridge">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Shemah instant rice porridge</h4>
+                            <p class="client-description">FDA Approved  instant rice porridge</p>
+                            <a href="https://www.instagram.com/pneumafoodscientifics/" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit SavorSpice social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 11 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/c10.jpg' %}" alt="Instant High Fruit Fibre Porridge">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Instant High Fruit Fibre Porridge</h4>
+                            <p class="client-description">FDA Approved High Fruit Fibre Porridge</p>
+                            <a href="https://www.instagram.com/pneumafoodscientifics/" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit PureHarvest social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 12 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl1.jpg' %}" alt="roland rice">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Roland Rice</h4>
+                            <p class="client-description">FDA Approved Roland Rice</p>
+                            <a href="https://www.facebook.com/p/Roland-Rice-GH-100063818753831/" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Roland Rice social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- client 13 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="client-card">
+                        <div class="client-image">
+                            <img src="{% static 'main/images/cl3.jpg' %}" alt="Coconut oil product">
+                        </div>
+                        <div class="client-content">
+                            <h4 class="client-name">Coconut Oil Voil</h4>
+                            <p class="client-description">FDA Approved Coconut Oil Voil</p>
+                            <a href="https://www.instagram.com/coconutoilvoil/" class="btn btn-sm btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer" aria-label="Visit Coconut Oil Voil social"><i class="fas fa-globe me-2"></i>Visit</a>
+                        </div>
+                    </div>
+                </div>
+                
+
             </div>
 
         <div class="video-section">
     <h3 class="video-title">Watch Client Video Testimonials</h3>
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-6 col-md-8 mb-4">
             <div class="video-card" onclick="playVideo('video1')"> 
                 
                 <video class="video-card-background" muted loop playsinline preload="metadata">
-                    <source src="{% static "main/images/pronto.mp4" %}" type="video/mp4">
+                    <source src="{% static 'main/images/pronto.mp4' %}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 
@@ -827,47 +970,12 @@
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="video-card" onclick="playVideo('video2')">
-                <video class="video-card-background" muted loop playsinline preload="metadata">
-                    <source src="{% static "main/images/docVid.mp4" %}" type="video/mp4">
-                </video>
-                <div class="video-overlay">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h5>Healthy Leap Foods Journey</h5>
-                    <p>Creating nutritious complementary foods • 4:20</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="video-card" onclick="playVideo('video3')">
-                <video class="video-card-background" muted loop playsinline preload="metadata">
-                    <source src="{% static "main/images/pronto.mp4" %}" type="video/mp4">
-                </video>
-                <div class="video-overlay">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h5>KnZee Ltd Partnership</h5>
-                    <p>Bringing natural juices to market • 5:10</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 
     </section>
 
-    
-<div id="videoModal" class="modal">
+    <div id="videoModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <video id="modalVideoPlayer" width="100%" controls>
@@ -878,8 +986,8 @@
 </div>
 
     <!-- Bootstrap JS -->
-    {% block extra_js %}
-        <script src="{% static "main/js/about.js" %}"></script>
-    {% endblock extra_js %}
+    {% block script_addon %}
+        <script src="{% static 'main/js/about.js' %}"></script>
+    {% endblock script_addon %}
 
 {% endblock content %}

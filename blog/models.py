@@ -24,6 +24,7 @@ class BlogPost(models.Model):
     excerpt = models.TextField()
     content = CKEditor5Field(config_name='default')
     image = models.ImageField(upload_to="blog_images/")
+    total_views = models.PositiveIntegerField(default=0)
 
     is_featured = models.BooleanField(default=False)
 
@@ -49,6 +50,18 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+# Model to Count Page Views
+class BlogPageView(models.Model):
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name="pageviews")
+    ip_address = models.GenericIPAddressField()
+    session_key = models.CharField(max_length=40, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-timestamp']
+        unique_together = ('post', 'ip_address', 'session_key')
     
 
 # Comments Model

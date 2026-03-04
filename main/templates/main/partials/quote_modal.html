@@ -1,0 +1,196 @@
+<!-- Quote Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1">
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Request a Quote</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+        <p class="modal-subtitle">
+          Tell us about your project and we'll provide a customized solution
+        </p>
+      </div>
+
+      <div class="modal-body">
+        <form id="quoteForm">
+          <!-- Personal Information -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="required">First Name</label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="required">Last Name</label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="required">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="required">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company" class="required">Company Name</label>
+              <input type="text" id="company" name="company" required />
+            </div>
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry">
+                <option value="">Select Industry</option>
+                <option value="food-beverage">Food & Beverage</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="retail">Retail</option>
+                <option value="technology">Technology</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Services Selection -->
+          <div class="form-group">
+            <label class="required">Services Needed</label>
+            <div class="service-selection">
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="business-plans" />
+                <span>Business Plan Drafting</span>
+              </div>
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="certification" />
+                <span>FDA & GSA Certification</span>
+              </div>
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="dehydration" />
+                <span>Commercial Dehydration</span>
+              </div>
+              <div class="service-checkbox">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="product-development"
+                />
+                <span>Product Development</span>
+              </div>
+              <div class="service-checkbox">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="safety-training"
+                />
+                <span>Safety Training</span>
+              </div>
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="mango-powder" />
+                <span>Mango Powder Products</span>
+              </div>
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="fruit-porridge" />
+                <span>Fruit Fiber Porridge</span>
+              </div>
+              <div class="service-checkbox">
+                <input type="checkbox" name="services" value="rice-porridge" />
+                <span>Rice Porridge</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Details -->
+          <div class="form-group">
+            <label for="projectDescription" class="required"
+              >Project Description</label
+            >
+            <textarea
+              id="projectDescription"
+              name="projectDescription"
+              placeholder="Please describe your project requirements, goals, and any specific needs..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="timeline">Project Timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select Timeline</option>
+                <option value="urgent">Urgent (1-2 weeks)</option>
+                <option value="fast">Fast Track (3-4 weeks)</option>
+                <option value="standard">Standard (1-2 months)</option>
+                <option value="flexible">Flexible (2+ months)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="budget">Estimated Budget Range</label>
+              <select id="budget" name="budget">
+                <option value="">Select Budget Range</option>
+                <option value="500-10000">GHC500 - GHC10,000</option>
+                <option value="1500-2500">GHC1,500 - GHC2,500</option>
+                <option value="3000-5000">GHC3,000 - GHC5,000</option>
+                <option value="over-5000">Over GHC5,000</option>
+                <option value="discuss">Prefer to discuss</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Priority -->
+          <div class="form-group">
+            <label>Project Priority</label>
+            <div class="priority-selector">
+              <div
+                class="priority-option low"
+                onclick="selectPriority(this, 'low')"
+              >
+                <i class="fas fa-clock"></i> Low
+              </div>
+              <div
+                class="priority-option medium"
+                onclick="selectPriority(this, 'medium')"
+              >
+                <i class="fas fa-bolt"></i> Medium
+              </div>
+              <div
+                class="priority-option high"
+                onclick="selectPriority(this, 'high')"
+              >
+                <i class="fas fa-fire"></i> High
+              </div>
+            </div>
+            <input type="hidden" id="priority" name="priority" value="" />
+          </div>
+
+          <!-- Additional Information -->
+          <div class="form-group">
+            <label for="additionalInfo">Additional Information</label>
+            <textarea
+              id="additionalInfo"
+              name="additionalInfo"
+              placeholder="Any additional details, special requirements, or questions you'd like to share..."
+            ></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="button" class="btnn btn-secondary">Cancel</button>
+            <button type="submit" class="btnn btn-primary">
+              <i class="fas fa-paper-plane" style="margin-right: 8px"></i>
+              Submit Quote Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

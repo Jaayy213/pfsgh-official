@@ -5,9 +5,22 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import BlogCategory, BlogPost, Comment
+from .models import BlogCategory, BlogPost, Comment, BlogPageView
 from .forms import BlogPostForm, BlogCategoryForm
 from django.utils import timezone
+from django.db.models import Count
+from django.utils.timezone import now, timedelta
+
+
+# Helper function to get client IP for page views
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 
 # Blog Homepage
 def blog(request):
@@ -46,6 +59,22 @@ def blog_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug)
     category_slug = request.GET.get("category")
     comments = post.comments.select_related('user')
+
+    # Track Total Views
+    post.total_views += 1
+    post.save(update_fields=['total_views'])
+
+    # Track Unique Visitors
+    session_key = f'viewed_blog_{post.pk}'
+    ip_address = get_client_ip(request)
+
+    if not request.session.get(session_key, False):
+        BlogPageView.objects.create(
+            post=post,
+            ip_address=ip_address,
+            session_key=request.session.session_key
+        )
+        request.session[session_key] = True
 
     if request.method == "POST":
         if not request.user.is_authenticated:
@@ -88,11 +117,65 @@ def blog_dashboard(request):
     total_categories = BlogCategory.objects.all().count()
     total_comments = Comment.objects.all().count()
 
+    today = now()
+
+    # ---------- DAILY (last 7 days) ----------
+    daily_start = today - timedelta(days=6)  # 7 days including today
+    daily_data = (
+        BlogPageView.objects.filter(timestamp__date__gte=daily_start.date())
+        .extra({'day': "date(timestamp)"})
+        .values('day')
+        .annotate(visits=Count('id'))
+        .order_by('day')
+    )
+    daily_labels = [str(d['day']) for d in daily_data]
+    daily_values = [d['visits'] for d in daily_data]
+
+    # ---------- WEEKLY (last 4 weeks) ----------
+    week_start = today - timedelta(weeks=4)
+    weekly_data = (
+        BlogPageView.objects.filter(timestamp__date__gte=week_start.date())
+        .extra({'week': "strftime('%%Y-%%W', timestamp)"})
+        .values('week')
+        .annotate(visits=Count('id'))
+        .order_by('week')
+    )
+    weekly_labels = [d['week'] for d in weekly_data]
+    weekly_values = [d['visits'] for d in weekly_data]
+
+    # ---------- MONTHLY (last 12 months) ----------
+    month_start = today - timedelta(days=365)
+    monthly_data = (
+        BlogPageView.objects.filter(timestamp__date__gte=month_start.date())
+        .extra({'month': "strftime('%%Y-%%m', timestamp)"})
+        .values('month')
+        .annotate(visits=Count('id'))
+        .order_by('month')
+    )
+    monthly_labels = [d['month'] for d in monthly_data]
+    monthly_values = [d['visits'] for d in monthly_data]
+
+    # Total visitors
+    total_visitors = BlogPageView.objects.count()
+    monthly_visitors = BlogPageView.objects.filter(timestamp__gte=today - timedelta(days=30)).count()
+    weekly_visitors = BlogPageView.objects.filter(timestamp__gte=today - timedelta(days=7)).count()
+    daily_visitors = BlogPageView.objects.filter(timestamp__gte=today - timedelta(days=1)).count()
+
     context = {
         'posts': posts,
         'total_posts': total_posts,
         'total_categories': total_categories,
         'total_comments': total_comments,
+        'daily_labels': daily_labels,
+        'daily_values': daily_values,
+        'weekly_labels': weekly_labels,
+        'weekly_values': weekly_values,
+        'monthly_labels': monthly_labels,
+        'monthly_values': monthly_values,
+        'daily_visitors': daily_visitors,
+        'weekly_visitors': weekly_visitors,
+        'monthly_visitors': monthly_visitors,
+        'total_visitors': total_visitors,
     }
 
     return render(request, 'blog/dashboard/dashboard_home.html', context)
@@ -179,7 +262,7 @@ def create_category(request):
             messages.success(request, "Category created successfully!")
             return redirect('blog_categories')
     else:
-        form = BlogCategory()
+        form = BlogCategoryForm()
 
     context = {
         'form': form,
