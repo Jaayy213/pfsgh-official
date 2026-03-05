@@ -4,10 +4,11 @@ from .models import BlogPost, BlogCategory
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ["title", "category", "period", "excerpt", "content", "image", "is_featured"]
+        fields = ["title", "subtitle", "category", "excerpt", "content", "image", "is_featured"]
 
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
+            "subtitle": forms.TextInput(attrs={"class": "form-control"}),
             "category": forms.Select(attrs={"class": "form-select"}),
             "period": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "excerpt": forms.Textarea(attrs={"class": "form-control", "rows": 3}),

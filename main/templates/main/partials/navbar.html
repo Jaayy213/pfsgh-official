@@ -3,39 +3,74 @@
 <div class="top-bar py-2">
   <div class="container-fluid">
     <div class="row align-items-center">
+
+      <!-- LEFT SIDE -->
       <div class="col-lg-8">
         <div class="d-flex flex-wrap align-items-center gap-4">
+          
           <div class="d-flex align-items-center">
             <i class="fas fa-envelope me-2"></i>
-            <a href="mailto:pfsghconsult.com" class="text-decoration-none"
-              >pneumaconsult@gmail.com</a
-            >
+            <a href="mailto:pneumaconsult@gmail.com" class="text-decoration-none">
+              pneumaconsult@gmail.com
+            </a>
           </div>
+
           <div class="d-flex align-items-center">
             <i class="fas fa-phone me-2"></i>
-            <a href="tel:+233241043139" class="text-decoration-none"
-              >+233 24 104 3139</a
-            >,
-            <a href="tel:+233503386203" class="text-decoration-none"
-              >+233 50 338 6203</a
-            >
+            <a href="tel:+233241043139" class="text-decoration-none">
+              +233 24 104 3139
+            </a>,
+            <a href="tel:+233503386203" class="text-decoration-none">
+              +233 50 338 6203
+            </a>
           </div>
+
         </div>
       </div>
+
+      <!-- RIGHT SIDE -->
       <div class="col-lg-4">
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4"
-        >
+        <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
+
+          {% if request.user.is_authenticated %}
+
+          <div class="d-flex align-items-center">
+            <i class="fas fa-user me-2"></i>
+            <span class="small">
+              Logged in as <strong>{{ request.user.email }}</strong>
+            </span>
+          </div>
+
+          <form method="POST" action="{% url 'logout' %}" class="m-0">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-outline-light">
+              <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </button>
+          </form>
+
+          {% else %}
+
+          <div class="d-flex align-items-center">
+            <a href="{% url 'login' %}" class="text-decoration-none small">
+              <i class="fas fa-sign-in-alt me-1"></i> Login
+            </a>
+          </div>
+
+          {% endif %}
+
           <div class="d-flex align-items-center">
             <i class="fas fa-map-marker-alt me-2"></i>
             <span>Zibra Street, Pokuase, Accra</span>
           </div>
+
           <div class="d-flex align-items-center">
             <i class="fas fa-clock me-2"></i>
-            <span class="small">09am-05pm, Mon-Fri</span>
+            <span class="small">09am–05pm, Mon–Fri</span>
           </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </div>

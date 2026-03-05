@@ -3,11 +3,13 @@ from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.text import slugify
 import math
 from django.conf import settings
+from django.utils import timezone
 
 # Blog Category Model
 class BlogCategory(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Blog Categories"
@@ -18,8 +20,9 @@ class BlogCategory(models.Model):
 # Blog Post Model
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
-    category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, related_name='category')
-    period = models.DateField()
+    subtitle = models.CharField(max_length=255)
+    category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, related_name='posts')
+    period = models.DateField(default=timezone.now)
     read_time = models.PositiveIntegerField(editable=False)
     excerpt = models.TextField()
     content = CKEditor5Field(config_name='default')

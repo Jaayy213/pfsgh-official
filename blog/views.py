@@ -55,7 +55,7 @@ def blog(request):
 
 # Blog Detail Page
 def blog_detail(request, slug):
-    posts = BlogPost.objects.all().order_by('-created_at')
+    posts = BlogPost.objects.exclude(slug=slug).order_by('-created_at')
     post = get_object_or_404(BlogPost, slug=slug)
     category_slug = request.GET.get("category")
     comments = post.comments.select_related('user')
@@ -244,7 +244,9 @@ def delete_blog_post(request, slug):
 @staff_member_required
 @login_required
 def blog_categories(request):
-    categories = BlogCategory.objects.all()
+    categories = BlogCategory.objects.annotate(
+        post_count=Count('posts')
+    ).order_by('-created_at')
 
     context = {
         'categories': categories,

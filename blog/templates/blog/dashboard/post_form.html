@@ -43,25 +43,31 @@
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
             {{ form.media }}
 
             <div class="row g-4">
                 
                 <!-- TITLE -->
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Title</label>
                     {{ form.title }}
+                </div>
+
+                <!-- SUBTITLE -->
+                <div class="col-md-6">
+                    <label class="form-label">Subtitle</label>
+                    {{ form.subtitle }}
                 </div>
 
                 <!-- CATEGORY + DATE -->
                 <div class="col-md-6">
                     <label class="form-label">Category</label>
                     {{ form.category }}
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Publish Date</label>
-                    {{ form.period }}
                 </div>
 
                 <!-- EXCERPT -->
@@ -110,8 +116,3 @@
 </div>
 
 {% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'ckeditor/ckeditor.js' %}"></script>
-<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-{% endblock extra_js %}

@@ -44,6 +44,17 @@
     }
 
     /* Content */
+    .post-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+    
     .post-content p {
         line-height: 1.75;
         color: #333;
@@ -184,6 +195,87 @@
         font-size: 0.8rem;
         color: var(--medium-gray);
     }
+
+    .blog-text-color {
+        color: #212529;
+    }
+
+    .post-content blockquote {
+        border-left: 6px solid #890F91;
+        padding: 2rem !important;
+        background: linear-gradient(135deg, #fff9f5 0%, #ffe8db 100%) !important;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(252, 112, 19, 0.15);
+        margin: 2.5rem 0 !important;
+        position: relative;
+    }
+
+    .post-content blockquote::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        font-size: 3rem;
+        color: #890F91;
+        opacity: 0.2;
+    }
+
+    .post-content blockquote h4 {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-content blockquote p {
+        color: #555;
+        margin-bottom: 0;
+        font-size: 1.05rem;
+    }
+
+    .post-content blockquote .fas {
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .post-content a {
+        text-decoration: none;
+        color: #de09ed !important;
+    }
+
+    .post-content blockquote a:hover {
+        color: #890F91 !important;
+        transition: all 0.3s ease;
+    }
+
+    .post-content ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-contente ul li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+            position: relative;
+            padding-left: 0.5rem;
+        }
+
+        .post-content ul li::marker {
+            color: #890F91;
+            font-weight: bold;
+        }
+
+        .post-content ul li strong {
+            color: #2c3e50;
+        }
 </style>
 {% endblock styles_addon %}
 
@@ -200,6 +292,7 @@
                 <img src="{{ post.image.url }}" class="post-header-image mb-4" alt="{{ post.title }}">
 
                 <h1 class="fw-bold mb-3">{{ post.title }}</h1>
+                <h4 class="fw-bold mb-3">{{ post.subtitle }}</h4>
 
                 <!-- Meta -->
                 <div class="post-meta mb-4">
@@ -212,7 +305,7 @@
                 </div>
 
                 <!-- Actual blog content -->
-                <div class="post-content">
+                <div class="post-content" class="blog-text-color">
                     {{ post.content|safe }}
                 </div>
 

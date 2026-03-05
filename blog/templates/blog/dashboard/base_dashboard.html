@@ -9,7 +9,7 @@
     <!-- Bootstrap & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static "blog/css/styles.css" %}">
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
 
     <style>
         .message-overlay {
@@ -54,23 +54,34 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4">
     <div class="container-fluid">
 
-        <span class="navbar-brand fw-semibold">
-            PFS Blog Dashboard
-        </span>
+        <!-- Brand + Homepage Link -->
+        <div class="d-flex align-items-center gap-3">
+            <span class="navbar-brand fw-semibold">
+                PFS Blog Dashboard
+            </span>
+
+            <a href="{% url 'home' %}" class="text-decoration-none small text-muted">
+                <i class="fas fa-home me-1"></i> Main Website
+            </a>
+        </div>
 
         <div class="ms-auto d-flex align-items-center">
 
             <!-- User Dropdown -->
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-decoration-none"
-                   id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#"
+                   class="d-flex align-items-center text-decoration-none"
+                   id="userDropdown"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
 
                     <!-- Avatar -->
                     {% if request.user.profile.image %}
                         <img src="{{ request.user.profile.image.url }}"
                              alt="Profile"
                              class="rounded-circle me-2"
-                             width="40" height="40"
+                             width="40"
+                             height="40"
                              style="object-fit: cover;">
                     {% else %}
                         <div class="avatar-initials me-2">
@@ -80,28 +91,42 @@
                     {% endif %}
 
                     <!-- User Info -->
-                    <div class="text-start d-none d-md-block">
+                    <div class="text-start d-none d-md-block me-2">
                         <div class="fw-semibold">
                             {{ request.user.first_name }} {{ request.user.last_name }}
                         </div>
                         <small class="text-muted">{{ request.user.email }}</small>
                     </div>
+
+                    <!-- Caret -->
+                    <i class="fas fa-caret-down text-muted"></i>
+
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2">
+
                     <li>
                         <a class="dropdown-item" href="{% url 'user_profile' %}">
-                            <i class="fas fa-user me-2"></i>Profile
+                            <i class="fas fa-user me-2"></i> Profile
                         </a>
                     </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{% url 'home' %}" target="_blank">
+                            <i class="fas fa-globe me-2"></i> View Website
+                        </a>
+                    </li>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+
                     <li>
                         <a class="dropdown-item text-danger" href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
                         </a>
                     </li>
+
                 </ul>
             </div>
 
