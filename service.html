@@ -173,7 +173,243 @@
             box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
             border-radius: 30px 30px 0 0;
             margin-top: -30px;
+        }
 
+        /* ===================== FAQ SECTION ===================== */
+
+        .faq-section {
+            background: #f8f5ff;
+            padding: 90px 0 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .faq-section .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .faq-section .section-title span {
+            color: #fc7013;
+        }
+
+        .faq-section .section-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Tab Filter Buttons */
+        .faq-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 44px;
+        }
+
+        .faq-tab-btn {
+            background: white;
+            border: 2px solid #e0d6f7;
+            color: #555;
+            padding: 9px 22px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .faq-tab-btn:hover,
+        .faq-tab-btn.active {
+            background: #fc7013;
+            border-color: #fc7013;
+            color: white;
+            box-shadow: 0 4px 14px rgba(252, 112, 19, 0.3);
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            overflow: hidden;
+            transition: box-shadow 0.25s ease;
+            display: none;
+        }
+
+        .faq-item.visible {
+            display: block;
+        }
+
+        .faq-item.open {
+            box-shadow: 0 6px 24px rgba(252, 112, 19, 0.15);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 26px;
+            cursor: pointer;
+            gap: 16px;
+        }
+
+        .faq-question-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .faq-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            background: #f3eeff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fc7013;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            background: #fc7013;
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding: 0 26px;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 800px;
+            padding: 0 26px 22px;
+        }
+
+        .faq-answer-inner {
+            font-size: 0.96rem;
+            color: #555;
+            line-height: 1.8;
+            border-top: 1px solid #f0eaf8;
+            padding-top: 16px;
+        }
+
+        .faq-answer-inner ol,
+        .faq-answer-inner ul {
+            padding-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer-inner li {
+            margin-bottom: 6px;
+        }
+
+        .faq-answer-inner a {
+            color: #fc7013;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .faq-answer-inner a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-answer-inner .faq-tag {
+            display: inline-block;
+            background: #fff3ea;
+            color: #fc7013;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .faq-category-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #999;
+            background: #f5f5f5;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 14px;
+            vertical-align: middle;
+        }
+
+        /* CTA strip at bottom of FAQ */
+        .faq-cta {
+            text-align: center;
+            margin-top: 52px;
+        }
+
+        .faq-cta p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 18px;
+        }
+
+        .faq-cta-btn {
+            background: #2c3e50;
+            color: white;
+            padding: 14px 38px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 8px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-cta-btn:hover {
+            background: #fc7013;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(252, 112, 19, 0.35);
+        }
+
+        .faq-cta-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .faq-cta-btn.whatsapp:hover {
+            background: #1ebe5a;
+        }
+
+        @media (max-width: 576px) {
+            .faq-section .section-title { font-size: 1.8rem; }
+            .faq-question { padding: 16px 18px; }
+            .faq-answer { padding: 0 18px; }
+            .faq-item.open .faq-answer { padding: 0 18px 18px; }
         }
 
 </style>
@@ -215,45 +451,24 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
         <div class="container-fluid">
-            <!-- Brand/Logo -->
             <a class="navbar-brand d-flex align-items-center" href="./index.html">
                 <div class="logo">
                     <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
                 </div>
             </a>
-
-            <!-- Mobile Toggle Button -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-
-                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#process">Our Process</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./service.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact.html">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">Our Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./service.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
                 </ul>
-
-                <!-- CTA Button -->
                 <a href="./index.html#quote" class="btn btn-custom px-4 py-2">
                     Request Quote <i class="fas fa-arrow-right ms-2"></i>
                 </a>
@@ -261,33 +476,24 @@
         </div>
     </nav>
 
-
-
-
-
-
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Left Content -->
                 <div class="col-lg-6">
                     <div class="hero-content">
                         <div class="status-badge">
                             <i class="fas fa-rocket me-2"></i>
                             Launching Soon
                         </div>
-                        
                         <h1 class="hero-title">
                             Your Path to <span class="highlight">Better Health</span> Starts Here
                         </h1>
-                        
                         <p class="hero-description">
                             Expert nutritional guidance tailored for individuals, businesses, and communities. 
                             Transform your relationship with food through evidence-based strategies and 
                             personalized wellness solutions.
                         </p>
-                        
                         <div class="cta-buttons">
                             <a href="#" class="btn-primary-custom">
                                 <i class="fas fa-bell me-2"></i>
@@ -298,7 +504,6 @@
                                 Watch Demo
                             </a>
                         </div>
-                        
                         <div class="stats-section">
                             <div class="stat-item">
                                 <div class="stat-number">500+</div>
@@ -315,14 +520,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Right Image -->
                 <div class="col-lg-6">
                     <div class="hero-image-container">
-                        <img src="./images/car3.jpg" 
-                             alt="Professional nutritionist consultation" 
-                             class="hero-main-image">
-                        
+                        <img src="./images/car3.jpg" alt="Professional nutritionist consultation" class="hero-main-image">
                         <div class="image-overlay">
                             <div class="overlay-title">Professional Nutrition Counseling</div>
                             <div class="overlay-text">
@@ -336,10 +536,8 @@
         </div>
     </section>
 
-
-
     <!-- Services Section -->
-        <section class="first-section d-flex align-items-center scroll-offset" id="services">
+    <section class="first-section d-flex align-items-center scroll-offset" id="services">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Professional Services</h2>
@@ -350,102 +548,391 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-badge badge-new">New</div>
-                    <div class="service-icon">
-                        <img src="./images/img7.jpg" alt="Business Planning" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/img7.jpg" alt="Business Planning" loading="lazy"></div>
                     <h3 class="service-title">Drafting of Business Plans</h3>
-                    <p class="service-description">Comprehensive business plan development with market analysis,
-                        financial
-                        projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
+                    <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Certification</div>
-                    <div class="service-icon">
-                        <img src="./images/s1.jpg" alt="FDA GSA Certification" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/s1.jpg" alt="FDA GSA Certification" loading="lazy"></div>
                     <h3 class="service-title">FDA & GSA Certification Coaching</h3>
-                    <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring
-                        compliance with regulatory standards and successful certification outcomes.</p>
-                        
+                    <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Processing</div>
-                    <div class="service-icon">
-                        <img src="./images/machinery.jpg" alt="Commercial Dehydration" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/machinery.jpg" alt="Commercial Dehydration" loading="lazy"></div>
                     <h3 class="service-title">Equipment Sourcing, Installation & Layout Advisory</h3>
-                    <p class="service-description">We source the right equipment, handle installation, and design
-                        your production layout so it's safe, efficient, and fully code-compliant.</p>
-                    
+                    <p class="service-description">We source the right equipment, handle installation, and design your production layout so it's safe, efficient, and fully code-compliant.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Consulting</div>
-                    <div class="service-icon">
-                        <img src="./images/img13.jpg" alt="Product Development" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/img13.jpg" alt="Product Development" loading="lazy"></div>
                     <h3 class="service-title">Product Development Guidance</h3>
-                    <p class="service-description">End-to-end product development support from concept to market launch,
-                        including formulation, testing, and commercialization strategies.</p>
+                    <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Training</div>
-                    <div class="service-icon">
-                        <img src="./images/img12.jpg" alt="Safety Training" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/img12.jpg" alt="Safety Training" loading="lazy"></div>
                     <h3 class="service-title">Mentorship & Technical Training</h3>
-                    <p class="service-description">
-                        Comprehensive training programs on food safety protocols, quality
-                        control
-                        systems, and regulatory compliance for your team.
-                    </p>
+                    <p class="service-description">Comprehensive training programs on food safety protocols, quality control systems, and regulatory compliance for your team.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Consulting</div>
-                    <div class="service-icon">
-                        <img src="./images/dehydration.png" alt="dehydration service" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/dehydration.png" alt="dehydration service" loading="lazy"></div>
                     <h3 class="service-title">Dehydration Services</h3>
-                    <p class="service-description">Professional food dehydration services using advanced commercial
-                        equipment to preserve nutritional value and extend product shelf life.</p>
-                    
+                    <p class="service-description">Professional food dehydration services using advanced commercial equipment to preserve nutritional value and extend product shelf life.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Consulting</div>
-                    <div class="service-icon">
-                        <img src="./images/label.jpg" alt="Packaging and Labelling Advisory" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/label.jpg" alt="Packaging and Labelling Advisory" loading="lazy"></div>
                     <h3 class="service-title">Packaging & Labelling Advisory</h3>
-                    <p class="service-description">We help you get your packaging and labels right from ingredient
-                        declarations and nutrition facts to allergen statements, barcoding, and sustainable options.
-                        Everything you need to meet FDA and local requirements.</p>
-                    
+                    <p class="service-description">We help you get your packaging and labels right from ingredient declarations and nutrition facts to allergen statements, barcoding, and sustainable options. Everything you need to meet FDA and local requirements.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-badge">Soon</div>
-                    <div class="service-icon">
-                        <img src="./images/s2.jpg" alt="Laboratory Testing via LinkinLabs" loading="lazy">
-                    </div>
+                    <div class="service-icon"><img src="./images/s2.jpg" alt="Laboratory Testing via LinkinLabs" loading="lazy"></div>
                     <h3 class="service-title">Laboratory Testing Access via LinkinLabs</h3>
-                    <p class="service-description">Through our LinkinLabs partnership, we provide accredited testing for
-                        microbiological, chemical, nutritional, and shelf-life analyses. Get fast results, secure online
-                        reporting, and all the documentation you need to meet regulatory standards.</p>
-                    
+                    <p class="service-description">Through our LinkinLabs partnership, we provide accredited testing for microbiological, chemical, nutritional, and shelf-life analyses. Get fast results, secure online reporting, and all the documentation you need to meet regulatory standards.</p>
                 </div>
             </div>
-            </div>
-
+        </div>
     </section>
 
-        <br><br><br>
+    <br><br>
 
-        
+    <!-- ============================================================ -->
+    <!--  FAQ SECTION — inserted below Services, above footer         -->
+    <!-- ============================================================ -->
+    <section class="faq-section" id="faqs">
+        <div class="container">
+
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+                <p class="section-subtitle">Everything you need to know before working with us. Can't find your answer? Reach out directly.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="faq-tabs">
+                <button class="faq-tab-btn active" data-filter="all">All Questions</button>
+                <button class="faq-tab-btn" data-filter="fda">FDA & GSA</button>
+                <button class="faq-tab-btn" data-filter="pricing">Pricing</button>
+                <button class="faq-tab-btn" data-filter="dehydration">Dehydration</button>
+                <button class="faq-tab-btn" data-filter="packaging">Packaging & Labels</button>
+                <button class="faq-tab-btn" data-filter="general">General</button>
+            </div>
+
+            <!-- Accordion -->
+            <div class="faq-accordion" id="faqAccordion">
+
+                <!-- General -->
+                <div class="faq-item visible" data-category="general">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I get started with PFS? <span class="faq-category-label">General</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="faq-tag">Quick Start</span>
+                            <p>Simply fill in our enquiry form and we'll get back to you within <strong>24 to 48 hours</strong>.</p>
+                            <p><a href="https://forms.gle/Y13bdr85pvpjCfe89" target="_blank"> Click here to submit your enquiry</a></p>
+                            <p>You can also call or WhatsApp us directly: <strong>0503 386 203</strong> or <strong>0241 043 139</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="general">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Where are you located and do you serve clients outside Accra? <span class="faq-category-label">General</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>We are based at <strong>Pokuase, Accra</strong> - close to the Festus Taxi rank. <a href="https://goo.gl/maps/MdgAmxjdyoMnhzh48" target="_blank">View on Google Maps</a></p>
+                            <p>No matter where you are, we can still help. We have served clients in <strong>Wa, Takoradi, Tarkwa, Winneba, Cape Coast, Koforidua, Ho, Assin Fosu</strong>, and many more locations across Ghana. Just call us when you are ready.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="general">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What WhatsApp communities can I join for updates and free training? <span class="faq-category-label">General</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Join any of our platforms based on your needs:</p>
+                            <ol>
+                                <li><a href="https://chat.whatsapp.com/FuJZ2Jfhi4A9aJFXi8VnGc" target="_blank">FDA & GSA WhatsApp Group</a> - FREE weekly sessions on FDA & GSA requirements</li>
+                                <li><a href="https://chat.whatsapp.com/BnaaGX6CY6dA0ECGcSMbbu" target="_blank">Business Plan Support Page</a></li>
+                                <li><a href="https://chat.whatsapp.com/K8pErD5h1uZ7wnbTsHEMFt" target="_blank">PFS & More</a> - Ads and opportunities sharing</li>
+                                <li><a href="https://wa.me/c/233598969701" target="_blank">Zee Afrika Catalogue</a> - View our product catalogue</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FDA & GSA -->
+                <div class="faq-item visible" data-category="fda">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What are the steps to get FDA & GSA certification? <span class="faq-category-label">FDA & GSA</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Here's how to get started smoothly:</p>
+                            <ol>
+                                <li><strong>Join our WhatsApp Group</strong> for essential info and FAQs: <a href="https://chat.whatsapp.com/FuJZ2Jfhi4A9aJFXi8VnGc" target="_blank">Join here</a></li>
+                                <li><strong>Listen to our audio guide</strong> for a full explanation of the FDA journey: <a href="https://drive.google.com/file/d/14orpRgCSh54BwYtz741kCq6v4JdHJBW1/view?usp=drive_link" target="_blank">Listen here</a> OR pay GHC 200 for a personalised one-on-one session</li>
+                                <li><strong>Skip the session?</strong> Pay at least GHC 500 to initiate our support services directly</li>
+                                <li><strong>Register for FREE</strong> via our form: <a href="https://forms.gle/Y13bdr85pvpjCfe89" target="_blank">Register now</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="fda">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long does the FDA certification process take? <span class="faq-category-label">FDA & GSA</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>The timeline depends on how prepared you are:</p>
+                            <ol>
+                                <li>FDA will typically call you <strong>6 - 10 weeks</strong> after we submit your documents to them.</li>
+                                <li>If you have all required documents ready, PFS can submit to the FDA office within <strong>a maximum of 2 weeks</strong>.</li>
+                                <li><strong>Express service</strong> is also available for faster processing.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="fda">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What documents do I need to provide for FDA certification? <span class="faq-category-label">FDA & GSA</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>For food / herbal / pharmaceutical businesses:</strong></p>
+                            <ul>
+                                <li>Food Handlers Card (from your district assembly bring a passport photo)</li>
+                                <li>Product lab test results (PFS can assist)</li>
+                                <li>Product label (PFS can help)</li>
+                                <li>Product pictures</li>
+                                <li>Business Certificate (PFS can assist)</li>
+                                <li>Product samples exactly as they will be sold</li>
+                            </ul>
+                            <p><strong>For food joints / eateries / sit-and-dine businesses:</strong></p>
+                            <ul>
+                                <li>Food Handlers Card</li>
+                                <li>List of your recipes</li>
+                                <li>Steps in making the recipes (PFS can help)</li>
+                                <li>Business Certificate</li>
+                            </ul>
+                            <p><strong>For cosmetic & household chemical businesses:</strong></p>
+                            <ul>
+                                <li>Product label, product pictures</li>
+                                <li>Business Certificate</li>
+                                <li>Product samples as they will be sold</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="fda">
+                    <div class="faq-question">
+                        <span class="faq-question-text">I don't have a facility yet; can I still get FDA certified? <span class="faq-category-label">FDA & GSA</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Yes! We can <strong>partner with you</strong> to get the certification even without your own facility.</p>
+                            <p> Call: <strong>0503 386 203</strong> | 0241 043 139<br>
+                            WhatsApp: <strong>0598 969 701</strong> | 0241 043 139</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="fda">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What are the official FDA local registration charges? <span class="faq-category-label">FDA & GSA</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>Food Processing Industry:</strong></p>
+                            <ul>
+                                <li>Cottage Industry (1–3 persons): Product Reg <strong>GHC 300</strong> + Facility Reg <strong>GHC 100</strong></li>
+                                <li>Small Scale (4–10 persons): Product Reg <strong>GHC 600</strong> + Facility Reg <strong>GHC 100</strong></li>
+                                <li>Medium Scale (10+ persons): Product Reg <strong>GHC 900</strong> + Facility Reg <strong>GHC 200</strong></li>
+                            </ul>
+                            <p><strong>Cosmetics / Household Chemicals:</strong></p>
+                            <ul>
+                                <li>Cottage: Product Reg <strong>GHC 300</strong> + Facility Reg <strong>GHC 100</strong></li>
+                                <li>Small Scale: Product Reg <strong>GHC 600</strong> + Facility Reg <strong>GHC 100</strong></li>
+                                <li>Medium Scale: Product Reg <strong>GHC 750</strong> + Facility Reg <strong>GHC 200</strong></li>
+                            </ul>
+                            <p><strong>Imported Products:</strong></p>
+                            <ul>
+                                <li>Cosmetics: $177 per product + warehouse licensing GHC 240–800</li>
+                                <li>Food products: GHC 750 per product + warehouse licensing GHC 240–800</li>
+                                <li>Veterinary drugs: $600 per product + GHC 500 warehouse</li>
+                                <li>Food supplements: $500 per product + GHC 500 warehouse</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing -->
+                <div class="faq-item visible" data-category="pricing">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How much does PFS charge for its services? <span class="faq-category-label">Pricing</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Our service rates <strong>start from GHC 500</strong>. Specific pricing varies by service type and scope, and can be discussed during a phone call or meeting.</p>
+                            <p>For a Quality Manual, a <strong>50% commitment fee</strong> is required upfront. The remaining 50% is due after reviewing the first set of deliverables. Note: commitment fees are non-refundable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="pricing">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How much does business registration cost? <span class="faq-category-label">Pricing</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Sole business registration starts at <strong>GHC 500</strong>.</p>
+                            <p>For company registration, you will need to provide: company name, nature of business, postal address, contacts, email, building number, landmark, area, district, GPS address, Ghana Card, and TIN Number.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dehydration -->
+                <div class="faq-item visible" data-category="dehydration">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How does the dehydration service work and what are the rates? <span class="faq-category-label">Dehydration</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="faq-tag">Dehydration</span>
+                            <p><strong>Rates:</strong> GHC 10 – 25 per hour of drying time + labour from GHC 100/day per staff member.</p>
+                            <p><strong>Example:</strong> 6 hours of drying leaves = GHC 60 (drying) + GHC 100 (labour) = <strong>GHC 160 total</strong>.</p>
+                            <p>Our dehydrator has <strong>100 trays</strong> and can take about 10 margarine buckets at a time. <strong>70% of the estimated cost</strong> must be paid before work starts.</p>
+                            <p> You can save cost by processing (slicing/preparing) your products before bringing them to us. You can also <strong>post products to us</strong> and we dry and post back under high hygienic conditions.</p>
+                            <p> We don't dry highly scented or very watery products.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="dehydration">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I book a dehydration session? <span class="faq-category-label">Dehydration</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <ol>
+                                <li>Tell us what you want to dry.</li>
+                                <li>Send photos of your sliced products (as they will arrive to us).</li>
+                                <li>Share the weight and photos of how items will be brought.</li>
+                                <li>Wait for an approval date before bringing items to site.</li>
+                                <li>Register online (compulsory): <a href="https://forms.gle/Y13bdr85pvpjCfe89" target="_blank">Register here</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packaging & Labels -->
+                <div class="faq-item visible" data-category="packaging">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What must be on my product label to comply with FDA requirements? <span class="faq-category-label">Packaging</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>FDA's General Labelling Requirements for pre-packaged food include:</p>
+                            <ul>
+                                <li><strong>Product ID:</strong> Brand name & generic name</li>
+                                <li><strong>Quantity:</strong> Net weight, net volume, drained weight (if applicable)</li>
+                                <li><strong>Ingredients:</strong> Specific names and E-numbers where applicable</li>
+                                <li><strong>Dates:</strong> Date of manufacture, best before date, use-by date</li>
+                                <li><strong>Traceability:</strong> Batch number, lot number, country of origin</li>
+                                <li><strong>Manufacturer info:</strong> Name, full address, Ghana Post Digital Address</li>
+                                <li><strong>Usage:</strong> Directions for use, storage and handling instructions</li>
+                                <li><strong>Language:</strong> English only, legible, printed in indelible ink</li>
+                                <li><strong>Additional:</strong> Both primary and secondary packaging must comply; documentary evidence for nutrition claims; plant source for vegetable oils</li>
+                            </ul>
+                            <p>Need help with your label? <a href="tel:+233207935696">Call 0207 935 696</a> for label review and design support.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="packaging">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I order custom stand pouches and what do they cost? <span class="faq-category-label">Packaging</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>Service charges (one-off, non-refundable):</strong></p>
+                            <ul>
+                                <li>Service charge: GHC 300</li>
+                                <li>Label review: GHC 200</li>
+                                <li>3D pouch design: GHC 600</li>
+                            </ul>
+                            <p><strong>Pouch prices (per 500 pieces):</strong></p>
+                            <ul>
+                                <li>10 × 15 cm - GHC 2,018</li>
+                                <li>12 × 20 cm - GHC 2,137</li>
+                                <li>14 × 20 cm - GHC 2,290</li>
+                                <li>15 × 22 cm - GHC 2,316</li>
+                                <li>16 × 26 cm - GHC 2,667</li>
+                                <li>18 × 26 cm - GHC 2,722</li>
+                            </ul>
+                            <p>Prices exclude delivery. Full pouch payment required before production. 3D design reviews are limited to 2 rounds. We recommend buying a regular pouch first to confirm your size.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item visible" data-category="packaging">
+                    <div class="faq-question">
+                        <span class="faq-question-text">I need help developing a new product, can PFS assist? <span class="faq-category-label">Packaging</span></span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Absolutely! Whether you need to formulate a brand-new product or improve an existing one, our team is here to help.</p>
+                            <p>Fill in our product development form and we'll reach out within 24–48 hours: <a href="https://forms.gle/jF3pbK9Fy7Bdk6R19" target="_blank">👉 New Product Form</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end faq-accordion -->
+
+            <!-- CTA Strip -->
+            <div class="faq-cta">
+                <p>Still have questions? Our team is happy to help.</p>
+                <a href="tel:+233503386203" class="faq-cta-btn">
+                    <i class="fas fa-phone me-2"></i> Call Us Now
+                </a>
+                <a href="https://chat.whatsapp.com/FuJZ2Jfhi4A9aJFXi8VnGc" target="_blank" class="faq-cta-btn whatsapp">
+                    <i class="fab fa-whatsapp me-2"></i> Join WhatsApp Group
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!--  END FAQ SECTION                                             -->
+
+
+    <br><br>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="company-info">
@@ -459,9 +946,8 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3>About Us</h3>
-                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance. Our expert team delivers cutting-edge research and practical solutions for the food industry.</p>
+                    <p>Leading food scientific consultancy providing innovative solutions in food safety, product development, nutritional analysis, and regulatory compliance.</p>
                 </div>
-
                 <div class="footer-section">
                     <h3>Our Services</h3>
                     <ul>
@@ -473,7 +959,6 @@
                         <li><a href="#"><i class="fas fa-cogs"></i> HACCP Implementation</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h3>Industries</h3>
                     <ul>
@@ -485,60 +970,78 @@
                         <li><a href="#"><i class="fas fa-pills"></i> Nutraceuticals</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Zibra Street, Pokuase, Accra</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i>+233 24 104 3139</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i>+233 50 338 6203</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i>pneumaconsult@gmail.com</a></li>
-                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.foodsciconsult.com</a></li> -->  
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Zibra Street, Pokuase, Accra</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +233 24 104 3139</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +233 50 338 6203</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> pneumaconsult@gmail.com</a></li>
                     </ul>
                 </div>
-
-                
-                        
-                    <div class="footer-section">
-                        <h3>Follow Us</h3>
-                    
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
                     <div class="social-links">
-
-                        <a href="https://www.linkedin.com/in/pneuma-food-scientifics-pfs-8878a9287" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" title="X">
-                            <i class="fab fa-x"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@pneuma_foodscientifics" class="social-link" title="TikTok" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="https://www.linkedin.com/in/pneuma-food-scientifics-pfs-8878a9287" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" title="X"><i class="fab fa-x"></i></a>
+                        <a href="https://www.tiktok.com/@pneuma_foodscientifics" class="social-link" title="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/pneumafoodscientifics" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pneumafoodscientifics" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p>&copy; 2026 <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
     </footer>
 
-
-
-
-
-    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/index.js"></script>
+
+    <!-- FAQ Accordion + Filter Script -->
+    <script>
+        // ---- Accordion toggle ----
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var isOpen = item.classList.contains('open');
+
+                // Close all open items
+                document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+                    openItem.classList.remove('open');
+                });
+
+                // Open clicked item if it wasn't open
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // ---- Category filter ----
+        document.querySelectorAll('.faq-tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.faq-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                var filter = this.getAttribute('data-filter');
+
+                document.querySelectorAll('.faq-item').forEach(function(item) {
+                    var cat = item.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        item.classList.add('visible');
+                    } else {
+                        item.classList.remove('visible');
+                        item.classList.remove('open');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
