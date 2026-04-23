@@ -115,6 +115,77 @@
             {% endfor %}
         </div>
     </div>
+
+    <!-- RECENT ENQUIRIES -->
+    <div class="dashboard-card mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Recent Client Enquiries</h4>
+            <a class="btn btn-sm btn-success" href="{% url 'enquiry_dashboard' %}">
+                <i class="fas fa-comments me-1"></i> View All
+            </a>
+        </div>
+
+        <div class="list-group">
+
+            {% for enquiry in recent_enquiries %}
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                <!-- LEFT INFO -->
+                <div>
+                    <strong>
+                        {{ enquiry.first_name }} {{ enquiry.last_name }}
+                    </strong>
+
+                    <span class="text-muted">
+                        — {{ enquiry.get_service_required_display }}
+                    </span>
+
+                    <div class="small text-muted">
+                        {{ enquiry.get_region_display }}{% if enquiry.company_name %} • {{ enquiry.company_name }}{% endif %}
+                    </div>
+
+                    <div>
+                        <small class="text-muted">
+                            {{ enquiry.created_at|date:"l, F j, Y - g:i A" }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- RIGHT ACTIONS -->
+                <div class="d-flex align-items-center gap-2">
+
+                    <!-- STATUS BADGE (UPDATED) -->
+                    <span class="badge badge-status
+                        {% if enquiry.status == 'new' %}bg-warning
+                        {% elif enquiry.status == 'contacted' %}bg-primary
+                        {% elif enquiry.status == 'closed' %}bg-success
+                        {% elif enquiry.status == 'not_reachable' %}bg-dark
+                        {% elif enquiry.status == 'service_declined' %}bg-danger
+                        {% endif %}">
+                        {{ enquiry.get_status_display }}
+                    </span>
+
+                    <a href="mailto:{{ enquiry.email }}"
+                    class="btn btn-sm btn-outline-primary"
+                    title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+
+                    <a href="tel:{{ enquiry.phone_number }}"
+                    class="btn btn-sm btn-outline-success"
+                    title="Call">
+                        <i class="fas fa-phone"></i>
+                    </a>
+
+                </div>
+
+            </div>
+            {% empty %}
+            <p class="text-muted">No enquiries yet</p>
+            {% endfor %}
+
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

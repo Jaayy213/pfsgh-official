@@ -1,0 +1,213 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}PFS Enquiry Form{% endblock title %}
+{% block styles_addon %}
+<style>
+    body {
+        background-color: #f5f7fb;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .form-container {
+        max-width: 820px;
+        margin: 60px auto;
+    }
+
+    .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .card-header {
+        background: none;
+        border-bottom: none;
+        padding: 30px 30px 0;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+    }
+
+    .form-section h6 {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: none;
+        border-color: #4f46e5;
+    }
+
+    .btn-submit {
+        background-color: #4f46e5;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+
+    .btn-submit:hover {
+        background-color: #4338ca;
+    }
+
+    .form-text {
+        font-size: 12px;
+        color: #888;
+    }
+
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<div class="container form-container">
+    <div class="card">
+
+    <!-- Header -->
+    <div class="card-header">
+        <h4 class="fw-semibold">PFS General Enquiry</h4>
+        <p class="text-muted mb-0">
+            Tell us what you need, and our team will respond as quickly as possible.
+        </p>
+    </div>
+
+    <!-- Form -->
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Personal Info -->
+            <div class="form-section">
+                <h6>Personal Information</h6>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">First Name</label>
+                        {{ form.first_name }}
+                        {% if form.first_name.help_text %}
+                            <div class="form-text">{{ form.first_name.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Last Name</label>
+                        {{ form.last_name }}
+                        {% if form.last_name.help_text %}
+                            <div class="form-text">{{ form.last_name.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number</label>
+                        {{ form.phone_number }}
+                        {% if form.phone_number.help_text %}
+                            <div class="form-text">{{ form.phone_number.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Email Address</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Region</label>
+                        {{ form.region }}
+                        {% if form.region.help_text %}
+                            <div class="form-text">{{ form.region.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Address</label>
+                        {{ form.address }}
+                        {% if form.address.help_text %}
+                            <div class="form-text">{{ form.address.help_text }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Info -->
+            <div class="form-section">
+                <h6>Business Details</h6>
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <label class="form-label">Company Name</label>
+                        {{ form.company_name }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Promo Code</label>
+                        {{ form.promocode }}
+                        {% if form.promocode.help_text %}
+                            <div class="form-text">{{ form.promocode.help_text }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="form-section">
+                <h6>Service Required</h6>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        {{ form.service_required }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social -->
+            <div class="form-section">
+                <h6>Online Presence</h6>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Platform</label>
+                        {{ form.social_platform }}
+                        {% if form.social_platform.help_text %}
+                            <div class="form-text">{{ form.social_platform.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Handle / Website</label>
+                        {{ form.social_handle }}
+                        {% if form.social_handle.help_text %}
+                            <div class="form-text">{{ form.social_handle.help_text }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-section">
+                <h6>Additional Information</h6>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label">Other Enquiry</label>
+                        {{ form.other_enquiry }}
+                        {% if form.other_enquiry.help_text %}
+                            <div class="form-text">{{ form.other_enquiry.help_text }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-submit">
+                    Submit Enquiry
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</div>
+{% endblock content %}

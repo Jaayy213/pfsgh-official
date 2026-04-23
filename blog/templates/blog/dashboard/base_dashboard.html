@@ -54,15 +54,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4">
     <div class="container-fluid">
 
+        <!-- Mobile Menu Toggle -->
+        <button class="btn d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <!-- Brand + Homepage Link -->
         <div class="d-flex align-items-center gap-3">
             <span class="navbar-brand fw-semibold">
-                PFS Blog Dashboard
+                PFS Dashboard
             </span>
 
-            <a href="{% url 'home' %}" class="text-decoration-none small text-muted">
-                <i class="fas fa-home me-1"></i> Main Website
-            </a>
         </div>
 
         <div class="ms-auto d-flex align-items-center">
@@ -91,7 +93,7 @@
                     {% endif %}
 
                     <!-- User Info -->
-                    <div class="text-start d-none d-md-block me-2">
+                    <div class="text-start d-none d-lg-block me-2">
                         <div class="fw-semibold">
                             {{ request.user.first_name }} {{ request.user.last_name }}
                         </div>
@@ -134,21 +136,30 @@
     </div>
 </nav>
 
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
 
     <!-- SIDEBAR -->
-    <div class="dashboard-sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link {% if request.resolver_match.url_name == 'blog_dashboard' %}active{% endif %}" href="{% url "blog_dashboard" %}"><i class="fas fa-file-alt me-2"></i>Home</a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_list' %}active{% endif %}" href="{% url "blog_posts_list" %}"><i class="fas fa-file-alt me-2"></i>Posts</a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'blog_categories' %}active{% endif %}" href="{% url "blog_categories"%}"><i class="fas fa-folder me-2"></i>Categories</a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_comments' %}active{% endif %}" href="{% url "blog_posts_comments" %}"><i class="fas fa-comments me-2"></i>Comments</a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" href="{% url "user_profile" %}"><i class="fas fa-user-circle me-2"></i></i>Profile</a>
-        </nav>
+    <div class="offcanvas-lg offcanvas-start dashboard-sidebar text-bg-primary" tabindex="-1" id="sidebarMenu">
+        <div class="offcanvas-header d-lg-none">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close">
+</button>
+        </div>
+
+        <div class="offcanvas-body">
+            <nav class="nav flex-column">
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_dashboard' %}active{% endif %}" href="{% url "blog_dashboard" %}"><i class="fas fa-file-alt me-2"></i>Home</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_list' %}active{% endif %}" href="{% url "blog_posts_list" %}"><i class="fas fa-file-alt me-2"></i>Blog Posts</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_categories' %}active{% endif %}" href="{% url "blog_categories"%}"><i class="fas fa-folder me-2"></i>Blog Categories</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_comments' %}active{% endif %}" href="{% url "blog_posts_comments" %}"><i class="fas fa-comments me-2"></i>Blog Comments</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'enquiry_dashboard' %}active{% endif %}" href="{% url "enquiry_dashboard" %}"><i class="fas fa-inbox me-2"></i>Enquiries</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" href="{% url "user_profile" %}"><i class="fas fa-user-circle me-2"></i></i>Profile</a>
+            </nav>
+        </div>
     </div>
 
     <!-- CONTENT AREA -->
-    <div class="dashboard-content flex-grow-1">
+    <div class="dashboard-content flex-grow-1 p-3 p-lg-4">
         {% block content %}{% endblock content %}
     </div>
 
@@ -156,7 +167,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{% static "blog/js/scripts.js" %}"></script>
+<script src="{% static 'blog/js/scripts.js' %}"></script>
 <!-- Flash Messages -->
 <script>
     setTimeout(() => {

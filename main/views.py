@@ -28,6 +28,13 @@ def service(request):
     }
     return render(request, 'main/service.html', context)
 
+# FAQs page
+def faqs(request):
+    context = {
+
+    }
+    return render(request, 'main/faqs.html', context)
+
 # Contact page
 def contact(request):
     context = {

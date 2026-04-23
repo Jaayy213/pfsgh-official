@@ -1,0 +1,90 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Form Successfully Submitted{% endblock title %}
+{% block styles_addon %}
+<style>
+    body {
+        background-color: #f5f7fb;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .success-container {
+        max-width: 600px;
+        margin: 100px auto;
+    }
+
+    .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+        padding: 40px 30px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        background-color: #e6f9f0;
+        color: #16a34a;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin: 0 auto 20px;
+    }
+
+    .btn-primary {
+        background-color: #4f46e5;
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .btn-outline-secondary {
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .btn-primary:hover {
+        background-color: #4338ca;
+    }
+
+    .text-muted-small {
+        font-size: 14px;
+        color: #777;
+    }
+
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<div class="container success-container">
+    <div class="card">
+        <!-- Icon -->
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+
+        <!-- Message -->
+        <h4 class="fw-semibold mb-2">Submission Successful</h4>
+        <p class="text-muted">
+            Your enquiry has been received. Our team will get back to you as soon as possible.
+        </p>
+
+        <!-- Extra reassurance -->
+        <p class="text-muted-small mb-4">
+            Typically, we respond within 24–48 hours.
+        </p>
+
+        <!-- Actions -->
+        <div class="d-grid gap-2">
+            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+            <a href="{% url 'enquiry' %}" class="btn btn-outline-secondary">Submit Another Enquiry</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

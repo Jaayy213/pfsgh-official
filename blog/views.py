@@ -10,6 +10,7 @@ from .forms import BlogPostForm, BlogCategoryForm
 from django.utils import timezone
 from django.db.models import Count
 from django.utils.timezone import now, timedelta
+from enquiries.models import Enquiry
 
 
 # Helper function to get client IP for page views
@@ -161,6 +162,9 @@ def blog_dashboard(request):
     weekly_visitors = BlogPageView.objects.filter(timestamp__gte=today - timedelta(days=7)).count()
     daily_visitors = BlogPageView.objects.filter(timestamp__gte=today - timedelta(days=1)).count()
 
+    # Recent Enquiries
+    recent_enquiries = Enquiry.objects.order_by('-created_at')[:5]
+
     context = {
         'posts': posts,
         'total_posts': total_posts,
@@ -176,6 +180,7 @@ def blog_dashboard(request):
         'weekly_visitors': weekly_visitors,
         'monthly_visitors': monthly_visitors,
         'total_visitors': total_visitors,
+        'recent_enquiries': recent_enquiries,
     }
 
     return render(request, 'blog/dashboard/dashboard_home.html', context)
