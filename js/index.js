@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const cards = document.querySelectorAll('.service-card');
+    const cards = document.querySelectorAll('.service-item, .service-card');
 
     // Intersection Observer for scroll animations
     const observer = new IntersectionObserver((entries) => {
@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transform = 'translateX(0)';
                 }, index * 100);
+                observer.unobserve(entry.target);
             }
         });
     }, {
@@ -55,14 +56,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cards.forEach(card => {
         card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease';
+        card.style.transform = 'translateX(-18px)';
+        card.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
         observer.observe(card);
     });
 
     // click interactions
     cards.forEach(card => {
         card.addEventListener('click', function () {
+            if (!this.classList.contains('service-card')) {
+                return;
+            }
+
             this.style.transform = 'scale(0.98)';
             setTimeout(() => {
                 this.style.transform = '';
