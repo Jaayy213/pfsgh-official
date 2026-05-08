@@ -61,7 +61,7 @@ class Enquiry(models.Model):
     email = models.EmailField()
     company_name = models.CharField(max_length=255)
 
-    promocode = models.CharField(max_length=50, default="NONE")
+    promocode = models.CharField(max_length=250, default="NONE")
 
     service_required = models.CharField(
         max_length=50,

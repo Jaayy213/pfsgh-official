@@ -29,7 +29,7 @@ class EnquiryForm(forms.ModelForm):
             "phone_number": "Include country code (e.g. +233...).",
             "email": "Enter a valid email address we can contact you on.",
             "company_name": "Enter your business or company name (if applicable).",
-            "promocode": "Leave as 'NONE' if not applicable.",
+            "promocode": "Enter Promo Code or Referral Name",
             "service_required": "Select the service you are interested in.",
             "social_platform": "Choose your primary social media platform.",
             "social_handle": "Provide a full URL (e.g. https://instagram.com/yourhandle)",
