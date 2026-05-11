@@ -63,22 +63,22 @@
     }
 
     .blog-image {
-        height: 200px;
-        /* Updated gradient to use brand colors */
-        background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+        height: auto;
         position: relative;
         overflow: hidden;
     }
 
     .blog-image img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
         transition: transform 0.3s ease;
+        display: block;
     }
 
     .blog-card:hover .blog-image img {
-        transform: scale(1.05);
+        transform: none;
     }
 
     .blog-category {
