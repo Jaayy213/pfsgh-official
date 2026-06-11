@@ -263,3 +263,63 @@ function openQuoteModal() {
                     behavior: 'smooth'
                 });
             });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("welcome-audio");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const btnIcon = document.getElementById("btn-icon");
+    const seekSlider = document.getElementById("seek-slider");
+    const currentTimeText = document.getElementById("current-time");
+    const durationTimeText = document.getElementById("duration-time");
+
+    if(!audio) return; // Prevents errors if the block isn't on the page
+
+    const formatTime = (secs) => {
+        const minutes = Math.floor(secs / 60);
+        const seconds = Math.floor(secs % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
+
+    audio.addEventListener("loadedmetadata", () => {
+        seekSlider.max = Math.floor(audio.duration);
+        durationTimeText.textContent = formatTime(audio.duration);
+    });
+
+    playPauseBtn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            btnIcon.classList.remove("fa-play");
+            btnIcon.classList.add("fa-pause");
+        } else {
+            audio.pause();
+            btnIcon.classList.remove("fa-pause");
+            btnIcon.classList.add("fa-play");
+        }
+    });
+
+    audio.addEventListener("timeupdate", () => {
+        if (!seekSlider.classList.contains("user-is-scrubbing")) {
+            seekSlider.value = Math.floor(audio.currentTime);
+        }
+        currentTimeText.textContent = formatTime(audio.currentTime);
+    });
+
+    seekSlider.addEventListener("input", () => {
+        seekSlider.classList.add("user-is-scrubbing");
+        currentTimeText.textContent = formatTime(seekSlider.value);
+    });
+
+    seekSlider.addEventListener("change", () => {
+        audio.currentTime = seekSlider.value;
+        seekSlider.classList.remove("user-is-scrubbing");
+    });
+
+    audio.addEventListener("ended", () => {
+        btnIcon.classList.remove("fa-pause");
+        btnIcon.classList.add("fa-play");
+        seekSlider.value = 0;
+        currentTimeText.textContent = "0:00";
+    });
+});
