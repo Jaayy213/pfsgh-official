@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Success Stories - Pneuma Food Scientifics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.78), rgba(137, 15, 145, 0.78)), url('./images/img6.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 130px 0 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(252, 112, 19, 0.18), transparent 35%),
+                        radial-gradient(circle at bottom right, rgba(137, 15, 145, 0.22), transparent 38%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            font-size: 0.95rem;
+            letter-spacing: 0.4px;
+            margin-bottom: 22px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 5vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-subtitle {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-pill {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-size: 0.95rem;
+        }
+
+        .success-section {
+            padding: 80px 0;
+        }
+
+        .success-panel {
+            background: white;
+            border-radius: 24px;
+            padding: 42px;
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 800;
+            color: #132238;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .section-description {
+            max-width: 900px;
+            margin: 0 auto 42px;
+            color: #556070;
+            font-size: 1.08rem;
+            line-height: 1.85;
+            text-align: center;
+        }
+
+        .story-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(28px);
+        }
+
+        .story-card.animate-in {
+            animation: liftIn 0.7s forwards;
+        }
+
+        @keyframes liftIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 40px rgba(15, 23, 42, 0.12);
+            border-color: rgba(252, 112, 19, 0.24);
+        }
+
+        .story-image {
+            height: 255px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 16px;
+        }
+
+        .story-content {
+            padding: 24px;
+        }
+
+        .story-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(252, 112, 19, 0.08);
+            color: var(--accent-color);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .story-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #132238;
+            margin-bottom: 10px;
+        }
+
+        .story-description {
+            color: #64748b;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .video-section {
+            margin-top: 34px;
+            background: linear-gradient(135deg, rgba(252, 112, 19, 0.07), rgba(137, 15, 145, 0.07));
+            border-radius: 24px;
+            padding: 34px;
+        }
+
+        .video-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #132238;
+            margin-bottom: 26px;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 280px;
+            background: #111827;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .video-card-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.65;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.18));
+        }
+
+        .play-button {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+        }
+
+        .video-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 18px 20px;
+            color: white;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+        }
+
+        .video-info h5 {
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .video-info p {
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        .cta-strip {
+            margin-top: 34px;
+            padding: 26px 28px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary-color), #1f2f3f);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-strip p {
+            margin-bottom: 18px;
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #000;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            color: #fff;
+            background: #e00;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 33px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            background: #b00;
+            text-decoration: none;
+        }
+
+        #modalVideoPlayer {
+            display: block;
+            width: 90%;
+            max-height: 70vh;
+        }
+
+        @media (max-width: 768px) {
+            .success-panel,
+            .video-section {
+                padding: 24px;
+            }
+
+            .hero-section {
+                padding: 110px 0 70px;
+            }
+
+            .video-card {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <div class="logo">
+                    <img src="./images/logo-retouch.png" alt="PFSGH Logo" class="img-fluid">
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="aboutMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutMenu">
+                            <li><a class="dropdown-item" href="./about.html">About Us</a></li>
+                            <li><a class="dropdown-item active" href="./client-stories.html">Client Success Stories</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./process.html">Our Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <a href="./index.html#quote" class="quote-trigger btn btn-custom px-4 py-2">
+                    Request Quote <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center hero-content">
+                    <div class="eyebrow">
+                        <i class="fas fa-star"></i>
+                        <span>Real products. Real approvals. Real growth.</span>
+                    </div>
+                    <h1 class="hero-title">Client Success Stories</h1>
+                    <p class="hero-subtitle">
+                        Explore the brands we have helped move from concept to shelf-ready products, with FDA approvals,
+                        packaging support, and practical product development guidance.
+                    </p>
+                    <div class="hero-pills">
+                        <span class="hero-pill"><i class="fas fa-check me-2"></i>FDA approved products</span>
+                        <span class="hero-pill"><i class="fas fa-seedling me-2"></i>Food, herbal, and cosmetic brands</span>
+                        <span class="hero-pill"><i class="fas fa-globe me-2"></i>Clients in Ghana and abroad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-section">
+        <div class="container">
+            <div class="success-panel">
+                <h2 class="section-title">Featured Client Wins</h2>
+                <p class="section-description">
+                    We partner with African startups at home and abroad, combining food science expertise with hands-on
+                    execution to turn innovative ideas into market-ready products.
+                </p>
+
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/fibre_porridge_mango 250g.jpg" alt="Instant High Fruit Fibre Porridge">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> FDA Approved</div>
+                                <h3 class="story-name">Instant High Fruit Fibre Porridge Mix</h3>
+                                <p class="story-description">FDA Approved High Fruit Fibre Porridge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/rice_porridge_tigernut 300g.jpg" alt="Shemah instant rice porridge">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> FDA Approved</div>
+                                <h3 class="story-name">Shemah instant rice porridge</h3>
+                                <p class="story-description">FDA Approved instant rice porridge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/mangi_powder 250g.jpg" alt="Mango Powder">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Natural Product</div>
+                                <h3 class="story-name">Fibrelicious Mango Powder</h3>
+                                <p class="story-description">FDA Approved Natural Mango Powder.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/rice_porridge_cashew.jpg" alt="Shemah Instant Rice Porridge with Cashew">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Natural Product</div>
+                                <h3 class="story-name">Shemah Instant Rice Porridge with Cashew</h3>
+                                <p class="story-description">FDA Approved Natural Rice Porridge with Cashew.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/rice_porridge_mix.jpg" alt="Shemah Instant Rice Porridge Mix">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Natural Product</div>
+                                <h3 class="story-name">Shemah Instant Rice Porridge Mix</h3>
+                                <p class="story-description">FDA Approved Natural Rice Porridge Mix.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cashew_snackbar.jpg" alt="Fibrelicious Cashew Energy Snack Bar">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Snacks</div>
+                                <h3 class="story-name">Fibrelicious Cashew Energy Snack Bar</h3>
+                                <p class="story-description">FDA Approved Natural Cashew Energy Snack Bar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cashewmint.jpg" alt="Cashew Mint Twist">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Natural Product Beverage</div>
+                                <h3 class="story-name">Cashew Mint Twist</h3>
+                                <p class="story-description">FDA Approved Natural Cashew Mint Twist.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/img37.jpg" alt="KnZee Ltd Mango Juice Products">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> FDA Approved Beverage</div>
+                                <h3 class="story-name">KnZee Ltd</h3>
+                                <p class="story-description">FDA Approved Natural Mango Juice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/img36.jpg" alt="Pronto Waakye Product">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Ready in 15 mins</div>
+                                <h3 class="story-name">Pronto Waakye</h3>
+                                <p class="story-description">FDA Approved Express Waakye in 15 mins.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl7.jpg" alt="Healthy Leap Foods Product">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> FDA Approved</div>
+                                <h3 class="story-name">Healthy Leap Foods</h3>
+                                <p class="story-description">FDA Approved Instant Sweet Potato Complementary Foods.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/img29.jpg" alt="Body Cool Cream">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Skincare</div>
+                                <h3 class="story-name">Body Cool Cream</h3>
+                                <p class="story-description">FDA Approved Body Cool Cream.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl4.jpg" alt="Tipura Naturals Shea Butter">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Skincare</div>
+                                <h3 class="story-name">Tipura-Naturals</h3>
+                                <p class="story-description">FDA Approved pure, unrefined shea butter.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl2.jpg" alt="Cocoa Pulp Juice">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Beverage</div>
+                                <h3 class="story-name">Cocoa Pulp Juice</h3>
+                                <p class="story-description">FDA Approved cocoa juice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl8.jpg" alt="Roast and Relish">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Food</div>
+                                <h3 class="story-name">Roast and Relish</h3>
+                                <p class="story-description">FDA Approved Food.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl9.jpg" alt="Ginger & Hibiscus Organic Infusions">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Herbal</div>
+                                <h3 class="story-name">Ginger & Hibiscus Organic Infusions</h3>
+                                <p class="story-description">FDA Approved Ginger & Hibiscus Organic Infusions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl10.jpg" alt="Yogo Max Product">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Dairy</div>
+                                <h3 class="story-name">Yogo Max</h3>
+                                <p class="story-description">FDA Approved Yogo Max.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl1.jpg" alt="Roland Rice">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Rice</div>
+                                <h3 class="story-name">Roland Rice</h3>
+                                <p class="story-description">FDA Approved Roland Rice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/cl3.jpg" alt="Coconut Oil Voil">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Oil</div>
+                                <h3 class="story-name">Coconut Oil Voil</h3>
+                                <p class="story-description">FDA Approved Coconut Oil Voil.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/chaskele.webp" alt="Chaskele Snacks">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Snacks</div>
+                                <h3 class="story-name">Chaskele Snacks</h3>
+                                <p class="story-description">FDA Approved Chaskele Snacks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/enos organics.jpg" alt="Eno's palm nut pulp">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Plant Based</div>
+                                <h3 class="story-name">Eno's palm nut pulp</h3>
+                                <p class="story-description">FDA Approved Plant-Based Snacks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/Ewa Tomi.jpg" alt="Ewa Tomi Body Therapy Butter">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Body Care</div>
+                                <h3 class="story-name">Ewa Tomi Body Therapy Butter</h3>
+                                <p class="story-description">FDA Approved Natural Body Therapy Butter.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/sab.jpg" alt="Sab Drink">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Beverage</div>
+                                <h3 class="story-name">Sab Drink</h3>
+                                <p class="story-description">FDA Approved Functional Beverage.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/voil.jpg" alt="Voil Virgin Coconut Oil">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Oil</div>
+                                <h3 class="story-name">Voil Virgin Coconut Oil</h3>
+                                <p class="story-description">FDA Approved Virgin Coconut oil.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/pure grain rice.jpg" alt="Pure Grain Rice">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Rice</div>
+                                <h3 class="story-name">Pure Grain Rice</h3>
+                                <p class="story-description">FDA Approved Local Rice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="#" alt="Skin Gold Moisturizer">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Dermatological</div>
+                                <h3 class="story-name">Skin Gold Moisturizer</h3>
+                                <p class="story-description">FDA Approved Dermatological Product.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="story-card card-custom">
+                            <div class="story-image">
+                                <img src="./images/talata.jpg" alt="Talata product">
+                            </div>
+                            <div class="story-content">
+                                <div class="story-badge"><i class="fas fa-award"></i> Product</div>
+                                <h3 class="story-name">Talata</h3>
+                                <p class="story-description">FDA Approved Product.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3 class="video-title">Watch Client Video Testimonials</h3>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 col-md-9">
+                            <div class="video-card" onclick="playVideo('video1')">
+                                <video class="video-card-background" muted loop playsinline preload="metadata">
+                                    <source src="./images/pronto.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="video-overlay">
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div class="video-info">
+                                    <h5>AMJ Abish Success Story</h5>
+                                    <p>From concept to FDA approval • 3:45</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-strip">
+                    <p class="mb-0">Have a product idea that is ready for the next step? We can help you build, package, and approve it.</p>
+                    <a href="./contact.html" class="btn btn-custom mt-3 px-4 py-2">Start Your Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <video id="modalVideoPlayer" width="100%" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> <span class="highlight">Pneuma Food Scientifics</span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/about.js"></script>
+</body>
+</html>
