@@ -6,11 +6,13 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import BlogCategory, BlogPost, Comment, BlogPageView
-from .forms import BlogPostForm, BlogCategoryForm
+from .forms import BlogPostForm, BlogCategoryForm, ProductTagForm, ProductForm
 from django.utils import timezone
 from django.db.models import Count
 from django.utils.timezone import now, timedelta
 from enquiries.models import Enquiry
+from main.models import ProductTag, Product
+from django.db import transaction
 
 
 # Helper function to get client IP for page views
@@ -309,6 +311,7 @@ def delete_category(request, pk):
         return redirect('blog_categories')
     return render(request, 'blog/dashboard/categories.html')
 
+
 @staff_member_required
 @login_required
 def blog_posts_comments(request):
@@ -328,6 +331,140 @@ def delete_blog_post_comment(request, pk):
         messages.success(request, "Comment deleted successfully!")
         return redirect('blog_posts_comments')
     return render(request, 'blog/dashboard/comments.html')
+
+
+@staff_member_required
+@login_required
+def product_tags(request):
+    tags = ProductTag.objects.annotate(
+        product_count=Count('product_tags')
+    ).order_by('-created_at')
+
+    context = {
+        'tags': tags,
+    }
+
+    return render(request, 'blog/dashboard/product_tags.html', context)
+
+
+@staff_member_required
+@login_required
+def create_product_tag(request):
+    if request.method == 'POST':
+        form = ProductTagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product Tag created successfully!")
+            return redirect('product_tags')
+    else:
+        form = ProductTagForm()
+
+    context = {
+        'form': form,
+        'is_edit': False,
+    }
+    return render(request, 'blog/dashboard/product_tag_form.html', context)
+
+
+@staff_member_required
+@login_required
+def edit_product_tag(request, pk):
+    tag = get_object_or_404(ProductTag, pk=pk)
+
+    if request.method == 'POST':
+        form = ProductTagForm(request.POST, instance=tag)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product Tag updated successfully!")
+            return redirect('product_tags')
+    else:
+        form = ProductTagForm(instance=tag)
+    
+    context = {
+        'form': form,
+        'tag': tag,
+        'is_edit': True,
+    }
+
+    return render(request, 'blog/dashboard/product_tag_form.html', context)
+
+
+@staff_member_required
+@login_required
+def delete_product_tag(request, pk):
+    tag = get_object_or_404(ProductTag, pk=pk)
+    if request.method == 'POST':
+        tag.delete()
+        messages.success(request, "Product Tag deleted successfully!")
+        return redirect('product_tags')
+    return render(request, 'blog/dashboard/product_tag_form.html')
+
+
+@login_required
+@staff_member_required
+def product_list(request):
+    products = Product.objects.select_related('tag').all().order_by('-created_at')
+    context = {
+        'products': products,
+    }
+    return render(request, 'blog/dashboard/product_list.html', context)
+
+
+@login_required
+@staff_member_required
+@transaction.atomic
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES) # request.FILES is required for ImageField!
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, f"Product '{product.name}' created successfully!")
+            return redirect('product_list')
+    else:
+        form = ProductForm()
+
+    context = {
+        'form': form,
+        'is_edit': False,
+    }
+    
+    return render(request, 'blog/dashboard/product_form.html', context)
+
+
+@login_required
+@staff_member_required
+@transaction.atomic
+def edit_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Product '{product.name}' updated successfully!")
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+
+    context = {
+        'form': form,
+        'is_edit': True,
+        'product': product,
+    }
+        
+    return render(request, 'blog/dashboard/product_form.html', context)
+
+
+@login_required
+@staff_member_required
+@transaction.atomic
+def delete_product(request, pk):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=pk)
+        product_name = product.name
+        product.delete()
+        messages.success(request, f"Product '{product_name}' deleted successfully!")
+    return redirect('product_list')
+
 
 @staff_member_required
 @login_required

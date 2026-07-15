@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product
 
 # Home page
 def homepage(request):
@@ -13,6 +14,15 @@ def about(request):
 
     }
     return render(request, 'main/about.html', context)
+
+# Client Stories
+def client_stories(request):
+    products = Product.objects.all()
+
+    context = {
+        'products': products,
+    }
+    return render(request, 'main/client_stories.html', context)
 
 # Process page
 def process(request):
@@ -41,3 +51,5 @@ def contact(request):
 
     }
     return render(request, 'main/contact.html', context)
+
+

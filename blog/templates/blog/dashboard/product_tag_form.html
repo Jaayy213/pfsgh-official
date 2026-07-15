@@ -1,0 +1,64 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}{% if is_edit %} Edit Product Tag {% else %} Create New Product Tag {% endif %} - Blog Dashboard{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <!-- PAGE HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="mt-4">
+            <h2 class="mb-0">
+                {% if is_edit %}
+                    Edit Product Tag
+                {% else %}
+                    Create New Product Tag
+                {% endif %}
+            </h2>
+            <small class="text-muted">
+                {% if is_edit %}
+                    Modify your product tag name and description
+                {% else %}
+                    Fill out the form to create a new product tag
+                {% endif %}
+            </small>
+        </div>
+
+        <a href="{% url 'product_tags' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> Back to Product Tags
+        </a>
+    </div>
+
+    <div class="dashboard-card p-4">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-4">
+                
+                <!-- NAME -->
+                <div class="col-md-12">
+                    <label class="form-label">Name</label>
+                    {{ form.name }}
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="col-md-12">
+                    <label class="form-label">Description</label>
+                    {{ form.description }}
+                </div>
+
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div class="mt-4">
+                <button class="btn btn-primary w-100">
+                    <i class="fas fa-save me-2"></i>
+                    {% if is_edit %} Update Product Tag {% else %} Create Product Tag {% endif %}
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

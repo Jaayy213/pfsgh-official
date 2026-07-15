@@ -859,6 +859,6 @@
 
     <!-- Bootstrap JS -->
     {% block extra_js %}
-        <script src="{% static 'main/js/about.js' %}"></script>
+        {{ block.super }} <script src="{% static 'main/js/about.js' %}"></script>
     {% endblock extra_js %}
 {% endblock content %}

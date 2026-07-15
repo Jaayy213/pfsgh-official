@@ -25,4 +25,15 @@ urlpatterns = [
     # Dashboard (Enquiries)
     path("dashboard/enquiries/", enquiry_dashboard, name="enquiry_dashboard"),
     path("dashboard/enquiries/export/", export_enquiries, name="export_enquiries"),
+
+    # Product Tags & Products
+    path('dashboard/product_tags', views.product_tags, name='product_tags'),
+    path('dashboard/create_product_tag', views.create_product_tag, name='create_product_tag'),
+    path('dashboard/edit_product_tag/<int:pk>/', views.edit_product_tag, name='edit_product_tag'),
+    path('dashboard/delete_product_tag/<int:pk>/', views.delete_product_tag, name='delete_product_tag'),
+
+    path('dashboard/products/', views.product_list, name='product_list'),
+    path('dashboard/products/create/', views.create_product, name='create_product'),
+    path('dashboard/products/edit/<int:pk>/', views.edit_product, name='edit_product'),
+    path('dashboard/products/delete/<int:pk>/', views.delete_product, name='delete_product'),
 ]

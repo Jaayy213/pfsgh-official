@@ -15,279 +15,273 @@
 {% endblock meta_tags %}
 {%block styles_addon%}
 <style>
-  /* Features Section */
-  .features-section {
-    padding: 100px 0;
-    background-color: white;
-  }
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: white;
+        }
 
-  .section-header {
-    padding: 40px 0;
-    text-align: center;
-  }
+        .section-header {
+            padding: 40px 0 20px;
+            text-align: center;
 
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    padding-top: 40px;
-  }
+        }
 
-  .lead {
-    margin-top: -35px;
-  }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
 
-  /* testimonials */
+        }
 
-  .testimonials-section {
-    background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-  }
+        .lead {
+            margin-top: 0;
 
-  .testimonials-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      var(--accent-color) 0%,
-      var(--secondary-color) 100%
-    );
-  }
+        }
 
-  .testimonial-card {
-    background: white;
-    border-radius: 20px;
-    padding: 34px 26px;
-    margin: 12px auto;
-    box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08);
-    transition: all 0.3s ease;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 560px;
-    width: 100%;
-    min-height: 260px;
-    height: 100%;
-    box-sizing: border-box;
-  }
+        /* testimonials */
 
-  .testimonial-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      var(--accent-color) 0%,
-      var(--secondary-color) 100%
-    );
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-  .testimonial-card:hover::before {
-    transform: scaleX(1);
-  }
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+        }
 
-  .testimonial-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(44, 62, 80, 0.15);
-  }
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 34px 26px;
+            margin: 12px auto;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            max-width: 560px;
+            width: 100%;
+            min-height: 260px;
+            height: 100%;
+            box-sizing: border-box;
+        }
 
-  .quote-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-    opacity: 0.3;
-    position: absolute;
-    top: 20px;
-    right: 30px;
-  }
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
 
-  .testimonial-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--primary-color);
-    font-style: italic;
-    margin-bottom: 30px;
-    position: relative;
-    z-index: 2;
-    flex-grow: 1;
-  }
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
 
-  .client-info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(44, 62, 80, 0.15);
+        }
 
-  .client-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: linear-gradient(
-      135deg,
-      var(--accent-color) 0%,
-      var(--secondary-color) 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
 
-  .client-details h5 {
-    color: var(--primary-color);
-    margin-bottom: 5px;
-    font-weight: 600;
-  }
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--primary-color);
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
 
-  .client-company {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-  }
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-  .floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
+        .client-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
 
-  /* Ensure testimonial columns stretch so cards are equal height */
-  .testimonials-section .row.justify-content-center > [class*="col-"] {
-    display: flex;
-    align-items: stretch;
-  }
+        .client-details h5 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
 
-  .testimonials-section .testimonial-text {
-    flex: 1 1 auto;
-    margin-bottom: 18px;
-  }
+        .client-company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
 
-  .floating-icon {
-    position: absolute;
-    color: var(--accent-color);
-    opacity: 0.1;
-    font-size: 2rem;
-    animation: float 6s ease-in-out infinite;
-  }
 
-  .floating-icon:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-  }
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-  .floating-icon:nth-child(2) {
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-  }
+        /* Ensure testimonial columns stretch so cards are equal height */
+        .testimonials-section .row.justify-content-center > [class*="col-"] {
+            display: flex;
+            align-items: stretch;
+        }
 
-  .floating-icon:nth-child(3) {
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 4s;
-  }
+        .testimonials-section .testimonial-text {
+            flex: 1 1 auto;
+            margin-bottom: 18px;
+        }
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
+        .floating-icon {
+            position: absolute;
+            color: var(--accent-color);
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
 
-    50% {
-      transform: translateY(-20px);
-    }
-  }
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
 
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 2.5rem;
-    }
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
 
-    .process-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
+        .floating-icon:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
 
-    .process-card {
-      padding: 30px 20px;
-    }
+        @keyframes float {
 
-    .flow-arrow {
-      transform: rotate(90deg);
-    }
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
 
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 25px;
-    }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
 
-    .service-card {
-      padding: 30px 20px;
-      min-height: 250px;
-    }
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
 
-    .testimonials-section {
-      padding: 60px 0;
-    }
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
 
-    .testimonial-card {
-      padding: 30px 20px;
-    }
+            .process-card {
+                padding: 30px 20px;
+            }
 
-    .client-info {
-      flex-direction: column;
-      text-align: center;
-    }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
 
-    .stat-number {
-      font-size: 2.5rem;
-    }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
 
-    .contact-section {
-      padding: 60px 0;
-    }
+            .service-card {
+                padding: 30px 20px;
+                min-height: 250px;
+            }
 
-    .contact-form-wrapper {
-      padding: 30px 20px;
-      margin-top: 40px;
-    }
 
-    .contact-item {
-      flex-direction: column;
-      text-align: center;
-    }
 
-    .contact-icon {
-      margin-right: 0;
-      margin-bottom: 15px;
-    }
+            .testimonials-section {
+                padding: 60px 0;
+            }
 
-    .contact-item:hover {
-      transform: none;
-    }
-  }
-</style>
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+
+            .client-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                padding: 60px 0;
+            }
+
+            .contact-form-wrapper {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .contact-item:hover {
+                transform: none;
+            }
+        }
+    </style>
 {% endblock styles_addon %}
 {% block content %}
 <!-- Carousel -->
@@ -389,30 +383,43 @@
 
 <!-- ceo message -->
 <section class="welcome-audio-block py-5 my-4" id="welcome-message">
-    <div class="container">
-        <div class="row align-items-center g-4 bg-light rounded-4 shadow-sm p-4">
-            
-            <div class="col-md-5 text-center">
-                <img src="{% static 'main/images/missZee.jpg' %}" alt="Welcome to PFS" class="img-fluid rounded-3 shadow-sm" style="max-height: 350px; object-fit: contain; width: 100%;">
-            </div>
-
-            <div class="col-md-7">
-                <h3 class="fw-bold text-dark mb-2">A Welcome from Our Founder</h3>
-                <p class="text-muted mb-4">Listen to this exclusive 6-minute message to discover how Pneuma Food Scientifics helps businesses scale and optimize operations.</p>
-
-                <div class="p-3 rounded-3 bg-white border text-center text-md-start">
-                    <h6 class="mb-2 fw-bold text-dark">Listen Now</h6>
-                    
-                    <audio class="w-100" controls preload="metadata">
-                        <source src="{% static 'main/images/welcome_message_.mp3' %}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+        <div class="container">
+            <div class="row align-items-center g-4 bg-light rounded-4 shadow-sm p-4">
+                
+                <div class="col-md-5 text-center">
+                    <img src="{% static 'main/images/missZee.jpg' %}" alt="Welcome to PFS" class="img-fluid rounded-3 shadow-sm" style="max-height: 350px; object-fit: contain; width: 100%;">
                 </div>
-            </div>
 
+                <div class="col-md-7">
+                    <h3 class="fw-bold text-dark mb-2">A Welcome from Our Founder</h3>
+                    <p class="text-muted mb-4">Listen to this exclusive 6-minute message to discover how Pneuma Food Scientifics helps businesses scale and optimize operations.</p>
+
+                    <audio id="welcome-audio" preload="metadata">
+                        <source src="media/welcome_message_2026.mp3" type="audio/mp3">
+                    </audio>
+
+                    <div class="p-3 rounded-3 mb-3 bg-white border">
+                        <div class="d-flex align-items-center mb-2">
+                            <button id="play-pause-btn" class="btn rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; background-color: var(--accent-color); color: white;">
+                                <i id="btn-icon" class="fas fa-play fs-5"></i>
+                            </button>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-0 fw-bold">Listen Now</h6>
+                                <small class="text-muted">Duration: 6:12 mins</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center gap-2">
+                            <span id="current-time" class="small text-muted" style="font-family: monospace;">0:00</span>
+                            <input type="range" id="seek-slider" class="form-range flex-grow-1" max="100" value="0">
+                            <span id="duration-time" class="small text-muted" style="font-family: monospace;">6:12</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Content Sections-->
     <section class="first-section d-flex align-items-center scroll-offset" id="">
@@ -439,7 +446,7 @@
                                     food products meet the highest standards of safety, quality, and compliance.
 
                                 </p>
-                                <a href="./about.html" class="feature-link">
+                                <a href="{% url 'about' %}" class="feature-link">
                                     Learn More <i class="fas fa-shield-alt text-success"></i>
                                 </a>
                             </div>
@@ -457,7 +464,7 @@
                                     solutions that support both business growth and a healthier planet.
 
                                 </p>
-                                <a href="./process.html" class="feature-link">
+                                <a href="{% url 'process' %}" class="feature-link">
                                     Explore Our Solutions <i class="fas fa-leaf text-success"></i>
                                 </a>
                             </div>
@@ -474,7 +481,7 @@
                                     From regulatory guidance to process optimization, we help you
                                     navigate complex food regulations with confidence and efficiency.
                                 </p>
-                                <a href="./contact.html" class="feature-link">
+                                <a href="{% url 'contact' %}" class="feature-link">
                                     Partner with Us <i class="fas fa-handshake text-success"></i>
                                 </a>
                             </div>
@@ -553,7 +560,7 @@
                 <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
                 <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help
                     you achieve your goals</p>
-                <a href="./contact.html" class="cta-button">Start Your Journey</a>
+                <a href="{% url 'contact' %}" class="cta-button">Start Your Journey</a>
             </div>
         </div>
 
@@ -838,8 +845,56 @@
         </div>
     </div>
     <br><br><br>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('welcome-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const btnIcon = document.getElementById('btn-icon');
+    const seekSlider = document.getElementById('seek-slider');
+    const currentTimeText = document.getElementById('current-time');
+    const durationTimeText = document.getElementById('duration-time');
+
+    // Helper to format seconds to M:SS
+    function formatTime(secs) {
+        let mins = Math.floor(secs / 60);
+        let seconds = Math.floor(secs % 60);
+        if (seconds < 10) seconds = "0" + seconds;
+        return mins + ":" + seconds;
+    }
+
+    // Load metadata to show duration
+    audio.addEventListener('loadedmetadata', function() {
+        durationTimeText.textContent = formatTime(audio.duration);
+        seekSlider.max = Math.floor(audio.duration);
+    });
+
+    // Play or Pause
+    playPauseBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            btnIcon.className = "fas fa-pause fs-5";
+        } else {
+            audio.pause();
+            btnIcon.className = "fas fa-play fs-5";
+        }
+    });
+
+    // Update slider as audio plays
+    audio.addEventListener('timeupdate', function() {
+        seekSlider.value = Math.floor(audio.currentTime);
+        currentTimeText.textContent = formatTime(audio.currentTime);
+    });
+
+    // Scrub through audio
+    seekSlider.addEventListener('input', function() {
+        audio.currentTime = seekSlider.value;
+        currentTimeText.textContent = formatTime(seekSlider.value);
+    });
+});
+</script>
 
 {% endblock content %}
 {% block script_addon %}
-<script src="{% static 'main/js/index.js' %}"></script>
+{{ block.super }} <script src="{% static 'main/js/index.js' %}"></script>
 {% endblock script_addon %}

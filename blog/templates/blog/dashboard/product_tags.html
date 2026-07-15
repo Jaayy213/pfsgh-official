@@ -1,0 +1,108 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Product Tags - Blog Dashboard{% endblock title %}
+
+{% block extra_css %}
+.table td {
+    vertical-align: middle;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="flex-grow-1 p-4" id="content-area">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Manage Product Tags</h3>
+        <a class="btn btn-primary" href="{% url "create_product_tag" %}">
+            <i class="fas fa-plus me-1"></i> New Tag
+        </a>
+    </div>
+
+    <!-- TAGS TABLE -->
+    <div class="dashboard-card">
+        <h5 class="mb-3">All Product Tags</h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Products</th>
+                        <th>Created</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for tag in tags %}
+                    <tr>
+                        <td>{{ tag.name }}</td>
+                        <td>{{ tag.description|truncatechars:40 }}</td>
+                        <td>
+                            {% for product in tag.product_tags.all|slice:":3" %}
+                                <div class="small">
+                                    • 
+                                    <a href="{% url 'edit_blog_post' product.id %}"
+                                    class="text-decoration-none text-dark fw-medium">
+                                        {{ product.name|truncatechars:25 }}
+                                    </a>
+                                </div>
+                            {% empty %}
+                                <span class="text-muted">No products</span>
+                            {% endfor %}
+                        </td>
+                        <td>{{ tag.created_at|date:"M d, Y" }}</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-warning me-1" href="{% url "edit_product_tag" tag.id %}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteTagModal-{{ tag.id }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="deleteTagModal-{{ tag.id }}" tabindex="-1">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content text-center">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p class="text-muted">Are you sure you want to delete {{ tag.name }}?</p>
+                                    <form action="{% url "delete_product_tag" tag.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger w-100 mb-2">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </form>
+                                    <button class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">
+                                        Cancel
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4 text-muted">
+                            No tags found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

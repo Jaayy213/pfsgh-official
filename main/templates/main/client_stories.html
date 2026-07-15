@@ -1,0 +1,515 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}Successful Clients of Pneuma Food Scientifics | Food Science & Safety Experts in Ghana{% endblock title %}
+
+{% block meta_tags %}
+<meta name="description" content="Learn about Pneuma Food Scientifics, a Ghana-based consultancy providing food safety training, product development, regulatory compliance, and sustainable food system solutions.">
+
+<meta name="keywords" content="about Pneuma Food Scientifics, food science experts Ghana, food safety training Ghana, food consultancy company Ghana">
+
+<link rel="canonical" href="https://pfsgh.com/about">
+{% endblock meta_tags %}
+
+{% block styles_addon %}
+<style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f8fafc;
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background-image:
+          linear-gradient(rgba(44, 62, 80, 0.78), rgba(137, 15, 145, 0.78)),
+          url('{% static 'main/images/img6.jpg' %}');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 130px 0 90px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(252, 112, 19, 0.18),
+            transparent 35%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(137, 15, 145, 0.22),
+            transparent 38%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        font-size: 0.95rem;
+        letter-spacing: 0.4px;
+        margin-bottom: 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.6rem, 5vw, 4.8rem);
+        font-weight: 800;
+        line-height: 1.05;
+        margin-bottom: 18px;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+      }
+
+      .hero-subtitle {
+        max-width: 760px;
+        margin: 0 auto 28px;
+        font-size: 1.15rem;
+        line-height: 1.8;
+        opacity: 0.95;
+      }
+
+      .hero-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .hero-pill {
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 0.95rem;
+      }
+
+      .success-section {
+        padding: 80px 0;
+      }
+
+      .success-panel {
+        background: white;
+        border-radius: 24px;
+        padding: 42px;
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 800;
+        color: #132238;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+
+      .section-description {
+        max-width: 900px;
+        margin: 0 auto 42px;
+        color: #556070;
+        font-size: 1.08rem;
+        line-height: 1.85;
+        text-align: center;
+      }
+
+      .story-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        overflow: hidden;
+        height: 100%;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      .story-card.animate-in {
+        animation: liftIn 0.7s forwards;
+      }
+
+      @keyframes liftIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .story-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 22px 40px rgba(15, 23, 42, 0.12);
+        border-color: rgba(252, 112, 19, 0.24);
+      }
+
+      .story-image {
+        height: 255px;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .story-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 16px;
+      }
+
+      .story-content {
+        padding: 24px;
+      }
+
+      .story-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(252, 112, 19, 0.08);
+        color: var(--accent-color);
+        font-size: 0.82rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .story-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #132238;
+        margin-bottom: 10px;
+      }
+
+      .story-description {
+        color: #64748b;
+        font-size: 0.98rem;
+        line-height: 1.7;
+        margin-bottom: 0;
+      }
+
+      .video-section {
+        margin-top: 34px;
+        background: linear-gradient(
+          135deg,
+          rgba(252, 112, 19, 0.07),
+          rgba(137, 15, 145, 0.07)
+        );
+        border-radius: 24px;
+        padding: 34px;
+      }
+
+      .video-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #132238;
+        margin-bottom: 26px;
+      }
+
+      .video-card {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        cursor: pointer;
+        height: 280px;
+        background: #111827;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+        transition: transform 0.3s ease;
+      }
+
+      .video-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .video-card-background {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.65;
+      }
+
+      .video-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.72),
+          rgba(0, 0, 0, 0.18)
+        );
+      }
+
+      .play-button {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+      }
+
+      .video-info {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 18px 20px;
+        color: white;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+      }
+
+      .video-info h5 {
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+
+      .video-info p {
+        margin-bottom: 0;
+        opacity: 0.9;
+      }
+
+      .cta-strip {
+        margin-top: 34px;
+        padding: 26px 28px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--primary-color), #1f2f3f);
+        color: white;
+        text-align: center;
+      }
+
+      .cta-strip p {
+        margin-bottom: 18px;
+        opacity: 0.9;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: #000;
+        margin: 5% auto;
+        padding: 0;
+        width: 90%;
+        max-width: 800px;
+        box-shadow:
+          0 4px 8px rgba(0, 0, 0, 0.2),
+          0 6px 20px rgba(0, 0, 0, 0.19);
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .close-btn {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        color: #fff;
+        background: #e00;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 33px;
+        z-index: 1001;
+        cursor: pointer;
+      }
+
+      .close-btn:hover,
+      .close-btn:focus {
+        background: #b00;
+        text-decoration: none;
+      }
+
+      #modalVideoPlayer {
+        display: block;
+        width: 90%;
+        max-height: 70vh;
+      }
+
+      @media (max-width: 768px) {
+        .success-panel,
+        .video-section {
+          padding: 24px;
+        }
+
+        .hero-section {
+          padding: 110px 0 70px;
+        }
+
+        .video-card {
+          height: 240px;
+        }
+      }
+    </style>
+{% endblock styles_addon %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center hero-content">
+        <div class="eyebrow">
+          <i class="fas fa-star"></i>
+          <span>Real products. Real approvals. Real growth.</span>
+        </div>
+        <h1 class="hero-title">Client Success Stories</h1>
+        <p class="hero-subtitle">
+          Explore the brands we have helped move from concept to shelf-ready
+          products, with FDA approvals, packaging support, and practical
+          product development guidance.
+        </p>
+        <div class="hero-pills">
+          <span class="hero-pill"><i class="fas fa-check me-2"></i>FDA approved products</span>
+          <span class="hero-pill"><i class="fas fa-seedling me-2"></i>Food, herbal, and cosmetic brands</span>
+          <span class="hero-pill"><i class="fas fa-globe me-2"></i>Clients in Ghana and abroad</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="success-section">
+  <div class="container">
+    <div class="success-panel">
+      <h2 class="section-title">Featured Client Wins</h2>
+      <p class="section-description">
+        We partner with African startups at home and abroad, combining food
+        science expertise with hands-on execution to turn innovative ideas
+        into market-ready products.
+      </p>
+
+      <div class="row g-4">
+  {% for product in products %}
+  <div class="col-lg-3 col-md-6 d-flex"> <div class="story-card card-custom w-100 d-flex flex-column">
+      
+      <div class="story-image">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'main/images/default.jpg' %}{% endif %}" alt="{{ product.name }}" />
+      </div>
+      
+      <div class="story-content p-3 d-flex flex-column flex-grow-1">
+        
+        {% if product.tag %}
+          <div class="mb-2">
+            <span class="story-badge d-inline-block">
+              <i class="fas fa-award"></i> {{ product.tag.name }}
+            </span>
+          </div>
+        {% endif %}
+
+        <h3 class="story-name h5 mb-2">{{ product.name }}</h3>
+        
+        <p class="story-description text-muted small mb-3">
+          {{ product.description|truncatechars:100 }}
+        </p>
+        
+        {% if product.region %}
+          <div class="text-muted small mt-auto pt-2 d-flex align-items-center border-top">
+            <i class="fas fa-map-marker-alt text-danger me-1"></i> {{ product.get_region_display }}
+          </div>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+  {% empty %}
+    <div class="col-12 text-center py-5">
+      <p class="text-muted">No clients' products found.</p>
+    </div>
+  {% endfor %}
+</div>
+
+      <div class="video-section">
+        <h3 class="video-title">Watch Client Video Testimonials</h3>
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
+            <div class="video-card" onclick="playVideo('video1')">
+              <video class="video-card-background" muted loop playsinline preload="metadata">
+                <source src="{% static 'main/images/pronto.mp4' %}" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div class="video-overlay">
+                <div class="play-button">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="video-info">
+                <h5>AMJ Abish Success Story</h5>
+                <p>From concept to FDA approval • 3:45</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip">
+        <p class="mb-0">
+          Have a product idea that is ready for the next step? We can help
+          you build, package, and approve it.
+        </p>
+        <a href="{% url 'contact' %}" class="btn btn-custom mt-3 px-4 py-2">Start Your Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <video id="modalVideoPlayer" width="100%" controls>
+      <source src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+<!-- Bootstrap JS -->
+    {% block script_addon %}
+        {{ block.super }} <script src="{% static 'main/js/about.js' %}"></script>
+    {% endblock script_addon %}
+
+{% endblock content %}

@@ -138,6 +138,14 @@
 
                     <span class="text-muted">
                         — {{ enquiry.get_service_required_display }}
+                        <span class="badge rounded-pill 
+                            {% if enquiry.service_type == 'regular' %}bg-secondary-subtle text-secondary border border-secondary
+                            {% elif enquiry.service_type == 'express' %}bg-warning-subtle text-warning-emphasis border border-warning
+                            {% elif enquiry.service_type == 'premium_connect' %}bg-info-subtle text-info-emphasis border border-info
+                            {% else %}bg-light text-dark
+                            {% endif %}" style="font-size: 0.7rem; padding: 0.25em 0.6em;">
+                            {{ enquiry.get_service_type_display }}
+                        </span>
                     </span>
 
                     <div class="small text-muted">

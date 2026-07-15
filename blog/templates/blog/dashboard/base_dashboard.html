@@ -148,12 +148,33 @@
 
         <div class="offcanvas-body">
             <nav class="nav flex-column">
-                <a class="nav-link {% if request.resolver_match.url_name == 'blog_dashboard' %}active{% endif %}" href="{% url "blog_dashboard" %}"><i class="fas fa-file-alt me-2"></i>Home</a>
-                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_list' %}active{% endif %}" href="{% url "blog_posts_list" %}"><i class="fas fa-file-alt me-2"></i>Blog Posts</a>
-                <a class="nav-link {% if request.resolver_match.url_name == 'blog_categories' %}active{% endif %}" href="{% url "blog_categories"%}"><i class="fas fa-folder me-2"></i>Blog Categories</a>
-                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_comments' %}active{% endif %}" href="{% url "blog_posts_comments" %}"><i class="fas fa-comments me-2"></i>Blog Comments</a>
-                <a class="nav-link {% if request.resolver_match.url_name == 'enquiry_dashboard' %}active{% endif %}" href="{% url "enquiry_dashboard" %}"><i class="fas fa-inbox me-2"></i>Enquiries</a>
-                <a class="nav-link {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" href="{% url "user_profile" %}"><i class="fas fa-user-circle me-2"></i></i>Profile</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_dashboard' %}active{% endif %}" href="{% url "blog_dashboard" %}">
+                    <i class="fas fa-chart-line me-2"></i>Home
+                </a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_list' %}active{% endif %}" href="{% url "blog_posts_list" %}">
+                    <i class="fas fa-file-alt me-2"></i>Blog Posts
+                </a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_categories' %}active{% endif %}" href="{% url "blog_categories"%}">
+                    <i class="fas fa-folder me-2"></i>Blog Categories
+                </a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'blog_posts_comments' %}active{% endif %}" href="{% url "blog_posts_comments" %}">
+                    <i class="fas fa-comments me-2"></i>Blog Comments
+                </a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'enquiry_dashboard' %}active{% endif %}" href="{% url "enquiry_dashboard" %}">
+                    <i class="fas fa-inbox me-2"></i>Enquiries
+                </a>
+                
+                <a class="nav-link {% if request.resolver_match.url_name == 'product_tags' %}active{% endif %}" href="{% url "product_tags" %}">
+                    <i class="fas fa-tags me-2"></i>Product Tags
+                </a>
+                
+                <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}" href="{% url "product_list"%}">
+                    <i class="fas fa-boxes me-2"></i>Client Products
+                </a>
+                
+                <a class="nav-link {% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" href="{% url "user_profile" %}">
+                    <i class="fas fa-user-circle me-2"></i>Profile
+                </a>
             </nav>
         </div>
     </div>

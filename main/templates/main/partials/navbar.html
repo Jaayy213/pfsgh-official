@@ -1,39 +1,26 @@
 {% load static %}
-<!-- Top Contact Bar  -->
 <div class="top-bar py-2">
   <div class="container-fluid">
     <div class="row align-items-center">
-
-      <!-- LEFT SIDE -->
+      
       <div class="col-lg-8">
         <div class="d-flex flex-wrap align-items-center gap-4">
-          
           <div class="d-flex align-items-center">
             <i class="fas fa-envelope me-2"></i>
-            <a href="mailto:pneumaconsult@gmail.com" class="text-decoration-none">
-              pneumaconsult@gmail.com
-            </a>
+            <a href="mailto:pneumaconsult@gmail.com" class="text-decoration-none">pneumaconsult@gmail.com</a>
           </div>
-
           <div class="d-flex align-items-center">
             <i class="fas fa-phone me-2"></i>
-            <a href="tel:+233241043139" class="text-decoration-none">
-              +233 24 104 3139
-            </a>,
-            <a href="tel:+233503386203" class="text-decoration-none">
-              +233 50 338 6203
-            </a>
+            <a href="tel:+233241043139" class="text-decoration-none">+233 24 104 3139</a>,
+            <a href="tel:+233503386203" class="text-decoration-none">+233 50 338 6203</a>
           </div>
-
         </div>
       </div>
 
-      <!-- RIGHT SIDE -->
       <div class="col-lg-4">
         <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">
-
+          
           {% if request.user.is_authenticated %}
-
           <div class="d-flex align-items-center">
             <i class="fas fa-user me-2"></i>
             <span class="small">
@@ -47,15 +34,12 @@
               <i class="fas fa-sign-out-alt me-1"></i> Logout
             </button>
           </form>
-
           {% else %}
-
           <div class="d-flex align-items-center">
             <a href="{% url 'login' %}" class="text-decoration-none small">
               <i class="fas fa-sign-in-alt me-1"></i> Login
             </a>
           </div>
-
           {% endif %}
 
           <div class="d-flex align-items-center">
@@ -65,7 +49,7 @@
 
           <div class="d-flex align-items-center">
             <i class="fas fa-clock me-2"></i>
-            <span class="small">09am–05pm, Mon–Fri</span>
+            <span class="small">09am-05pm, Mon-Fri</span>
           </div>
 
         </div>
@@ -75,42 +59,35 @@
   </div>
 </div>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="mainNavbar" style="position: relative; z-index: 1030;">
   <div class="container-fluid">
-    <!-- Brand/Logo -->
     <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
       <div class="logo">
-        <img
-          src="{% static 'main/images/logo-retouch.png' %}"
-          alt="PFSGH Logo"
-          class="img-fluid"
-        />
+        <img src="{% static 'main/images/logo-retouch.png' %}" alt="PFSGH Logo" class="img-fluid" />
       </div>
     </a>
 
-    <!-- Mobile Toggle Button -->
-    <button
-      class="navbar-toggler border-0"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navigation Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'about' or request.resolver_match.url_name == 'client_stories' %}active{% endif %}" href="#" id="aboutMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            About
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="aboutMenu">
+            <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
+            <li><a class="dropdown-item" href="{% url 'client_stories' %}">Client Success Stories</a></li>
+          </ul>
         </li>
+
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'process' %}active{% endif %}" href="{% url 'process' %}">Our Process</a>
         </li>
@@ -128,15 +105,10 @@
         </li>
       </ul>
 
-      <!-- CTA Button -->
-      <a
-        href="#quote"
-        class="quote-trigger btn btn-custom px-4 py-2"
-        data-bs-toggle="modal"
-        data-bs-target="#quoteModal"
-      >
+      <a href="#quote" class="quote-trigger btn btn-custom px-4 py-2" onclick="openQuoteModal()">
         Request Quote <i class="fas fa-arrow-right ms-2"></i>
       </a>
+
     </div>
   </div>
 </nav>

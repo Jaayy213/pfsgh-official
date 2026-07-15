@@ -1,6 +1,12 @@
 from django.db import models
 
 class Enquiry(models.Model):
+    SERVICE_TYPE_CHOICES = [
+        ("regular", "Regular"),
+        ("express", "Express"),
+        ("premium_connect", "Premium Connect"),
+    ]
+
     SERVICE_CHOICES = [
         ("gsa_fda", "GSA & FDA Registration"),
         ("business_plan", "Business Plan"),
@@ -66,6 +72,12 @@ class Enquiry(models.Model):
     service_required = models.CharField(
         max_length=50,
         choices=SERVICE_CHOICES
+    )
+
+    service_type = models.CharField(
+        max_length=20,
+        choices=SERVICE_TYPE_CHOICES,
+        default="regular"
     )
 
     social_platform = models.CharField(
