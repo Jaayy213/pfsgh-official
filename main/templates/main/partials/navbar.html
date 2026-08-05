@@ -77,15 +77,11 @@
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'about' or request.resolver_match.url_name == 'client_stories' %}active{% endif %}" href="#" id="aboutMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="aboutMenu">
-            <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
-            <li><a class="dropdown-item" href="{% url 'client_stories' %}">Client Success Stories</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'client_stories' %}active{% endif %}" href="{% url 'client_stories' %}">Our Clients</a>
         </li>
 
         <li class="nav-item">

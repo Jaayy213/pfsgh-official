@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from enquiries.views import enquiry_dashboard, export_enquiries
+from main.views import manage_audio, manage_video, edit_audio, edit_video, delete_audio, delete_video
 
 
 urlpatterns = [
@@ -36,4 +37,12 @@ urlpatterns = [
     path('dashboard/products/create/', views.create_product, name='create_product'),
     path('dashboard/products/edit/<int:pk>/', views.edit_product, name='edit_product'),
     path('dashboard/products/delete/<int:pk>/', views.delete_product, name='delete_product'),
+
+    # Manage Audio and Video Files
+    path('dashboard/audios/', manage_audio, name='manage_audio'),
+    path('dashboard/videos/', manage_video, name='manage_video'),
+    path('dashboard/audios/edit/<int:pk>/', edit_audio, name='edit_audio'),
+    path('dashboard/videos/edit/<int:pk>/', edit_video, name='edit_video'),
+    path('dashboard/audios/delete/<int:pk>/', delete_audio, name='delete_audio'),
+    path('dashboard/videos/delete/<int:pk>/', delete_video, name='delete_video'),
 ]
