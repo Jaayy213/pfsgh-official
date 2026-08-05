@@ -76,8 +76,7 @@ class Enquiry(models.Model):
 
     service_type = models.CharField(
         max_length=20,
-        choices=SERVICE_TYPE_CHOICES,
-        default="regular"
+        choices=SERVICE_TYPE_CHOICES
     )
 
     social_platform = models.CharField(
@@ -87,7 +86,7 @@ class Enquiry(models.Model):
         null=True
     )
 
-    social_handle = models.URLField()
+    social_handle = models.CharField(max_length=100)
 
     other_enquiry = models.TextField(blank=True, null=True)
 

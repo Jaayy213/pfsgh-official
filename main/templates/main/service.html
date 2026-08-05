@@ -181,243 +181,6 @@
             margin-top: -30px;
         }
 
-        /* ===================== FAQ SECTION ===================== */
-
-        .faq-section {
-            background: #f8f5ff;
-            padding: 90px 0 100px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .faq-section .section-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        .faq-section .section-title {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: #2c3e50;
-            margin-bottom: 12px;
-        }
-
-        .faq-section .section-title span {
-            color: #fc7013;
-        }
-
-        .faq-section .section-subtitle {
-            font-size: 1.05rem;
-            color: #666;
-            max-width: 580px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* Tab Filter Buttons */
-        .faq-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 44px;
-        }
-
-        .faq-tab-btn {
-            background: white;
-            border: 2px solid #e0d6f7;
-            color: #555;
-            padding: 9px 22px;
-            border-radius: 50px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-
-        .faq-tab-btn:hover,
-        .faq-tab-btn.active {
-            background: #fc7013;
-            border-color: #fc7013;
-            color: white;
-            box-shadow: 0 4px 14px rgba(252, 112, 19, 0.3);
-        }
-
-        /* FAQ Accordion */
-        .faq-accordion {
-            max-width: 820px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 14px;
-            margin-bottom: 14px;
-            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
-            overflow: hidden;
-            transition: box-shadow 0.25s ease;
-            display: none;
-        }
-
-        .faq-item.visible {
-            display: block;
-        }
-
-        .faq-item.open {
-            box-shadow: 0 6px 24px rgba(252, 112, 19, 0.15);
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 26px;
-            cursor: pointer;
-            gap: 16px;
-        }
-
-        .faq-question-text {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #2c3e50;
-            line-height: 1.4;
-            flex: 1;
-        }
-
-        .faq-icon {
-            width: 34px;
-            height: 34px;
-            min-width: 34px;
-            background: #f3eeff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fc7013;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item.open .faq-icon {
-            background: #fc7013;
-            color: white;
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.3s ease;
-            padding: 0 26px;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 800px;
-            padding: 0 26px 22px;
-        }
-
-        .faq-answer-inner {
-            font-size: 0.96rem;
-            color: #555;
-            line-height: 1.8;
-            border-top: 1px solid #f0eaf8;
-            padding-top: 16px;
-        }
-
-        .faq-answer-inner ol,
-        .faq-answer-inner ul {
-            padding-left: 20px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-
-        .faq-answer-inner li {
-            margin-bottom: 6px;
-        }
-
-        .faq-answer-inner a {
-            color: #fc7013;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .faq-answer-inner a:hover {
-            text-decoration: underline;
-        }
-
-        .faq-answer-inner .faq-tag {
-            display: inline-block;
-            background: #fff3ea;
-            color: #fc7013;
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-        }
-
-        .faq-category-label {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #999;
-            background: #f5f5f5;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-left: 14px;
-            vertical-align: middle;
-        }
-
-        /* CTA strip at bottom of FAQ */
-        .faq-cta {
-            text-align: center;
-            margin-top: 52px;
-        }
-
-        .faq-cta p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 18px;
-        }
-
-        .faq-cta-btn {
-            background: #2c3e50;
-            color: white;
-            padding: 14px 38px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 8px 10px;
-            transition: all 0.3s ease;
-        }
-
-        .faq-cta-btn:hover {
-            background: #fc7013;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(252, 112, 19, 0.35);
-        }
-
-        .faq-cta-btn.whatsapp {
-            background: #25d366;
-        }
-
-        .faq-cta-btn.whatsapp:hover {
-            background: #1ebe5a;
-        }
-
-        @media (max-width: 576px) {
-            .faq-section .section-title { font-size: 1.8rem; }
-            .faq-question { padding: 16px 18px; }
-            .faq-answer { padding: 0 18px; }
-            .faq-item.open .faq-answer { padding: 0 18px 18px; }
-        }
-
 </style>
 {% endblock styles_addon %}
 
@@ -426,35 +189,30 @@
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Left Content -->
                 <div class="col-lg-6">
                     <div class="hero-content">
                         <div class="status-badge">
                             <i class="fas fa-rocket me-2"></i>
-                            PFS Connect Portal
+                            Launching Soon
                         </div>
-                        
                         <h1 class="hero-title">
-                            Navigate <span class="highlight">FDA Registration</span> with Confidence.
+                            Your Path to <span class="highlight">Better Health</span> Starts Here
                         </h1>
-                        
                         <p class="hero-description">
-                            Pneuma Food Scientifics (PFS) helps manufacturers, importers, and distributors successfully register food, cosmetics, pharmaceuticals, and medical devices through expert digital compliance management.
+                            Expert nutritional guidance tailored for individuals, businesses, and communities. 
+                            Transform your relationship with food through evidence-based strategies and 
+                            personalized wellness solutions.
                         </p>
-                        
                         <div class="cta-buttons">
-                            
-                            <a href="https://portal.pfsgh.com/accounts/login" class="btn-secondary-custom" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-play me-2"></i>
-                                Log In
-                            </a>
-
-                            <a href="https://portal.pfsgh.com" class="btn-primary-custom" target="_blank" rel="noopener noreferrer">
+                            <a href="#" class="btn-primary-custom">
                                 <i class="fas fa-bell me-2"></i>
-                                Learn More
+                                Get Early Access
+                            </a>
+                            <a href="https://www.youtube.com/@pfspneumafoodscientifics7717" class="btn-secondary-custom" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-play me-2"></i>
+                                Watch Demo
                             </a>
                         </div>
-                        
                         <div class="stats-section">
                             <div class="stat-item">
                                 <div class="stat-number">500+</div>
@@ -471,18 +229,14 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Right Image -->
                 <div class="col-lg-6">
                     <div class="hero-image-container">
-                        <img src="{% static 'main/images/fda_approval_handshake.webp' %}" 
-                             alt="FDA Approved document handshake" 
-                             class="hero-main-image">
-                        
+                        <img src="{% static 'main/images/car3.jpg' %}" alt="Professional nutritionist consultation" class="hero-main-image">
                         <div class="image-overlay">
-                            <div class="overlay-title">PFS Connect Online Portal</div>
+                            <div class="overlay-title">Professional Nutrition Counseling</div>
                             <div class="overlay-text">
-                                Submit product registrations, track FDA & GSA approvals, and access lab analysis reports through our secure client platform.
+                                Certified nutritionists providing personalized meal plans 
+                                and lifestyle recommendations for optimal health outcomes.
                             </div>
                         </div>
                     </div>
@@ -507,40 +261,14 @@
                         <div class="service-badge badge-new">New</div>
                         <h3 class="service-title">Drafting of Business Plans</h3>
                         <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
-                        <div class="mt-3">
-                            <a href="https://certificationsempire.pfsgh.com" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="btn-primary-custom btn-sm px-3 py-2 rounded-pill font-weight-bold shadow-sm">
-                                Apply Here <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
                     </div>
                 </article>
                 <article class="service-item" role="listitem">
-                    <div class="service-icon">
-                        <a href="https://portal.pfsgh.com" target="_blank" rel="noopener noreferrer">
-                            <img src="{% static 'main/images/s1.jpg' %}" alt="FDA GSA Certification" loading="lazy">
-                        </a>
-                    </div>
+                    <div class="service-icon"><img src="{% static 'main/images/s1.jpg' %}" alt="FDA GSA Certification" loading="lazy"></div>
                     <div class="service-main">
                         <div class="service-badge">Certification</div>
-                        <h3 class="service-title">
-                            <a href="https://portal.pfsgh.com" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-dark">
-                                FDA & GSA Certification Coaching
-                            </a>
-                        </h3>
-                        <p class="service-description">
-                            Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.
-                        </p>
-                        <div class="mt-3">
-                            <a href="https://portal.pfsgh.com" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="btn-primary-custom btn-sm px-3 py-2 rounded-pill font-weight-bold shadow-sm">
-                                Apply via PFS Connect <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        <h3 class="service-title">FDA & GSA Certification Coaching</h3>
+                        <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
                     </div>
                 </article>
                 <article class="service-item" role="listitem">
@@ -557,14 +285,6 @@
                         <div class="service-badge">Consulting</div>
                         <h3 class="service-title">Product Development Guidance</h3>
                         <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
-                        <div class="mt-3">
-                            <a href="https://certificationsempire.pfsgh.com" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="btn-primary-custom btn-sm px-3 py-2 rounded-pill font-weight-bold shadow-sm">
-                                Apply Here <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
                     </div>
                 </article>
                 <article class="service-item" role="listitem">

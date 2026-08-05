@@ -1,0 +1,387 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}PFS Connect | Access Your Portal{% endblock title %}
+
+{% block meta_tags %}
+<meta name="description" content="Access PFS Connect portals for clients, consultants, associates, supervisors, and administrators. Seamless FDA registration and digital compliance management.">
+<meta name="keywords" content="PFS Connect, FDA registration support, client login, consultant portal, food safety compliance">
+<link rel="canonical" href="https://pfsgh.com/portal-access">
+{% endblock meta_tags %}
+
+{% block styles_addon %}
+<style>
+    /* Hero & Main Background styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        background-image: linear-gradient(rgba(44, 62, 80, 0.75), rgba(137, 15, 145, 0.75)), 
+                          url('{% static "main/images/fda_approval_handshake.webp" %}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    .portal-hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 90px 0 60px;
+        position: relative;
+    }
+
+    .status-badge {
+        background: var(--accent-color, #fc7013);
+        color: white;
+        padding: 8px 24px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(252, 112, 19, 0.3);
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1.15;
+        margin-bottom: 18px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-title .highlight {
+        color: var(--accent-color, #fc7013);
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.7;
+        margin-bottom: 40px;
+        max-width: 760px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Primary Client Glassmorphism Highlight Card */
+    .client-portal-card {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 2px solid var(--accent-color, #fc7013);
+        padding: 40px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        margin-bottom: 50px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .client-portal-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 60px rgba(252, 112, 19, 0.25);
+    }
+
+    .portal-icon-box {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+
+    .icon-client     { background: #fff3ea; color: var(--accent-color, #fc7013); }
+    .icon-associate  { background: #fff3e0; color: #ef6c00; }
+    .icon-consultant { background: #e8f5e9; color: #2e7d32; }
+    .icon-supervisor { background: #e3f2fd; color: #0288d1; }
+    .icon-superadmin { background: #f3e5f5; color: #7b1fa2; }
+    .icon-webadmin   { background: #eceff1; color: #455a64; }
+
+    /* Button Styling */
+    .btn-primary-custom {
+        background: var(--accent-color, #fc7013);
+        border: 2px solid var(--accent-color, #fc7013);
+        color: white;
+        padding: 14px 32px;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary-custom:hover {
+        background: transparent;
+        color: var(--accent-color, #fc7013);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(252, 112, 19, 0.4);
+    }
+
+    .btn-outline-custom {
+        background: transparent;
+        border: 2px solid #2c3e50;
+        color: #2c3e50;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+    }
+
+    .btn-outline-custom:hover {
+        background: #2c3e50;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(44, 62, 80, 0.25);
+    }
+
+    /* Section Sheet for PFS Connect Team Roles */
+    .team-section {
+        background: white;
+        padding: 80px 0 100px;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 30px 30px 0 0;
+        margin-top: -20px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-title {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 12px;
+    }
+
+    .section-title span {
+        color: var(--accent-color, #fc7013);
+    }
+
+    .section-subtitle {
+        font-size: 1.05rem;
+        color: #666;
+        max-width: 660px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    /* Role Cards */
+    .role-card {
+        background: #f8f9fa;
+        border-radius: 16px;
+        border: 1px solid #e9ecef;
+        padding: 28px;
+        height: 100%;
+        display: flex;
+        flex-direction: flex-col;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+
+    .role-card:hover {
+        transform: translateY(-6px);
+        background: white;
+        box-shadow: 0 12px 30px rgba(44, 62, 80, 0.1);
+        border-color: var(--accent-color, #fc7013);
+    }
+
+    @media (max-width: 768px) {
+        .hero-title { font-size: 2.2rem; }
+        .hero-description { font-size: 1rem; }
+        .client-portal-card { padding: 24px; }
+    }
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<!-- Hero Section & Featured Client Portal -->
+<section class="portal-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10">
+                <div class="status-badge">
+                    <i class="fas fa-handshake me-2"></i> PFS Connect Gateway
+                </div>
+                
+                <h1 class="hero-title">
+                    Trusted <span class="highlight">FDA Registration</span> Support
+                </h1>
+                
+                <p class="hero-description mx-auto">
+                    Navigate FDA registration with confidence. Pneuma Food Scientifics helps manufacturers, importers, and distributors successfully register food, cosmetics, pharmaceuticals, and medical devices through simple digital compliance management.
+                </p>
+            </div>
+        </div>
+
+        <!-- Featured Client Access Card -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="client-portal-card">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="portal-icon-box icon-client me-3">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div>
+                                    <span class="badge bg-primary rounded-pill px-3 py-1 mb-1 fw-bold">Businesses & Manufacturers</span>
+                                    <h2 class="h3 fw-bold mb-0 text-dark">Client Portal</h2>
+                                </div>
+                            </div>
+                            <p class="text-secondary mb-0">
+                                Access your compliance portal to register products, track approval progress, arrange laboratory testing, and get step-by-step guidance for food, cosmetics, pharmaceuticals, and medical devices.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <a href="https://portal.pfsgh.com/accounts/login/" class="btn-primary-custom w-100 text-center shadow-sm" target="_blank" rel="noopener noreferrer">
+                                Client Sign In <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PFS Connect Team Roles Section -->
+<section class="team-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">PFS Connect <span>Team Portals</span></h2>
+            <p class="section-subtitle">
+                Select your role to log into your workspace. PFS Connect brings together team members and specialists to guide clients seamlessly through their compliance journey.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Associate Card -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="role-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="portal-icon-box icon-associate me-3">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-warning text-dark fw-bold mb-1">Execution & Relationships</span>
+                            <h3 class="h5 fw-bold mb-0 text-dark">Associate</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small flex-grow-1">
+                        Manage assigned client businesses within your area, track registration progress step-by-step, remove administrative roadblocks, and receive on-time payouts.
+                    </p>
+                    <a href="https://portal.pfsgh.com/accounts/login/" class="btn-outline-custom mt-3" target="_blank" rel="noopener noreferrer">
+                        Associate Login
+                    </a>
+                </div>
+            </div>
+
+            <!-- Consultant Card -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="role-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="portal-icon-box icon-consultant me-3">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-success fw-bold mb-1">Expert Guidance</span>
+                            <h3 class="h5 fw-bold mb-0 text-dark">Consultant</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small flex-grow-1">
+                        Guide businesses through factory layouts, arrange lab testing, double-check product labels, prevent costly FDA delays, and earn steady milestone payouts.
+                    </p>
+                    <a href="https://portal.pfsgh.com/accounts/login/" class="btn-outline-custom mt-3" target="_blank" rel="noopener noreferrer">
+                        Consultant Login
+                    </a>
+                </div>
+            </div>
+
+            <!-- Supervisor Card -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="role-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="portal-icon-box icon-supervisor me-3">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-info text-white fw-bold mb-1">Team Operations</span>
+                            <h3 class="h5 fw-bold mb-0 text-dark">Supervisor</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small flex-grow-1">
+                        Monitor day-to-day activities of Associates and Consultants, ensure client workflows run smoothly, and keep compliance timelines on track.
+                    </p>
+                    <a href="https://portal.pfsgh.com/accounts/login/" class="btn-outline-custom mt-3" target="_blank" rel="noopener noreferrer">
+                        Supervisor Login
+                    </a>
+                </div>
+            </div>
+
+            <!-- Super Admin Card -->
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="role-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="portal-icon-box icon-superadmin me-3">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-purple text-white fw-bold mb-1" style="background-color: #7b1fa2;">Platform Watcher</span>
+                            <h3 class="h5 fw-bold mb-0 text-dark">Super Admin</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small flex-grow-1">
+                        Overall platform watcher for PFS Connect. Monitor high-level system activity, user access, and compliance operations across all accounts.
+                    </p>
+                    <a href="https://portal.pfsgh.com/accounts/login/" class="btn-outline-custom mt-3" target="_blank" rel="noopener noreferrer">
+                        Super Admin Access
+                    </a>
+                </div>
+            </div>
+
+            <!-- Website Administrator Card -->
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="role-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="portal-icon-box icon-webadmin me-3">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary fw-bold mb-1">Content & News</span>
+                            <h3 class="h5 fw-bold mb-0 text-dark">Website Administrator</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small flex-grow-1">
+                        Manage the public website content, publish updates, format blog posts, and maintain public information for Pneuma Food Scientifics.
+                    </p>
+                    <a href="{% url 'login' %}" class="btn-outline-custom mt-3">
+                        Website Admin Console
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Callout Footer -->
+        <div class="text-center mt-5 pt-3">
+            <p class="text-muted small">
+                Need help accessing your portal or setting up your account? 
+                <a href="mailto:it-support@pfsgh.com" class="fw-bold text-decoration-none" style="color: var(--accent-color, #fc7013);">
+                    Contact Support
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock content %}

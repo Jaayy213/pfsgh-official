@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Product, AudioFile, VideoFile
 from .forms import AudioUploadForm, VideoUploadForm
 from django.http import JsonResponse
@@ -64,7 +65,16 @@ def contact(request):
 from django.shortcuts import render, redirect
 
 
+# Central Login Page
+def pfs_connect(request):
+    context = {
+
+    }
+    return render(request, 'main/pfs_connect.html', context)
+
+
 # Audio List & Upload View
+@login_required
 def manage_audio(request):
     audio_files = AudioFile.objects.all().order_by('-created_at')
     
@@ -85,6 +95,7 @@ def manage_audio(request):
 
 
 # Video List & Upload View
+@login_required
 def manage_video(request):
     video_files = VideoFile.objects.all().order_by('-created_at')
     
@@ -104,6 +115,7 @@ def manage_video(request):
     return render(request, 'blog/dashboard/video_list.html', context)
 
 
+@login_required
 @require_POST
 def delete_audio(request, pk):
     audio = get_object_or_404(AudioFile, pk=pk)
@@ -111,6 +123,7 @@ def delete_audio(request, pk):
     return JsonResponse({'success': True})
 
 
+@login_required
 @require_POST
 def delete_video(request, pk):
     video = get_object_or_404(VideoFile, pk=pk)
@@ -118,7 +131,8 @@ def delete_video(request, pk):
     return JsonResponse({'success': True})
 
 
-
+@login_required
+@require_POST
 def edit_audio(request, pk):
     audio = get_object_or_404(AudioFile, pk=pk)
     if request.method == 'POST':
@@ -131,6 +145,8 @@ def edit_audio(request, pk):
     return redirect('manage_audio')
 
 
+@login_required
+@require_POST
 def edit_video(request, pk):
     video = get_object_or_404(VideoFile, pk=pk)
     if request.method == 'POST':

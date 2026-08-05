@@ -10,4 +10,5 @@ urlpatterns = [
     path('services/', views.service, name='services'),
     path('contact/', views.contact, name='contact'),
     path('faqs/', views.faqs, name="faqs"),
+    path('pfs-connect/', views.pfs_connect, name='pfs-connect'),
 ]
