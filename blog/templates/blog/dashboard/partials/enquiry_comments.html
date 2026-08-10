@@ -1,0 +1,67 @@
+{% if enquiry.comments.all %}
+    <div class="comments-list">
+        {% for comment in enquiry.comments.all %}
+        <div class="comment-item" id="comment-wrapper-{{ comment.id }}">
+            <div class="d-flex align-items-start justify-content-between">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="avatar-circle">
+                        {{ comment.author.first_name|default:comment.author.email|slice:":1"|upper }}
+                    </div>
+                    <div>
+                        <span class="fw-bold text-dark small">
+                            {{ comment.author.get_full_name|default:comment.author.email }}
+                        </span>
+                        <div class="text-muted" style="font-size: 0.725rem;">
+                            {{ comment.created_at|date:"M j, Y • g:i A" }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-link text-muted p-0 text-decoration-none" data-bs-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm fs-7">
+                        <li>
+                            <button class="dropdown-item toggle-edit-btn" data-id="{{ comment.id }}">
+                                <i class="fas fa-pencil-alt text-primary me-2"></i>Edit
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item text-danger delete-comment-btn" 
+                                    data-url="{% url 'delete_enquiry_comment' comment.id %}"
+                                    data-enquiry="{{ enquiry.id }}">
+                                <i class="fas fa-trash-alt me-2"></i>Delete
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Comment View Mode -->
+            <div id="comment-body-{{ comment.id }}" class="mt-2 text-secondary small">
+                {{ comment.text|linebreaksbr }}
+            </div>
+
+            <!-- Inline Edit Form (Hidden by default) -->
+            <form id="edit-form-{{ comment.id }}" 
+                  class="edit-comment-form d-none mt-2" 
+                  action="{% url 'update_enquiry_comment' comment.id %}" 
+                  data-enquiry="{{ enquiry.id }}">
+                {% csrf_token %}
+                <textarea class="form-control form-control-sm mb-2" name="text" rows="2" required>{{ comment.text }}</textarea>
+                <div class="d-flex justify-content-end gap-1">
+                    <button type="button" class="btn btn-light btn-sm toggle-edit-btn" data-id="{{ comment.id }}">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm px-3">Save</button>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center text-muted py-3 small">
+        <i class="far fa-comment-dots fa-2x mb-2 d-block text-black-50"></i>
+        No comments recorded yet.
+    </div>
+{% endif %}

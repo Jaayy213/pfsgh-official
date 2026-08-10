@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
-from .forms import EnquiryForm
-from .models import Enquiry
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import EnquiryForm, EnquiryCommentForm
+from .models import Enquiry, EnquiryComment
 import openpyxl
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 
 def enquiry_view(request):
     if request.method == "POST":
@@ -27,6 +29,7 @@ def enquiry_success(request):
     return render(request, "enquiries/success.html")
 
 
+@login_required
 def enquiry_dashboard(request):
     enquiries = Enquiry.objects.all().order_by("-created_at")
 
@@ -45,6 +48,7 @@ def enquiry_dashboard(request):
     return render(request, "blog/dashboard/enquiries.html", context)
 
 
+@login_required
 def export_enquiries(request):
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -95,6 +99,7 @@ def export_enquiries(request):
     return response
 
 
+@login_required
 @require_POST
 def update_enquiry_status(request):
     enquiry_id = request.POST.get("enquiry_id")
@@ -110,3 +115,78 @@ def update_enquiry_status(request):
         return JsonResponse({"success": True, "status": new_status})
     except Enquiry.DoesNotExist:
         return JsonResponse({"success": False, "message": "Enquiry not found."})
+
+
+
+@login_required
+def create_comment(request, pk):
+    enquiry = get_object_or_404(Enquiry, pk=pk)
+
+    form = EnquiryCommentForm(request.POST)
+
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.enquiry = enquiry
+        comment.author = request.user
+        comment.save()
+
+        context = {
+            "enquiry": enquiry,
+        }
+
+        html = render(request, "blog/dashboard/partials/enquiry_comments.html", context).content.decode()
+
+        return JsonResponse({
+            "success": True,
+            "html": html,
+        })
+    return JsonResponse({
+        "success": False,
+        "errors": form.errors,
+    })
+
+
+@login_required
+def update_comment(request, pk):
+    comment = get_object_or_404(EnquiryComment, pk=pk)
+
+    form = EnquiryCommentForm(request.POST, instance=comment)
+
+    if form.is_valid():
+        form.save()
+
+        context = {
+            "enquiry": comment.enquiry
+        }
+
+        html = render(request, "blog/dashboard/partials/enquiry_comments.html", context).content.decode()
+
+        return JsonResponse({
+            "success": True,
+            "html": html,
+        })
+    return JsonResponse({
+        "success": False,
+        "errors": form.errors,
+    })
+
+
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(EnquiryComment, pk=pk)
+
+    enquiry = comment.enquiry
+    comment.delete()
+
+    context = {
+        "enquiry": enquiry,
+    }
+
+    html = render(
+        request,
+        "blog/dashboard/partials/enquiry_comments.html", context).content.decode()
+
+    return JsonResponse({
+        "success": True,
+        "html": html,
+    })

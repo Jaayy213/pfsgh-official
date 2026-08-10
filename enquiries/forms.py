@@ -1,5 +1,5 @@
 from django import forms
-from .models import Enquiry
+from .models import Enquiry, EnquiryComment
 
 class EnquiryForm(forms.ModelForm):
     class Meta:
@@ -17,7 +17,7 @@ class EnquiryForm(forms.ModelForm):
             "promocode": forms.TextInput(attrs={"class": "form-control"}),
             "service_required": forms.Select(attrs={"class": "form-control"}),
             "social_platform": forms.Select(attrs={"class": "form-control"}),
-            "social_handle": forms.URLInput(attrs={"class": "form-control"}),
+            "social_handle": forms.TextInput(attrs={"class": "form-control"}),
             "service_type": forms.Select(attrs={"class": "form-control"}),
             "other_enquiry": forms.Textarea(attrs={"class": "form-control"}),
         }
@@ -36,4 +36,18 @@ class EnquiryForm(forms.ModelForm):
             "social_handle": "Provide a full URL (e.g. https://instagram.com/yourhandle)",
             "service_type": "Choose between Regular, Express, and Premium Connect Services",
             "other_enquiry": "Add any additional details to help us better understand your request.",
+        }
+
+
+class EnquiryCommentForm(forms.ModelForm):
+    class Meta:
+        model = EnquiryComment
+        fields = ['text']
+
+        widgets = {
+            "text": forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+        help_texts = {
+            "text": "Enter a comment.",
         }

@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 class Enquiry(models.Model):
     SERVICE_TYPE_CHOICES = [
@@ -34,6 +36,8 @@ class Enquiry(models.Model):
     ("closed", "Closed"),
     ("not_reachable", "Not Reachable"),
     ("service_declined", "Service Declined"),
+    ("page_created", "Page Created"),
+    ("paid", "Paid"),
     ]
 
     REGIONS_CHOICES = [
@@ -73,26 +77,34 @@ class Enquiry(models.Model):
         max_length=50,
         choices=SERVICE_CHOICES
     )
-
     service_type = models.CharField(
         max_length=20,
         choices=SERVICE_TYPE_CHOICES
     )
-
     social_platform = models.CharField(
         max_length=50,
         choices=SOCIAL_CHOICES,
         blank=True,
         null=True
     )
-
     social_handle = models.CharField(max_length=100)
-
     other_enquiry = models.TextField(blank=True, null=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
-
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="new")
 
     def __str__(self):
         return self.full_name
+
+
+class EnquiryComment(models.Model):
+    enquiry = models.ForeignKey(Enquiry, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"Comment by {self.author} on {self.created_at}"
