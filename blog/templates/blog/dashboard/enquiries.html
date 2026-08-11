@@ -29,6 +29,9 @@
         color: green; 
     }
 
+    .badge-associated_assigned { background-color: #6f42c1; color: #fff; }
+    .badge-consultant_assigned { background-color: #fd7e14; color: #fff; }
+
     /* Comment Section Styling */
     .comments-wrapper {
         background-color: #f8f9fa;
@@ -268,22 +271,37 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-between flex-wrap gap-2">
-                                    <div class="btn-group flex-wrap">
-                                        <button class="btn btn-outline-warning status-btn" data-id="{{ enquiry.id }}" data-status="new">New</button>
-                                        <button class="btn btn-outline-primary status-btn" data-id="{{ enquiry.id }}" data-status="contacted">Contacted</button>
-                                        <button class="btn btn-outline-info status-btn" data-id="{{ enquiry.id }}" data-status="page_created">Page Created</button>
-                                        <button class="btn btn-outline-success status-btn" data-id="{{ enquiry.id }}" data-status="paid">Paid</button>
-                                        <button class="btn btn-outline-secondary status-btn" data-id="{{ enquiry.id }}" data-status="closed">Closed</button>
-                                        <button class="btn btn-outline-dark status-btn" data-id="{{ enquiry.id }}" data-status="not_reachable">Not Reachable</button>
-                                        <button class="btn btn-outline-danger status-btn" data-id="{{ enquiry.id }}" data-status="service_declined">Declined</button>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:{{ enquiry.email }}" class="btn btn-primary">Email</a>
-                                        <a href="tel:{{ enquiry.phone_number }}" class="btn btn-success">Call</a>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
+                                <div class="modal-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <!-- Status Update Dropdown Form -->
+                                <div class="d-flex align-items-center gap-2">
+                                    <label for="statusSelect{{ enquiry.id }}" class="form-label mb-0 small text-muted fw-semibold">Status:</label>
+                                    <select id="statusSelect{{ enquiry.id }}" class="form-select form-select-sm status-select" style="width: auto; min-width: 170px;">
+                                        <option value="new" {% if enquiry.status == 'new' %}selected{% endif %}>New</option>
+                                        <option value="contacted" {% if enquiry.status == 'contacted' %}selected{% endif %}>Contacted</option>
+                                        <option value="page_created" {% if enquiry.status == 'page_created' %}selected{% endif %}>Page Created</option>
+                                        <option value="paid" {% if enquiry.status == 'paid' %}selected{% endif %}>Paid</option>
+                                        <option value="associated_assigned" {% if enquiry.status == 'associated_assigned' %}selected{% endif %}>Associate Assigned</option>
+                                        <option value="consultant_assigned" {% if enquiry.status == 'consultant_assigned' %}selected{% endif %}>Consultant Assigned</option>
+                                        <option value="closed" {% if enquiry.status == 'closed' %}selected{% endif %}>Closed</option>
+                                        <option value="not_reachable" {% if enquiry.status == 'not_reachable' %}selected{% endif %}>Not Reachable</option>
+                                        <option value="service_declined" {% if enquiry.status == 'service_declined' %}selected{% endif %}>Service Declined</option>
+                                    </select>
+                                    <button class="btn btn-sm btn-primary update-status-btn" data-id="{{ enquiry.id }}">
+                                        Save
+                                    </button>
                                 </div>
+
+                                <!-- Communication Quick Actions & Dismiss -->
+                                <div class="d-flex align-items-center gap-2">
+                                    <a href="mailto:{{ enquiry.email }}" class="btn btn-sm btn-outline-primary" title="Email Client">
+                                        <i class="fas fa-envelope me-1"></i> Email
+                                    </a>
+                                    <a href="tel:{{ enquiry.phone_number }}" class="btn btn-sm btn-outline-success" title="Call Client">
+                                        <i class="fas fa-phone me-1"></i> Call
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -318,51 +336,71 @@ $(function(){
     let pendingDeleteUrl = null;
     let pendingEnquiryId = null;
 
-    function getBadgeClass(status){
-        switch(status){
-            case "new": return "bg-warning";
-            case "contacted": return "bg-primary";
-            case "page_created": return "bg-info text-dark";
-            case "paid": return "bg-success";
-            case "closed": return "bg-secondary";
-            case "not_reachable": return "bg-dark";
-            case "service_declined": return "bg-danger";
-        }
+    function getBadgeClass(status) {
+    switch(status) {
+        case "new": return "bg-warning text-dark";
+        case "contacted": return "bg-primary";
+        case "page_created": return "bg-info text-dark";
+        case "paid": return "bg-success";
+        case "associated_assigned": return "badge-associated_assigned";
+        case "consultant_assigned": return "badge-consultant_assigned";
+        case "closed": return "bg-secondary";
+        case "not_reachable": return "bg-dark";
+        case "service_declined": return "bg-danger";
+        default: return "bg-light text-dark";
+    }
     }
 
-    function getStatusText(status){
-        return status.replace("_", " ").replace(/\b\w/g, l => l.toUpperCase());
+    function getStatusText(status) {
+        const labels = {
+            "new": "New",
+            "contacted": "Contacted",
+            "page_created": "Page Created",
+            "paid": "Paid",
+            "associated_assigned": "Associate Assigned",
+            "consultant_assigned": "Consultant Assigned",
+            "closed": "Closed",
+            "not_reachable": "Not Reachable",
+            "service_declined": "Service Declined"
+        };
+        return labels[status] || status.replace("_", " ").replace(/\b\w/g, l => l.toUpperCase());
     }
 
-    // Status Update
-    $(".status-btn").click(function(){
+    // Updated Status Change Event
+    $(document).on("click", ".update-status-btn", function() {
         let id = $(this).data("id");
-        let status = $(this).data("status");
+        let status = $("#statusSelect" + id).val();
         let btn = $(this);
+
+        btn.prop("disabled", true);
 
         $.post("{% url 'update_enquiry_status' %}", {
             enquiry_id: id,
             status: status,
             csrfmiddlewaretoken: '{{ csrf_token }}'
-        }, function(res){
-            if(res.success){
+        }, function(res) {
+            btn.prop("disabled", false);
+            if (res.success) {
                 let badgeClass = getBadgeClass(status);
                 let text = getStatusText(status);
 
+                // Update Main Table Badge
                 $("#table-badge-" + id)
                     .attr("class", "badge badge-status " + badgeClass)
                     .text(text);
 
+                // Update Modal Badge
                 $("#modal-badge-" + id)
                     .attr("class", "badge badge-status " + badgeClass)
                     .text(text);
 
-                btn.closest('.modal-footer').append(
-                    '<span class="status-msg ms-2">Updated!</span>'
-                );
-
-                setTimeout(() => $(".status-msg").remove(), 2000);
+                // Provide direct visual confirmation
+                let statusMsg = $('<span class="status-msg ms-2 text-success fw-bold">Saved!</span>');
+                btn.after(statusMsg);
+                setTimeout(() => statusMsg.fadeOut(400, function() { $(this).remove(); }), 1500);
             }
+        }).fail(function() {
+            btn.prop("disabled", false);
         });
     });
 

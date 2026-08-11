@@ -38,6 +38,8 @@ class Enquiry(models.Model):
     ("service_declined", "Service Declined"),
     ("page_created", "Page Created"),
     ("paid", "Paid"),
+    ("associated_assigned", "Associate Assigned"),
+    ("consultant_assigned", "Consultant Assigned"),
     ]
 
     REGIONS_CHOICES = [
