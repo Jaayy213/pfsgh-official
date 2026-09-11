@@ -6,7 +6,13 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Count
+
+
+
+def is_staff_user(user):
+    return user.is_active and user.is_staff
 
 
 def enquiry_view(request):
@@ -29,26 +35,106 @@ def enquiry_success(request):
     return render(request, "enquiries/success.html")
 
 
-@login_required
-def enquiry_dashboard(request):
-    enquiries = Enquiry.objects.all().order_by("-created_at")
 
-    # Filtering
-    services = Enquiry.SERVICE_CHOICES
+@login_required
+@user_passes_test(is_staff_user)
+def enquiry_dashboard(request):
+    base_enquiries = Enquiry.objects.all()
+    total_count = base_enquiries.count()
+
+    # 1. Initialize ALL statuses to 0
+    statuses_dict = dict(Enquiry.STATUS_CHOICES)
+    all_status_counts = {key: 0 for key in statuses_dict.keys()}
+    
+    # Populate actual status counts
+    status_queryset = base_enquiries.values('status').annotate(total=Count('id'))
+    for item in status_queryset:
+        if item['status'] in all_status_counts:
+            all_status_counts[item['status']] = item['total']
+
+    # KPI Card metrics
+    new_count = all_status_counts.get('new', 0)
+    contacted_count = all_status_counts.get('contacted', 0)
+    paid_count = all_status_counts.get('paid', 0)
+    closed_count = all_status_counts.get('closed', 0)
+
+    contacted_pct = round((contacted_count / total_count * 100)) if total_count else 0
+    paid_pct = round((paid_count / total_count * 100)) if total_count else 0
+    closed_pct = round((closed_count / total_count * 100)) if total_count else 0
+
+    # Build List for Status Breakdown
+    status_stats = []
+    for key, label in Enquiry.STATUS_CHOICES:
+        cnt = all_status_counts[key]
+        pct = round((cnt / total_count * 100)) if total_count else 0
+        status_stats.append({
+            'key': key,
+            'label': label,
+            'count': cnt,
+            'pct': pct
+        })
+
+    # Sort status list by count descending
+    status_stats.sort(key=lambda x: x['count'], reverse=True)
+
+    # 2. Initialize ALL services to 0
+    services_dict = dict(Enquiry.SERVICE_CHOICES)
+    all_service_counts = {key: 0 for key in services_dict.keys()}
+
+    # Populate actual service counts
+    service_queryset = base_enquiries.values('service_required').annotate(total=Count('id'))
+    for item in service_queryset:
+        if item['service_required'] in all_service_counts:
+            all_service_counts[item['service_required']] = item['total']
+
+    # Build List for Service Breakdown
+    service_stats = []
+    for key, label in Enquiry.SERVICE_CHOICES:
+        cnt = all_service_counts[key]
+        pct = round((cnt / total_count * 100)) if total_count else 0
+        service_stats.append({
+            'key': key,
+            'label': label,
+            'count': cnt,
+            'pct': pct
+        })
+
+    # Sort service list by count descending
+    service_stats.sort(key=lambda x: x['count'], reverse=True)
+
+    # 3. Filter Table Results Separately
+    filtered_enquiries = base_enquiries.order_by("-created_at")
     selected_service = request.GET.get('service', '')
+    selected_status = request.GET.get('status', '')
+
     if selected_service:
-        enquiries = enquiries.filter(service_required=selected_service)
+        filtered_enquiries = filtered_enquiries.filter(service_required=selected_service)
+    if selected_status:
+        filtered_enquiries = filtered_enquiries.filter(status=selected_status)
 
     context = {
-        "enquiries": enquiries,
-        'services': services,
-        'selected_service': selected_service,
+        "enquiries": filtered_enquiries,
+        "services": Enquiry.SERVICE_CHOICES,
+        "statuses": Enquiry.STATUS_CHOICES,
+        "selected_service": selected_service,
+        "selected_status": selected_status,
+        "total_count": total_count,
+        "new_count": new_count,
+        "contacted_count": contacted_count,
+        "paid_count": paid_count,
+        "closed_count": closed_count,
+        "contacted_pct": contacted_pct,
+        "paid_pct": paid_pct,
+        "closed_pct": closed_pct,
+        "status_stats": status_stats,
+        "service_stats": service_stats,
     }
 
     return render(request, "blog/dashboard/enquiries.html", context)
 
 
 @login_required
+@user_passes_test(is_staff_user)
 def export_enquiries(request):
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -100,6 +186,7 @@ def export_enquiries(request):
 
 
 @login_required
+@user_passes_test(is_staff_user)
 @require_POST
 def update_enquiry_status(request):
     enquiry_id = request.POST.get("enquiry_id")
@@ -119,6 +206,7 @@ def update_enquiry_status(request):
 
 
 @login_required
+@user_passes_test(is_staff_user)
 def create_comment(request, pk):
     enquiry = get_object_or_404(Enquiry, pk=pk)
 
@@ -147,6 +235,7 @@ def create_comment(request, pk):
 
 
 @login_required
+@user_passes_test(is_staff_user)
 def update_comment(request, pk):
     comment = get_object_or_404(EnquiryComment, pk=pk)
 
@@ -172,6 +261,7 @@ def update_comment(request, pk):
 
 
 @login_required
+@user_passes_test(is_staff_user)
 def delete_comment(request, pk):
     comment = get_object_or_404(EnquiryComment, pk=pk)
 
