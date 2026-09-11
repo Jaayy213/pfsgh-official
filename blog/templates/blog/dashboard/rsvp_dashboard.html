@@ -1,0 +1,163 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% load static %}
+
+{% block title %}RSVP Management{% endblock title %}
+
+{% block extra_css %}
+<style>
+    .metric-card {
+        border-left: 4px solid #fc7013;
+        background: #fff;
+        border-radius: 8px;
+        padding: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .table-hover tbody tr:hover {
+        background-color: #fff8f3;
+    }
+    .badge-orange {
+        background-color: #fc7013;
+        color: white;
+    }
+    .btn-orange {
+        background-color: #fc7013;
+        color: white;
+        border: none;
+    }
+    .btn-orange:hover {
+        background-color: #e05d04;
+        color: white;
+    }
+</style>
+{% endblock extra_css %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Page Title Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold text-dark mb-0">Event RSVPs</h3>
+            <small class="text-muted">PFS Product Launch 2026 Attendance Dashboard</small>
+        </div>
+        <a href="{% url 'rsvp_submit' %}" target="_blank" class="btn btn-outline-dark btn-sm">
+            <i class="fas fa-external-link-alt me-1"></i> Public RSVP Page
+        </a>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="metric-card">
+                <span class="text-uppercase small fw-bold text-muted">Total Responses</span>
+                <h2 class="fw-bold text-dark mb-0 mt-1">{{ total_rsvps }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="metric-card" style="border-left-color: #198754;">
+                <span class="text-uppercase small fw-bold text-muted">Confirmed Attending</span>
+                <h2 class="fw-bold text-success mb-0 mt-1">{{ attending_count }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="metric-card" style="border-left-color: #dc3545;">
+                <span class="text-uppercase small fw-bold text-muted">Declined</span>
+                <h2 class="fw-bold text-danger mb-0 mt-1">{{ declined_count }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter & Search Panel -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3 align-items-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" name="q" class="form-control" placeholder="Search by name, email, company, or phone..." value="{{ query }}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select name="attendance" class="form-select" onchange="this.form.submit()">
+                        <option value="">All Attendance Statuses</option>
+                        <option value="yes" {% if attendance_filter == 'yes' %}selected{% endif %}>Attending</option>
+                        <option value="no" {% if attendance_filter == 'no' %}selected{% endif %}>Declined</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                    {% if query or attendance_filter %}
+                        <a href="{% url 'rsvp_dashboard' %}" class="btn btn-outline-secondary" title="Reset Filters"><i class="fas fa-undo"></i></a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Attendees Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-3">Attendee</th>
+                            <th>Company & Role</th>
+                            <th>Contact Info</th>
+                            <th>Status</th>
+                            <th>Dietary / Notes</th>
+                            <th>Date</th>
+                            <th class="text-end pe-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rsvp in rsvps %}
+                        <tr>
+                            <td class="ps-3">
+                                <strong>{{ rsvp.first_name }} {{ rsvp.last_name }}</strong>
+                            </td>
+                            <td>
+                                <div class="fw-semibold text-dark">{{ rsvp.company }}</div>
+                                <small class="text-muted">{{ rsvp.job_title|default:"-" }}</small>
+                            </td>
+                            <td>
+                                <small class="d-block"><i class="fas fa-envelope me-1 text-muted"></i>{{ rsvp.email }}</small>
+                                <small class="d-block"><i class="fas fa-phone me-1 text-muted"></i>{{ rsvp.phone }}</small>
+                            </td>
+                            <td>
+                                {% if rsvp.attendance == 'yes' %}
+                                    <span class="badge bg-success px-2 py-1">Attending</span>
+                                {% else %}
+                                    <span class="badge bg-danger px-2 py-1">Declined</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <small class="text-muted">{{ rsvp.dietary_requirements|default:"None" }}</small>
+                            </td>
+                            <td>
+                                <small class="text-muted">{{ rsvp.created_at|date:"M d, Y" }}</small>
+                            </td>
+                            <td class="text-end pe-3">
+                                <a href="{% url 'rsvp_edit' rsvp.pk %}" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'rsvp_delete' rsvp.pk %}" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                No RSVP records found matching your query.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

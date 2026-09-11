@@ -1,0 +1,154 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Quote #{{ quote.id }} Details{% endblock title %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Header Controls -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="{% url 'quote_dashboard' %}" class="btn btn-outline-secondary btn-sm mb-2">
+                <i class="fas fa-arrow-left me-1"></i> Back to Requests
+            </a>
+            <h3 class="fw-bold mb-0">Quote Request #{{ quote.id }}</h3>
+        </div>
+        <div class="d-flex gap-2">
+            <!-- Toggle Status Form Button -->
+            <form action="{% url 'toggle_quote_processed' quote.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" 
+                        class="btn {% if quote.is_processed %}btn-warning{% else %}btn-success{% endif %}"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="{% if quote.is_processed %}Mark as Pending{% else %}Mark as Processed{% endif %}">
+                    <i class="fas {% if quote.is_processed %}fa-undo{% else %}fa-check{% endif %} me-1"></i>
+                    {% if quote.is_processed %}Mark as Pending{% else %}Mark as Processed{% endif %}
+                </button>
+            </form>
+
+            <!-- Delete Trigger Button -->
+            <button type="button" 
+                    class="btn btn-danger" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#deleteQuoteModal"
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="top" 
+                    title="Delete Quote Request">
+                <i class="fas fa-trash me-1"></i> Delete
+            </button>
+        </div>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="row g-4">
+        <!-- Client Details -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-bottom fw-bold py-3">
+                    <i class="fas fa-user me-2 text-primary"></i> Contact Details
+                </div>
+                <div class="card-body">
+                    <p class="mb-2 text-break"><strong>Full Name:</strong> {{ quote.first_name }} {{ quote.last_name }}</p>
+                    <p class="mb-2 text-break"><strong>Company:</strong> {{ quote.company }}</p>
+                    <p class="mb-2"><strong>Industry:</strong> {{ quote.get_industry_display|default:"N/A" }}</p>
+                    <p class="mb-2 text-break"><strong>Email:</strong> <a href="mailto:{{ quote.email }}">{{ quote.email }}</a></p>
+                    <p class="mb-2 text-break"><strong>Phone:</strong> <a href="tel:{{ quote.phone }}">{{ quote.phone }}</a></p>
+                    <p class="mb-0"><strong>Submitted:</strong> {{ quote.created_at|date:"F d, Y @ H:i" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Specifications -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-bottom fw-bold py-3">
+                    <i class="fas fa-tasks me-2 text-primary"></i> Project Overview
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-2">
+                            <strong>Timeline:</strong>
+                            <div>{{ quote.get_timeline_display|default:"N/A" }}</div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <strong>Budget:</strong>
+                            <div>{{ quote.get_budget_display|default:"N/A" }}</div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <strong>Priority Level:</strong>
+                            <div>
+                                {% if quote.priority == 'high' %}
+                                    <span class="badge bg-danger">High</span>
+                                {% elif quote.priority == 'medium' %}
+                                    <span class="badge bg-warning text-dark">Medium</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Low</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold mt-4">Selected Services:</h6>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        {% for service in quote.services %}
+                            <span class="badge bg-light text-dark border p-2 text-wrap text-start">
+                                <i class="fas fa-check text-success me-1"></i> {{ service }}
+                            </span>
+                        {% empty %}
+                            <span class="text-muted">No services selected</span>
+                        {% endfor %}
+                    </div>
+
+                    <h6 class="fw-bold">Project Description:</h6>
+                    <div class="p-3 bg-light rounded mb-3 text-break">
+                        {{ quote.project_description|linebreaks }}
+                    </div>
+
+                    {% if quote.additional_info %}
+                        <h6 class="fw-bold">Additional Notes:</h6>
+                        <div class="p-3 bg-light rounded text-break">
+                            {{ quote.additional_info|linebreaks }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteQuoteModal" tabindex="-1" aria-labelledby="deleteQuoteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-danger fw-bold" id="deleteQuoteModalLabel">
+                    <i class="fas fa-exclamation-triangle me-2"></i> Confirm Deletion
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-break">
+                Are you sure you want to delete quote request <strong>#{{ quote.id }}</strong> from <strong>{{ quote.first_name }} {{ quote.last_name }}</strong> ({{ quote.company }})?
+                <br><small class="text-muted">This action cannot be undone.</small>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <form action="{% url 'delete_quote' quote.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i> Yes, Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    });
+</script>
+{% endblock extra_js %}

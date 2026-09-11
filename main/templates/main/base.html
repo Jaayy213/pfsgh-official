@@ -4,7 +4,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %}Pneuma Food Scientifics{% endblock title %}</title>
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Scroll Animation Library CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
     {% block meta_tags %}{% endblock meta_tags %}
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pneuma Food Scientifics | Food Safety & Product Development Consultancy">
@@ -17,10 +24,7 @@
     <meta name="twitter:description" content="Food safety consulting and product development services in Ghana.">
     <meta name="twitter:image" content="https://pfsgh.com/static/images/pfs-og-image.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" href="{% static 'main/images/favicon-32x32.png' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'main/images/favicon-16x16.png' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'main/images/apple-touch-icon.png' %}" type="image/x-icon">
@@ -28,41 +32,44 @@
 
     <script type="application/ld+json">
     {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Pneuma Food Scientifics",
-    "url": "https://pfsgh.com",
-    "logo": "https://pfsgh.com/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+233241043139",
-      "contactType": "customer service",
-      "areaServed": "GH"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Zibra Street, Pokuase",
-      "addressLocality": "Accra",
-      "addressCountry": "Ghana"
-    }
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pneuma Food Scientifics",
+      "url": "https://pfsgh.com",
+      "logo": "https://pfsgh.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+233241043139",
+        "contactType": "customer service",
+        "areaServed": "GH"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Zibra Street, Pokuase",
+        "addressLocality": "Accra",
+        "addressCountry": "Ghana"
+      }
     }
     </script>
     {% block styles_addon %}{% endblock styles_addon %}
   </head>
 
   <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
-    {% include "main/partials/navbar.html" %}{% block content %}{%endblock content%}
+    {% include "main/partials/navbar.html" %}
+    {% block content %}{% endblock content %}
+
     <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop">
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
       <i class="fas fa-arrow-up"></i>
     </button>
     {% include "main/partials/footer.html" %}
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'main/js/script.js' %}"></script>
-    {% block script_addon %}{% endblock script_addon %}
-
+    <!-- Global Modal Partial -->
     {% include 'main/partials/quote_modal.html' %}
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main/js/app.js' %}"></script>
+    {% block script_addon %}{% endblock script_addon %}
   </body>
 </html>

@@ -1,0 +1,203 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Quote Requests{% endblock title %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Header & Statistics -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">Quote Requests</h3>
+    </div>
+
+    <!-- Analytics Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary me-3">
+                        <i class="fas fa-file-invoice fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Requests</h6>
+                        <h3 class="mb-0 fw-bold">{{ total_quotes }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-warning bg-opacity-10 p-3 text-warning me-3">
+                        <i class="fas fa-clock fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Pending</h6>
+                        <h3 class="mb-0 fw-bold">{{ pending_quotes }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success me-3">
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Processed</h6>
+                        <h3 class="mb-0 fw-bold">{{ processed_quotes }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters & Search -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-2">
+                <div class="col-md-4">
+                    <input type="text" name="q" class="form-control" placeholder="Search name, company, email..." value="{{ search_query|default:'' }}">
+                </div>
+                <div class="col-md-3">
+                    <select name="status" class="form-select">
+                        <option value="">All Statuses</option>
+                        <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+                        <option value="processed" {% if status_filter == 'processed' %}selected{% endif %}>Processed</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="priority" class="form-select">
+                        <option value="">All Priorities</option>
+                        <option value="high" {% if priority_filter == 'high' %}selected{% endif %}>High</option>
+                        <option value="medium" {% if priority_filter == 'medium' %}selected{% endif %}>Medium</option>
+                        <option value="low" {% if priority_filter == 'low' %}selected{% endif %}>Low</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter me-1"></i> Filter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quotes Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Client</th>
+                        <th>Company</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Date Received</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in quotes %}
+                    <tr>
+                        <td><strong>#{{ q.id }}</strong></td>
+                        <td>
+                            <div class="text-break">{{ q.first_name }} {{ q.last_name }}</div>
+                            <small class="text-muted text-break">{{ q.email }}</small>
+                        </td>
+                        <td class="text-break">{{ q.company }}</td>
+                        <td>
+                            {% if q.priority == 'high' %}
+                                <span class="badge bg-danger">High</span>
+                            {% elif q.priority == 'medium' %}
+                                <span class="badge bg-warning text-dark">Medium</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Low</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if q.is_processed %}
+                                <span class="badge bg-success"><i class="fas fa-check me-1"></i> Processed</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark"><i class="fas fa-clock me-1"></i> Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ q.created_at|date:"M d, Y H:i" }}</td>
+                        <td class="text-end">
+                            <!-- View Button -->
+                            <a href="{% url 'quote_detail' q.pk %}" 
+                               class="btn btn-sm btn-outline-primary me-1" 
+                               data-bs-toggle="tooltip" 
+                               data-bs-placement="top" 
+                               title="View Quote Details">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+
+                            <!-- Toggle Status Form Button -->
+                            <form action="{% url 'toggle_quote_processed' q.pk %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" 
+                                        class="btn btn-sm {% if q.is_processed %}btn-outline-warning{% else %}btn-outline-success{% endif %} me-1" 
+                                        data-bs-toggle="tooltip" 
+                                        data-bs-placement="top" 
+                                        title="{% if q.is_processed %}Mark as Pending{% else %}Mark as Processed{% endif %}">
+                                    <i class="fas {% if q.is_processed %}fa-undo{% else %}fa-check{% endif %}"></i>
+                                </button>
+                            </form>
+
+                            <!-- Delete Trigger Button -->
+                            <button type="button" 
+                                    class="btn btn-sm btn-outline-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteQuoteModal{{ q.pk }}"
+                                    title="Delete Quote Request">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade text-start" id="deleteQuoteModal{{ q.pk }}" tabindex="-1" aria-labelledby="deleteQuoteModalLabel{{ q.pk }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title text-danger fw-bold" id="deleteQuoteModalLabel{{ q.pk }}">
+                                                <i class="fas fa-exclamation-triangle me-2"></i> Confirm Deletion
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-break">
+                                            Are you sure you want to delete quote request <strong>#{{ q.id }}</strong> from <strong>{{ q.first_name }} {{ q.last_name }}</strong> ({{ q.company }})?
+                                            <br><small class="text-muted">This action cannot be undone.</small>
+                                        </div>
+                                        <div class="modal-footer border-0">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                            <form action="{% url 'delete_quote' q.pk %}" method="post" class="d-inline">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fas fa-trash me-1"></i> Yes, Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">No quote requests found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    });
+</script>
+{% endblock extra_js %}

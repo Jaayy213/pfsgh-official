@@ -1,0 +1,378 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}PFS Product Launch - RSVP | Pneuma Food Scientifics{% endblock title %}
+
+{% block meta_tags %}
+<meta name="description" content="RSVP for the Pneuma Food Scientifics (PFS) Product Launch on 25th September 2026. Unveiling four innovative cashew and rice-based products in Accra, Ghana.">
+<meta name="keywords" content="PFS Product Launch, Pneuma Food Scientifics, GIZ, TCDA, Food Innovation Ghana, Accra Events">
+<link rel="canonical" href="https://pfsgh.com/product_launch">
+
+<!-- FontAwesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- AOS Scroll Animation Library CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+{% endblock meta_tags %}
+
+{% block styles_addon %}
+<style>
+    :root {
+        --theme-orange: var(--accent-color, #fc7013);
+        --theme-orange-dark: #e05d04;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        background-image: linear-gradient(rgba(44, 62, 80, 0.85), rgba(137, 15, 145, 0.85)), 
+                          url('{% static 'main/images/cashew_product_launch.jpg' %}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    .hero-section {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 80px 0 40px 0;
+        background: transparent;
+    }
+
+    .status-badge {
+        background: var(--theme-orange);
+        color: white;
+        padding: 10px 28px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 15px rgba(252, 112, 19, 0.3);
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-title .highlight {
+        color: var(--theme-orange);
+    }
+
+    .text-theme-orange {
+        color: var(--theme-orange) !important;
+    }
+
+    .hero-description {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.7;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Partner Logos Card */
+    .partner-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .event-meta-card {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+
+    .event-meta-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .first-section {
+        background: white;
+        padding: 80px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 30px 30px 0 0;
+        margin-top: -30px;
+    }
+
+    .rsvp-form-card {
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        padding: 40px;
+    }
+
+    .btn-submit-rsvp {
+        background: var(--theme-orange);
+        border: 2px solid var(--theme-orange);
+        color: white;
+        padding: 16px 40px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .btn-submit-rsvp:hover {
+        background: transparent;
+        color: var(--theme-orange);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(252, 112, 19, 0.4);
+    }
+
+    .expectation-pill {
+        background: #fff8f3;
+        border: 1px solid #ffe8d6;
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-weight: 600;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .expectation-pill:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(252, 112, 19, 0.15);
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--theme-orange);
+        box-shadow: 0 0 0 0.25rem rgba(252, 112, 19, 0.25);
+    }
+
+    .badge-orange {
+        background-color: var(--theme-orange);
+        color: white;
+    }
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <i class="fas fa-calendar-star me-2"></i> Official Invitation
+                    </div>
+                    <h1 class="hero-title">
+                        PFS <span class="highlight">Product Launch</span> 2026
+                    </h1>
+                    <p class="hero-description">
+                        Join us as <strong>Pneuma Food Scientifics (PFS)</strong> unveils four innovative cashew and rice-based food products developed under the GIZ new product development project, with support from the Tree Crops Development Authority (TCDA).
+                    </p>
+
+                    <!-- Key Details Grid -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-4" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="event-meta-card text-center">
+                                <i class="fas fa-calendar-day text-theme-orange fa-2x mb-2"></i>
+                                <h6 class="fw-bold mb-0">FRIDAY</h6>
+                                <small class="text-light">25 Sept 2026</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="event-meta-card text-center">
+                                <i class="fas fa-clock text-theme-orange fa-2x mb-2"></i>
+                                <h6 class="fw-bold mb-0">11:00 AM - 2:00 PM</h6>
+                                <small class="text-light">GMT</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="event-meta-card text-center">
+                                <i class="fas fa-map-marker-alt text-theme-orange fa-2x mb-2"></i>
+                                <h6 class="fw-bold mb-0">ACCRA AGS CONFERENCE ROOM</h6>
+                                <small class="text-light">Accra, Ghana</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <!-- Partner Logos Showcase -->
+                <div class="partner-card text-center">
+                    <small class="text-muted text-uppercase fw-bold d-block mb-3">Organized & Supported By</small>
+                    <div class="row align-items-center g-3">
+                        <div class="col-6">
+                            <img src="{% static 'main/images/PFS_final.png' %}" alt="PFS Logo" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="col-6">
+                            <img src="{% static 'main/images/GIZ_final.png' %}" alt="GIZ Logo" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="col-6">
+                            <img src="{% static 'main/images/MOVE_final.png' %}" alt="MOVE Logo" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="col-6">
+                            <img src="{% static 'main/images/TCDA_final.png' %}" alt="TCDA Logo" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <hr class="my-3">
+                    <small class="text-theme-orange fw-bold text-uppercase">Nourishing People &bull; Empowering Communities</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Form & Event Info Section -->
+<section class="first-section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Side: RSVP Form -->
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1000">
+                <div class="rsvp-form-card">
+                    <div class="mb-4">
+                        <span class="badge badge-orange fw-bold text-uppercase px-3 py-2">Reserve Your Seat</span>
+                        <h2 class="fw-bold mt-2 text-theme-orange">RSVP Portal</h2>
+                        <p class="text-muted">Seats are strictly limited. Please complete the form below to secure your attendance.</p>
+                    </div>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" action="{% url 'rsvp_submit' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="first_name" class="form-label fw-bold">First Name <span class="text-danger">*</span></label>
+                                <input type="text" name="first_name" id="first_name" class="form-control form-control-lg" required placeholder="e.g. John">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label fw-bold">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" name="last_name" id="last_name" class="form-control form-control-lg" required placeholder="e.g. Doe">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" name="email" id="email" class="form-control form-control-lg" required placeholder="john@example.com">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label fw-bold">Phone / WhatsApp Number <span class="text-danger">*</span></label>
+                                <input type="tel" name="phone" id="phone" class="form-control form-control-lg" required placeholder="+233 ...">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="company" class="form-label fw-bold">Organization / Company <span class="text-danger">*</span></label>
+                                <input type="text" name="company" id="company" class="form-control form-control-lg" required placeholder="e.g. Ministry of Food & Ag / PFS">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="job_title" class="form-label fw-bold">Job Title / Role</label>
+                                <input type="text" name="job_title" id="job_title" class="form-control form-control-lg" placeholder="e.g. Product Manager">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="attendance" class="form-label fw-bold">Attendance Confirmation <span class="text-danger">*</span></label>
+                                <select name="attendance" id="attendance" class="form-select form-select-lg" required>
+                                    <option value="" selected disabled>Will you be attending?</option>
+                                    <option value="yes">Yes, I will attend in-person</option>
+                                    <option value="no">Regretfully, I cannot attend</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="dietary_requirements" class="form-label fw-bold">Dietary Restrictions or Special Requirements</label>
+                                <input type="text" name="dietary_requirements" id="dietary_requirements" class="form-control form-control-lg" placeholder="e.g. Vegetarian, Gluten-Free, Wheelchair Access (Optional)">
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-submit-rsvp">
+                                    <i class="fas fa-check-circle me-2"></i> Submit RSVP Request
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Side: Program Highlights & Expectations -->
+            <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="ps-lg-3">
+                    <h3 class="fw-bold mb-3 text-theme-orange">What to Expect</h3>
+                    <p class="text-muted mb-4">Experience live product unveilings, tasting sessions, and high-level networking with industry experts and government stakeholders.</p>
+
+                    <div class="d-flex flex-column gap-3 mb-5">
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="100">
+                            <i class="fas fa-box-open text-theme-orange fa-lg"></i>
+                            <span>Product Unveiling & Exhibition</span>
+                        </div>
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="200">
+                            <i class="fas fa-lightbulb text-theme-orange fa-lg"></i>
+                            <span>PFS Journey & Innovation Story</span>
+                        </div>
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="300">
+                            <i class="fas fa-store text-theme-orange fa-lg"></i>
+                            <span>Cashew & Rice Product Showcase</span>
+                        </div>
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="400">
+                            <i class="fas fa-utensils text-theme-orange fa-lg"></i>
+                            <span>Guided Tasting Experience</span>
+                        </div>
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="500">
+                            <i class="fas fa-users text-theme-orange fa-lg"></i>
+                            <span>Networking & Stakeholder Engagement</span>
+                        </div>
+                        <div class="expectation-pill" data-aos="fade-left" data-aos-delay="600">
+                            <i class="fas fa-gift text-theme-orange fa-lg"></i>
+                            <span>Games & Exclusive Giveaways</span>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info Box -->
+                    <div class="p-4 bg-light rounded-3 border" data-aos="zoom-in" data-aos-delay="300">
+                        <h6 class="fw-bold text-dark"><i class="fas fa-info-circle text-theme-orange me-2"></i> Venue Information</h6>
+                        <p class="small text-muted mb-0">
+                            <strong>Accra AGS Conference Room</strong><br>
+                            Accra, Ghana.<br>
+                            For further inquiries regarding registration or directions, please contact our support team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AOS Scroll Animation Library JS Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+    });
+</script>
+{% endblock content %}

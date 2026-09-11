@@ -5,13 +5,23 @@ from .forms import AudioUploadForm, VideoUploadForm
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.utils import timezone
+import datetime
+
+
 
 
 # Home page
 def homepage(request):
     welcome_audio = AudioFile.objects.order_by('-created_at').first()
+
+    # PRODUCT LAUNCH RSVP Expiry set to Sept 25, 2026 end-of-day
+    event_expiry = timezone.make_aware(datetime.datetime(2026, 9, 25, 23, 59, 59))
+    show_rsvp_banner = timezone.now() <= event_expiry
+
     context = {
         'welcome_audio': welcome_audio,
+        'show_rsvp_banner': show_rsvp_banner,
     }
     return render(request, 'main/index.html', context)
 
@@ -60,9 +70,6 @@ def contact(request):
 
     }
     return render(request, 'main/contact.html', context)
-
-
-from django.shortcuts import render, redirect
 
 
 # Central Login Page

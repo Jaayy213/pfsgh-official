@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from enquiries.views import enquiry_dashboard, export_enquiries
 from main.views import manage_audio, manage_video, edit_audio, edit_video, delete_audio, delete_video
+from events.views import rsvp_dashboard, rsvp_delete, rsvp_edit
 
 
 urlpatterns = [
@@ -26,6 +27,11 @@ urlpatterns = [
     # Dashboard (Enquiries)
     path("dashboard/enquiries/", enquiry_dashboard, name="enquiry_dashboard"),
     path("dashboard/enquiries/export/", export_enquiries, name="export_enquiries"),
+
+    # RSVP (Product Launch)
+    path('dashboard/rsvps/', rsvp_dashboard, name='rsvp_dashboard'),
+    path('dashboard/rsvps/<int:pk>/edit/', rsvp_edit, name='rsvp_edit'),
+    path('dashboard/rsvps/<int:pk>/delete/', rsvp_delete, name='rsvp_delete'),
 
     # Product Tags & Products
     path('dashboard/product_tags', views.product_tags, name='product_tags'),

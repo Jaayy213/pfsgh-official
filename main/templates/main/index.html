@@ -1,302 +1,269 @@
 {% extends "main/base.html" %}
 {% load static %} 
-{% block title %} Pneuma Food Scientifics | Food Safety & Product Development Consultancy in Ghana
-{%endblock title %} 
+{% block title %}Pneuma Food Scientifics | Food Safety & Product Development Consultancy in Ghana{% endblock title %} 
+
 {% block meta_tags %}
 <meta name="description" content="Pneuma Food Scientifics provides expert food safety consulting, product development, regulatory compliance, and dehydration services for food businesses in Ghana and across Africa.">
-
 <meta name="keywords" content="food safety consulting Ghana, food product development Ghana, food regulatory compliance Ghana, HACCP consulting Ghana, food science consultancy Africa, FDA certification Ghana, food quality management">
-
 <meta name="author" content="Pneuma Food Scientifics">
-
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://pfsgh.com/">
 {% endblock meta_tags %}
-{%block styles_addon%}
+
+{% block styles_addon %}
 <style>
-        /* Features Section */
-        .features-section {
-            padding: 100px 0;
-            background-color: white;
-        }
+    /* Features Section */
+    .features-section {
+        padding: 100px 0;
+        background-color: white;
+    }
 
-        .section-header {
-            padding: 40px 0 20px;
-            text-align: center;
+    .section-header {
+        padding: 40px 0 20px;
+        text-align: center;
+    }
 
-        }
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #333;
+    .lead {
+        margin-top: 0;
+    }
 
-        }
+    /* Testimonials */
+    .testimonials-section {
+        background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .lead {
-            margin-top: 0;
+    .testimonials-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    }
 
-        }
+    .testimonial-card {
+        background: white;
+        border-radius: 20px;
+        padding: 34px 26px;
+        margin: 12px auto;
+        box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08);
+        transition: all 0.3s ease;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 560px;
+        width: 100%;
+        min-height: 260px;
+        height: 100%;
+        box-sizing: border-box;
+    }
 
-        /* testimonials */
+    .testimonial-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
 
-        .testimonials-section {
-            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
+    .testimonial-card:hover::before {
+        transform: scaleX(1);
+    }
 
-        .testimonials-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-        }
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(44, 62, 80, 0.15);
+    }
 
-        .testimonial-card {
-            background: white;
-            border-radius: 20px;
-            padding: 34px 26px;
-            margin: 12px auto;
-            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08);
-            transition: all 0.3s ease;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            max-width: 560px;
-            width: 100%;
-            min-height: 260px;
-            height: 100%;
-            box-sizing: border-box;
-        }
+    .quote-icon {
+        font-size: 3rem;
+        color: var(--accent-color);
+        opacity: 0.3;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+    }
 
-        .testimonial-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
+    .testimonial-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--primary-color);
+        font-style: italic;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+        flex-grow: 1;
+    }
 
-        .testimonial-card:hover::before {
-            transform: scaleX(1);
-        }
+    .client-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(44, 62, 80, 0.15);
-        }
+    .client-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
 
-        .quote-icon {
-            font-size: 3rem;
-            color: var(--accent-color);
-            opacity: 0.3;
-            position: absolute;
-            top: 20px;
-            right: 30px;
-        }
+    .client-details h5 {
+        color: var(--primary-color);
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
 
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--primary-color);
-            font-style: italic;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-            flex-grow: 1;
-        }
+    .client-company {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
 
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+    .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
 
-        .client-avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
+    .testimonials-section .row.justify-content-center > [class*="col-"] {
+        display: flex;
+        align-items: stretch;
+    }
 
-        .client-details h5 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
+    .testimonials-section .testimonial-text {
+        flex: 1 1 auto;
+        margin-bottom: 18px;
+    }
 
-        .client-company {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
+    .floating-icon {
+        position: absolute;
+        color: var(--accent-color);
+        opacity: 0.1;
+        font-size: 2rem;
+        animation: float 6s ease-in-out infinite;
+    }
 
+    .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-icon:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+    .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
 
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
 
-        /* Ensure testimonial columns stretch so cards are equal height */
-        .testimonials-section .row.justify-content-center > [class*="col-"] {
-            display: flex;
-            align-items: stretch;
-        }
-
-        .testimonials-section .testimonial-text {
-            flex: 1 1 auto;
-            margin-bottom: 18px;
-        }
-
-        .floating-icon {
-            position: absolute;
-            color: var(--accent-color);
-            opacity: 0.1;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-icon:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-icon:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-icon:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .process-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .process-card {
-                padding: 30px 20px;
-            }
-
-            .flow-arrow {
-                transform: rotate(90deg);
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .service-card {
-                padding: 30px 20px;
-                min-height: 250px;
-            }
-
-
-
-            .testimonials-section {
-                padding: 60px 0;
-            }
-
-            .testimonial-card {
-                padding: 30px 20px;
-            }
-
-            .client-info {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .contact-section {
-                padding: 60px 0;
-            }
-
-            .contact-form-wrapper {
-                padding: 30px 20px;
-                margin-top: 40px;
-            }
-
-            .contact-item {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .contact-icon {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .contact-item:hover {
-                transform: none;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+        .section-title { font-size: 2.5rem; }
+        .process-grid { grid-template-columns: 1fr; gap: 30px; }
+        .process-card { padding: 30px 20px; }
+        .flow-arrow { transform: rotate(90deg); }
+        .services-grid { grid-template-columns: 1fr; gap: 25px; }
+        .service-card { padding: 30px 20px; min-height: 250px; }
+        .testimonials-section { padding: 60px 0; }
+        .testimonial-card { padding: 30px 20px; }
+        .client-info { flex-direction: column; text-align: center; }
+        .stat-number { font-size: 2.5rem; }
+        .contact-section { padding: 60px 0; }
+        .contact-form-wrapper { padding: 30px 20px; margin-top: 40px; }
+        .contact-item { flex-direction: column; text-align: center; }
+        .contact-icon { margin-right: 0; margin-bottom: 15px; }
+        .contact-item:hover { transform: none; }
+    }
+</style>
 {% endblock styles_addon %}
+
 {% block content %}
-<!-- Carousel -->
-<section id="home">
-    <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel"
-        data-bs-interval="5000">
-        <!-- Carousel Indicators -->
+<style>
+    /* Blinking Animation for Attention Badge */
+    @keyframes pulse-blink {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(0.96); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    .blinking-badge {
+        animation: pulse-blink 1.5s infinite ease-in-out;
+    }
+    
+    /* Custom Orange-Purple Gradient Theme */
+    .bg-gradient-purple-orange {
+        background: linear-gradient(135deg, #6f42c1 0%, #fd7e14 100%);
+    }
+    .text-gradient-purple {
+        color: #6f42c1;
+    }
+    .btn-theme-gradient {
+        background: linear-gradient(135deg, #6f42c1 0%, #fd7e14 100%);
+        color: #ffffff;
+        border: none;
+    }
+    .btn-theme-gradient:hover {
+        background: linear-gradient(135deg, #59339d 0%, #e06d10 100%);
+        color: #ffffff;
+    }
+</style>
+
+<!-- Mobile-Responsive Integrated Top Announcement Bar -->
+{% if show_rsvp_banner %}
+<div id="pfs-event-banner" class="bg-dark text-white border-bottom border-warning border-2 py-2 px-3 shadow-sm">
+    <div class="container-fluid p-0">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2 text-center text-md-start">
+            <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
+                <!-- Blinking Orange Attention Badge -->
+                <span class="badge bg-warning text-dark text-uppercase px-2 py-1 blinking-badge fw-bold">
+                    <i class="fas fa-bell me-1"></i> Upcoming Event
+                </span>
+                <span class="fw-semibold text-white small">
+                    <strong class="text-warning">PFS Product Launch:</strong> Friday, 25 Sept 2026 @ 11:00 AM
+                </span>
+            </div>
+            <div>
+                <a href="{% url 'product_launch' %}" class="btn btn-sm btn-warning text-dark fw-bold text-nowrap px-3">
+                    <i class="fas fa-envelope-open-text me-1"></i> RSVP NOW
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Carousel Section -->
+<section id="home" class="p-0 m-0">
+    <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
-        <!-- Carousel Items -->
         <div class="carousel-inner h-100">
             <!-- Slide 1 -->
             <div class="carousel-item active" style="background-image: url('{% static 'main/images/hero2.jpg' %}');">
@@ -310,8 +277,7 @@
                                     Certain
                                 </h1>
                                 <p class="carousel-subtitle lead mb-4">
-                                    Expert consulting services to ensure your business stays compliant while
-                                    achieving sustainable growth and success.
+                                    Expert consulting services to ensure your business stays compliant while achieving sustainable growth and success.
                                 </p>
                                 <a href="{% url 'services' %}" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
                                     Discover Our Services
@@ -333,8 +299,7 @@
                                     Consulting Solutions
                                 </h1>
                                 <p class="carousel-subtitle lead mb-4">
-                                    Transform your business with our expert guidance, innovative strategies, and
-                                    proven methodologies.
+                                    Transform your business with our expert guidance, innovative strategies, and proven methodologies.
                                 </p>
                                 <a href="{% url 'about' %}#success-stories" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
                                     See Client Success Stories
@@ -356,8 +321,7 @@
                                     Partner for Growth
                                 </h1>
                                 <p class="carousel-subtitle lead mb-4">
-                                    Experience the difference with our personalized approach to business consulting
-                                    and compliance management.
+                                    Experience the difference with our personalized approach to business consulting and compliance management.
                                 </p>
                                 <a href="{% url 'contact' %}" class="btn btn-custom btn-lg px-5 py-3 carousel-btn">
                                     Get Started Today
@@ -369,7 +333,6 @@
             </div>
         </div>
 
-        <!-- Carousel Controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -381,11 +344,126 @@
     </div>
 </section>
 
-<!-- ceo message -->
+<!-- Poster-Styled Invitation Popup Modal with Supporting Logos & Gradient Theme -->
+{% if show_rsvp_banner %}
+<div class="modal fade" id="pfsLaunchModal" tabindex="-1" aria-labelledby="pfsLaunchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+            
+            <!-- Modal Header (Orange/Purple Gradient Theme) -->
+            <div class="modal-header bg-gradient-purple-orange text-white border-0 py-3 px-4">
+                <div class="d-flex align-items-center w-100 justify-content-between">
+                    <div>
+                        <small class="text-uppercase tracking-wider opacity-90 d-block text-warning fw-bold">Official Invitation</small>
+                        <h4 class="modal-title fw-bold mb-0" id="pfsLaunchModalLabel">PFS PRODUCT LAUNCH</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="modal-body p-4 bg-light">
+                
+                <!-- Supporting Partner Logos Section -->
+                <div class="bg-white p-3 rounded border mb-4 text-center">
+                    <small class="text-muted text-uppercase fw-bold d-block mb-2">Organized & Supported By</small>
+                    <div class="row align-items-center justify-content-center g-3">
+                        <div class="col-6 col-sm-3">
+                            <img src="{% static 'main/images/PFS_final.png' %}" alt="PFS Logo" class="img-fluid" style="max-height: 45px; object-fit: contain;">
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <img src="{% static 'main/images/GIZ_final.png' %}" alt="GIZ Logo" class="img-fluid" style="max-height: 45px; object-fit: contain;">
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <img src="{% static 'main/images/MOVE_final.png' %}" alt="MOVE Logo" class="img-fluid" style="max-height: 45px; object-fit: contain;">
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <img src="{% static 'main/images/TCDA_final.png' %}" alt="TCDA Logo" class="img-fluid" style="max-height: 45px; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <p class="text-muted fw-bold mb-1 text-uppercase">You're Invited To The</p>
+                    <h2 class="fw-black display-6 text-gradient-purple mb-0" style="font-weight: 800;">PFS PRODUCT LAUNCH</h2>
+                    <p class="text-warning fw-bold small tracking-widest text-uppercase">Nourishing People &bull; Empowering Communities</p>
+                </div>
+
+                <p class="text-secondary text-center px-lg-3 small mb-4">
+                    Join us as <strong>Pneuma Food Scientifics (PFS)</strong> unveils four innovative food products developed with support from <strong>GIZ</strong>, as part of the GIZ new product development project on cashew and rice-based products, with additional support from the <strong>Tree Crops Development Authority (TCDA)</strong>.
+                </p>
+
+                <!-- Key Event Details Grid -->
+                <div class="row g-3 text-center mb-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white rounded shadow-sm border h-100">
+                            <i class="fas fa-calendar-day text-gradient-purple fa-2x mb-2"></i>
+                            <h6 class="fw-bold mb-0">FRIDAY</h6>
+                            <small class="text-muted">25 September 2026</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white rounded shadow-sm border h-100">
+                            <i class="fas fa-clock text-gradient-purple fa-2x mb-2"></i>
+                            <h6 class="fw-bold mb-0">11:00 AM – 2:00 PM</h6>
+                            <small class="text-muted">GMT</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white rounded shadow-sm border h-100">
+                            <i class="fas fa-map-marker-alt text-gradient-purple fa-2x mb-2"></i>
+                            <h6 class="fw-bold mb-0">ACCRA AGS ROOM</h6>
+                            <small class="text-muted">Accra, Ghana</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What To Expect Grid -->
+                <h6 class="fw-bold text-center text-uppercase text-secondary mb-3 small">What To Expect</h6>
+                <div class="row row-cols-2 row-cols-md-3 g-2 text-center mb-4">
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-box-open text-warning me-1"></i> Product Unveiling</div></div>
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-lightbulb text-warning me-1"></i> Innovation Story</div></div>
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-store text-warning me-1"></i> Product Showcase</div></div>
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-utensils text-warning me-1"></i> Tasting Experience</div></div>
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-users text-warning me-1"></i> Networking</div></div>
+                    <div class="col"><div class="p-2 bg-white rounded border small"><i class="fas fa-gift text-warning me-1"></i> Games & Giveaways</div></div>
+                </div>
+
+                <!-- RSVP Action -->
+                <div class="text-center bg-white p-3 rounded border">
+                    <p class="mb-2 fw-bold text-dark small">LIMITED SEATS AVAILABLE. SECURE YOUR SPOT.</p>
+                    <a href="{% url 'product_launch' %}" class="btn btn-lg btn-theme-gradient fw-bold px-4 py-2" style="border-radius: 6px;">
+                        <i class="fas fa-calendar-check me-2"></i> RSVP NOW
+                    </a>
+                </div>
+            </div>
+
+            <div class="modal-footer bg-light border-0 justify-content-between">
+                <small class="text-muted">Local Ingredients. Global Possibilities.</small>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Dismiss</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Auto trigger modal on load if banner condition is true
+        const pfsModalEl = document.getElementById('pfsLaunchModal');
+        if (pfsModalEl) {
+            const pfsModal = new bootstrap.Modal(pfsModalEl);
+            pfsModal.show();
+        }
+    });
+</script>
+{% endblock extra_js %}
+
+<!-- CEO Message Section -->
 <section class="welcome-audio-block py-5 my-4" id="welcome-message">
     <div class="container">
         <div class="row align-items-center g-4 bg-light rounded-4 shadow-sm p-4">
-            
             <div class="col-md-5 text-center">
                 <img src="{% static 'main/images/missZee.jpg' %}" alt="Welcome to PFS" class="img-fluid rounded-3 shadow-sm" style="max-height: 350px; object-fit: contain; width: 100%;">
             </div>
@@ -394,7 +472,6 @@
                 <h3 class="fw-bold text-dark mb-2">A Welcome from Our Founder</h3>
                 <p class="text-muted mb-4">Listen to this exclusive message to discover how Pneuma Food Scientifics helps businesses scale and optimize operations.</p>
 
-                <!-- Dynamic Audio Player Binding -->
                 {% if welcome_audio %}
                     <audio id="welcome-audio" preload="metadata">
                         <source src="{{ welcome_audio.audio_file.url }}" type="audio/mpeg">
@@ -418,445 +495,406 @@
                         </div>
                     </div>
                 {% else %}
-                    <!-- Graceful Fallback if no audio files exist in the DB yet -->
                     <div class="p-4 rounded-3 bg-white border text-center text-muted">
                         <i class="fas fa-volume-mute fa-2x mb-2"></i>
                         <p class="mb-0">A welcome message will be available soon.</p>
                     </div>
                 {% endif %}
             </div>
-
         </div>
     </div>
 </section>
 
-    <!-- Content Sections-->
-    <section class="first-section d-flex align-items-center scroll-offset" id="">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <div class="section-header choose-us">
-                        <h2 class="section-title">Why Choose Us</h2>
-                        <p class="lead text-muted">
-                            what drives us and why we do what we do.
-                        </p>
-                    </div>
+<!-- Why Choose Us -->
+<section class="first-section d-flex align-items-center scroll-offset">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-header choose-us">
+                    <h2 class="section-title">Why Choose Us</h2>
+                    <p class="lead text-muted">What drives us and why we do what we do.</p>
+                </div>
 
-                    <div class="row g-4">
-                        <!-- Food Quality -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-shield-alt text-success"></i>
-                                </div>
-                                <h3 class="feature-title">Expertise in Food Safety & Quality</h3>
-                                <p class="feature-description">
-                                    Decades of scientific knowledge and industry experience ensure your
-                                    food products meet the highest standards of safety, quality, and compliance.
-
-                                </p>
-                                <a href="{% url 'about' %}" class="feature-link">
-                                    Learn More <i class="fas fa-shield-alt text-success"></i>
-                                </a>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt text-success"></i>
                             </div>
-                        </div>
-
-                        <!-- Innovative Solutions-->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-leaf text-success"></i>
-                                </div>
-                                <h3 class="feature-title">Innovative & Sustainable Solutions</h3>
-                                <p class="feature-description">
-                                    We combine cutting-edge science with sustainable practices to deliver
-                                    solutions that support both business growth and a healthier planet.
-
-                                </p>
-                                <a href="{% url 'process' %}" class="feature-link">
-                                    Explore Our Solutions <i class="fas fa-leaf text-success"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Partner -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-handshake text-success"></i>
-                                </div>
-                                <h3 class="feature-title">Trusted Partner in Compliance</h3>
-                                <p class="feature-description">
-                                    From regulatory guidance to process optimization, we help you
-                                    navigate complex food regulations with confidence and efficiency.
-                                </p>
-                                <a href="{% url 'contact' %}" class="feature-link">
-                                    Partner with Us <i class="fas fa-handshake text-success"></i>
-                                </a>
-                            </div>
+                            <h3 class="feature-title">Expertise in Food Safety & Quality</h3>
+                            <p class="feature-description">
+                                Decades of scientific knowledge and industry experience ensure your food products meet the highest standards of safety, quality, and compliance.
+                            </p>
+                            <a href="{% url 'about' %}" class="feature-link">
+                                Learn More <i class="fas fa-shield-alt text-success"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-    </section>
 
-
-    <section class="first-section process d-flex  " id="">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Process & Approach</h2>
-                <p class="lead text-muted">We follow a proven methodology that ensures transparency, effectiveness, and
-                    measurable results for every client engagement</p>
-            </div>
-
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="card-number">1</div>
-                    <div class="card-image">
-                        <img src="{% static 'main/images/img7.jpg' %}" alt="Business consultation meeting" loading="lazy">
-                    </div>
-                    <h3 class="card-title">Discovery & Consultation</h3>
-                    <p class="card-description">We begin by understanding your unique business needs, challenges, and
-                        goals through detailed consultations and comprehensive assessments to build a solid foundation
-                        for success.</p>
-                </div>
-
-                <div class="process-card">
-                    <div class="card-number">2</div>
-                    <div class="card-image">
-                        <img src="{% static 'main/images/lab2.jpg' %}" alt="Strategic planning and development" loading="lazy">
-                    </div>
-                    <h3 class="card-title">Tailored Strategy Development</h3>
-                    <p class="card-description">Based on insights gathered, we design customized solutions aligned with
-                        industry best practices and regulatory standards to ensure optimal outcomes for your specific
-                        situation.</p>
-                </div>
-
-                <div class="process-card">
-                    <div class="card-number">3</div>
-                    <div class="card-image">
-                        <img src="{% static 'main/images/lab1.jpg' %}" alt="Team implementation and support" loading="lazy">
-                    </div>
-                    <h3 class="card-title">Implementation & Support</h3>
-                    <p class="card-description">We work closely with your team to put solutions into action while
-                        providing continuous guidance, training, and hands-on support throughout the implementation
-                        process.</p>
-                </div>
-
-                <div class="process-card">
-                    <div class="card-number">4</div>
-                    <div class="card-image">
-                        <img src="{% static 'main/images/img12.jpg' %}" alt="Data analytics and monitoring" loading="lazy">
-                    </div>
-                    <h3 class="card-title">Monitoring & Continuous Improvement</h3>
-                    <p class="card-description">We track results, ensure compliance, and refine processes to drive
-                        sustainable growth and long-term impact while adapting to changing business needs.</p>
-                </div>
-            </div>
-
-            <div class="process-flow">
-                <div class="flow-step">Start</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">Discover</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">Strategize</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">Implement</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">Optimize</div>
-            </div>
-
-            <div class="cta-section">
-                <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
-                <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help
-                    you achieve your goals</p>
-                <a href="{% url 'contact' %}" class="cta-button">Start Your Journey</a>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="first-section services-format-v2 d-flex align-items-center scroll-offset" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Professional Services</h2>
-                <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized
-                    product solutions to help your business thrive in today's competitive market</p>
-            </div>
-
-            <div class="services-grid" role="list">
-                <article class="service-item" role="listitem">
-                    <div class="service-icon"><img src="{% static 'main/images/img7.jpg' %}" alt="Business Planning" loading="lazy"></div>
-                    <div class="service-main">
-                        <div class="service-badge badge-new">New</div>
-                        <h3 class="service-title">Drafting of Business Plans</h3>
-                        <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
-                    </div>
-                </article>
-                <article class="service-item" role="listitem">
-                    <div class="service-icon"><img src="{% static 'main/images/s1.jpg' %}" alt="FDA GSA Certification" loading="lazy"></div>
-                    <div class="service-main">
-                        <div class="service-badge">Certification</div>
-                        <h3 class="service-title">FDA & GSA Certification Coaching</h3>
-                        <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
-                    </div>
-                </article>
-                <article class="service-item" role="listitem">
-                    <div class="service-icon"><img src="{% static 'main/images/machinery.jpg' %}" alt="Commercial Dehydration" loading="lazy"></div>
-                    <div class="service-main">
-                        <div class="service-badge">Processing</div>
-                        <h3 class="service-title">Equipment Sourcing, Installation & Layout Advisory</h3>
-                        <p class="service-description">We source the right equipment, handle installation, and design your production layout so it's safe, efficient, and fully code-compliant.</p>
-                    </div>
-                </article>
-                <article class="service-item" role="listitem">
-                    <div class="service-icon"><img src="{% static 'main/images/img13.jpg' %}" alt="Product Development" loading="lazy"></div>
-                    <div class="service-main">
-                        <div class="service-badge">Consulting</div>
-                        <h3 class="service-title">Product Development Guidance</h3>
-                        <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
-                    </div>
-                </article>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="{% url 'services' %}" class="btn btn-custom px-4 py-3">See More Services <i class="fas fa-arrow-right ms-2"></i></a>
-            </div>
-        </div> 
-    </section>
-    <br>
-
-    <section class="testimonials-section">
-        <div class="floating-elements">
-            <i class="fas fa-microscope floating-icon"></i>
-            <i class="fas fa-flask floating-icon"></i>
-            <i class="fas fa-leaf floating-icon"></i>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-title display-4">What Our Clients Say</h2>
-                    <p class="section-subtitle">Trusted by industry leaders for innovative food science solutions and
-                        expert consultancy services</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"
-                            What truly distinguished Pneuma Food Scientifics was their affordability... [and] fair and accessible pricing structure. Thanks to their unwavering support... Eco Preference Ltd successfully obtained all required FDA certifications for our coconut oil.
-                        </p>
-                        <div class="client-info">
-                            <div class="client-avatar">EP</div>
-                            <div class="client-details">
-                                <h5>Emmanuel Maxwell Danso-Acquah</h5>
-                                <p class="client-company">ECO Preference Ltd</p>
-                                <div class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf text-success"></i>
                             </div>
+                            <h3 class="feature-title">Innovative & Sustainable Solutions</h3>
+                            <p class="feature-description">
+                                We combine cutting-edge science with sustainable practices to deliver solutions that support both business growth and a healthier planet.
+                            </p>
+                            <a href="{% url 'process' %}" class="feature-link">
+                                Explore Our Solutions <i class="fas fa-leaf text-success"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
 
-                
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">
-                            "This product should be made easily accessible for consumers."
-                        </p>
-                        <div class="client-info">
-                            <div class="client-avatar">EA</div>
-                            <div class="client-details">
-                                <h5>Samuel Anokye</h5>
-                                <p class="client-company">Wilmar Africa LTD</p>
-                                <div class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake text-success"></i>
                             </div>
+                            <h3 class="feature-title">Trusted Partner in Compliance</h3>
+                            <p class="feature-description">
+                                From regulatory guidance to process optimization, we help you navigate complex food regulations with confidence and efficiency.
+                            </p>
+                            <a href="{% url 'contact' %}" class="feature-link">
+                                Partner with Us <i class="fas fa-handshake text-success"></i>
+                            </a>
                         </div>
-                    </div>
-                </div>
-
-                
-
-            
-        </div>
-
-
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section" id="free-consultation">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-title display-4">Ready to Transform Your Food Business?</h2>
-                    <p class="section-subtitle">Let's discuss how our scientific expertise can help you achieve your
-                        goals</p>
-                </div>
-            </div>
-
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h5>Call Us</h5>
-                                <p>+233 24 104 3139 or +233 50 338 6203</p>
-                                <small>Mon - Fri, 9:00 AM - 5:00 PM </small>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h5>Email Us</h5>
-                                <p>pneumaconsult@gmail.com</p>
-                                <small>We respond within 24 hours</small>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h5>Visit Us</h5>
-                                <p>Zibra Street, Pokuase<br>Accra, Ghana</p>
-                                <small>By appointment only</small>
-                            </div>
-                        </div>
-
-                        <div class="expertise-badges">
-                            <h6 class="mb-3">Our Expertise</h6>
-                            <span class="badge expertise-badge">Food Safety</span>
-                            <span class="badge expertise-badge">Product Development</span>
-                            <span class="badge expertise-badge">Regulatory Compliance</span>
-                            <span class="badge expertise-badge">Nutritional Analysis</span>
-                            <span class="badge expertise-badge">Sensory Evaluation</span>
-                            <span class="badge expertise-badge">Quality Assurance</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="contact-form-wrapper">
-                        <form class="contact-form">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="firstName" class="form-label">First Name*</label>
-                                    <input type="text" class="form-control" id="firstName" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="lastName" class="form-label">Last Name*</label>
-                                    <input type="text" class="form-control" id="lastName" required>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email Address*</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="company" class="form-label">Company Name*</label>
-                                <input type="text" class="form-control" id="company" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="service" class="form-label">Service Interested In*</label>
-                                <select class="form-select" id="service" required>
-                                    <option value="">Select a service...</option>
-                                    <option value="food-safety">Food Safety & HACCP</option>
-                                    <option value="product-development">Product Development</option>
-                                    <option value="regulatory">Regulatory Compliance</option>
-                                    <option value="nutritional">Nutritional Analysis</option>
-                                    <option value="sensory">Sensory Evaluation</option>
-                                    <option value="quality">Quality Assurance</option>
-                                    <option value="consulting">General Consulting</option>
-                                    <option value="consulting">compliance support(VAT,TAX,Financial report)</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="message" class="form-label">Project Details*</label>
-                                <textarea class="form-control" id="message" rows="4"
-                                    placeholder="Tell us about your project, timeline, and specific requirements..."
-                                    required></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-lg w-100">
-                                <i class="fas fa-paper-plane me-2"></i>
-                                Get Free Consultation
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    </section>
-
-    <div class="stats-row">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-item">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">Client Satisfaction</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Industry Partners</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br><br><br>
-    
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
+</section>
+
+<!-- Process Section -->
+<section class="first-section process d-flex">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Process & Approach</h2>
+            <p class="lead text-muted">We follow a proven methodology that ensures transparency, effectiveness, and measurable results for every client engagement.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="card-number">1</div>
+                <div class="card-image">
+                    <img src="{% static 'main/images/img7.jpg' %}" alt="Business consultation meeting" loading="lazy">
+                </div>
+                <h3 class="card-title">Discovery & Consultation</h3>
+                <p class="card-description">We begin by understanding your unique business needs, challenges, and goals through detailed consultations and comprehensive assessments to build a solid foundation for success.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">2</div>
+                <div class="card-image">
+                    <img src="{% static 'main/images/lab2.jpg' %}" alt="Strategic planning and development" loading="lazy">
+                </div>
+                <h3 class="card-title">Tailored Strategy Development</h3>
+                <p class="card-description">Based on insights gathered, we design customized solutions aligned with industry best practices and regulatory standards to ensure optimal outcomes for your specific situation.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">3</div>
+                <div class="card-image">
+                    <img src="{% static 'main/images/lab1.jpg' %}" alt="Team implementation and support" loading="lazy">
+                </div>
+                <h3 class="card-title">Implementation & Support</h3>
+                <p class="card-description">We work closely with your team to put solutions into action while providing continuous guidance, training, and hands-on support throughout the implementation process.</p>
+            </div>
+
+            <div class="process-card">
+                <div class="card-number">4</div>
+                <div class="card-image">
+                    <img src="{% static 'main/images/img12.jpg' %}" alt="Data analytics and monitoring" loading="lazy">
+                </div>
+                <h3 class="card-title">Monitoring & Continuous Improvement</h3>
+                <p class="card-description">We track results, ensure compliance, and refine processes to drive sustainable growth and long-term impact while adapting to changing business needs.</p>
+            </div>
+        </div>
+
+        <div class="process-flow">
+            <div class="flow-step">Start</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Discover</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Strategize</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Implement</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Optimize</div>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="margin-bottom: 20px; color: var(--primary-color);">Ready to Transform Your Business?</h3>
+            <p style="margin-bottom: 30px; color: var(--text-light);">Let's discuss how our proven process can help you achieve your goals</p>
+            <a href="{% url 'contact' %}" class="cta-button">Start Your Journey</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="first-section services-format-v2 d-flex align-items-center scroll-offset" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Professional Services</h2>
+            <p class="section-subtitle">Comprehensive food safety consulting, business development, and specialized product solutions to help your business thrive in today's competitive market.</p>
+        </div>
+
+        <div class="services-grid" role="list">
+            <article class="service-item" role="listitem">
+                <div class="service-icon"><img src="{% static 'main/images/img7.jpg' %}" alt="Business Planning" loading="lazy"></div>
+                <div class="service-main">
+                    <div class="service-badge badge-new">New</div>
+                    <h3 class="service-title">Drafting of Business Plans</h3>
+                    <p class="service-description">Comprehensive business plan development with market analysis, financial projections, and strategic roadmaps tailored to your industry and growth objectives.</p>
+                </div>
+            </article>
+
+            <article class="service-item" role="listitem">
+                <div class="service-icon"><img src="{% static 'main/images/s1.jpg' %}" alt="FDA GSA Certification" loading="lazy"></div>
+                <div class="service-main">
+                    <div class="service-badge">Certification</div>
+                    <h3 class="service-title">FDA & GSA Certification Coaching</h3>
+                    <p class="service-description">Expert guidance through FDA and GSA certification processes, ensuring compliance with regulatory standards and successful certification outcomes.</p>
+                </div>
+            </article>
+
+            <article class="service-item" role="listitem">
+                <div class="service-icon"><img src="{% static 'main/images/machinery.jpg' %}" alt="Commercial Dehydration" loading="lazy"></div>
+                <div class="service-main">
+                    <div class="service-badge">Processing</div>
+                    <h3 class="service-title">Equipment Sourcing, Installation & Layout Advisory</h3>
+                    <p class="service-description">We source the right equipment, handle installation, and design your production layout so it's safe, efficient, and fully code-compliant.</p>
+                </div>
+            </article>
+
+            <article class="service-item" role="listitem">
+                <div class="service-icon"><img src="{% static 'main/images/img13.jpg' %}" alt="Product Development" loading="lazy"></div>
+                <div class="service-main">
+                    <div class="service-badge">Consulting</div>
+                    <h3 class="service-title">Product Development Guidance</h3>
+                    <p class="service-description">End-to-end product development support from concept to market launch, including formulation, testing, and commercialization strategies.</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'services' %}" class="btn btn-custom px-4 py-3">See More Services <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </div> 
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="floating-elements">
+        <i class="fas fa-microscope floating-icon"></i>
+        <i class="fas fa-flask floating-icon"></i>
+        <i class="fas fa-leaf floating-icon"></i>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title display-4">What Our Clients Say</h2>
+                <p class="section-subtitle">Trusted by industry leaders for innovative food science solutions and expert consultancy services</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">
+                        "What truly distinguished Pneuma Food Scientifics was their affordability... [and] fair and accessible pricing structure. Thanks to their unwavering support... Eco Preference Ltd successfully obtained all required FDA certifications for our coconut oil."
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">EP</div>
+                        <div class="client-details">
+                            <h5>Emmanuel Maxwell Danso-Acquah</h5>
+                            <p class="client-company">ECO Preference Ltd</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">
+                        "This product should be made easily accessible for consumers."
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">EA</div>
+                        <div class="client-details">
+                            <h5>Samuel Anokye</h5>
+                            <p class="client-company">Wilmar Africa LTD</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="free-consultation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title display-4">Ready to Transform Your Food Business?</h2>
+                <p class="section-subtitle">Let's discuss how our scientific expertise can help you achieve your goals</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Call Us</h5>
+                            <p>+233 24 104 3139 or +233 50 338 6203</p>
+                            <small>Mon - Fri, 9:00 AM - 5:00 PM</small>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Email Us</h5>
+                            <p>pneumaconsult@gmail.com</p>
+                            <small>We respond within 24 hours</small>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Visit Us</h5>
+                            <p>Zibra Street, Pokuase<br>Accra, Ghana</p>
+                            <small>By appointment only</small>
+                        </div>
+                    </div>
+
+                    <div class="expertise-badges">
+                        <h6 class="mb-3">Our Expertise</h6>
+                        <span class="badge expertise-badge">Food Safety</span>
+                        <span class="badge expertise-badge">Product Development</span>
+                        <span class="badge expertise-badge">Regulatory Compliance</span>
+                        <span class="badge expertise-badge">Nutritional Analysis</span>
+                        <span class="badge expertise-badge">Sensory Evaluation</span>
+                        <span class="badge expertise-badge">Quality Assurance</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name*</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name*</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address*</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="company" class="form-label">Company Name*</label>
+                            <input type="text" class="form-control" id="company" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="service" class="form-label">Service Interested In*</label>
+                            <select class="form-select" id="service" required>
+                                <option value="">Select a service...</option>
+                                <option value="food-safety">Food Safety & HACCP</option>
+                                <option value="product-development">Product Development</option>
+                                <option value="regulatory">Regulatory Compliance</option>
+                                <option value="nutritional">Nutritional Analysis</option>
+                                <option value="sensory">Sensory Evaluation</option>
+                                <option value="quality">Quality Assurance</option>
+                                <option value="consulting">General Consulting</option>
+                                <option value="compliance-support">Compliance support (VAT, TAX, Financial report)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Project Details*</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Tell us about your project, timeline, and specific requirements..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Get Free Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Row -->
+<div class="stats-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Industry Partners</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("welcome-audio");
     const playPauseBtn = document.getElementById("play-pause-btn");
     const btnIcon = document.getElementById("btn-icon");
@@ -864,10 +902,8 @@
     const currentTimeText = document.getElementById("current-time");
     const durationTimeText = document.getElementById("duration-time");
 
-    // Exit silently if the audio element doesn't exist on the page
     if (!audio) return;
 
-    // Helper: Formats raw seconds into M:SS
     function formatTime(secs) {
         let minutes = Math.floor(secs / 60);
         let seconds = Math.floor(secs % 60);
@@ -877,55 +913,45 @@
         return minutes + ":" + seconds;
     }
 
-    // Load initial metadata once loaded
     audio.addEventListener("loadedmetadata", function() {
-        durationTimeText.textContent = formatTime(audio.duration);
-        seekSlider.max = Math.floor(audio.duration);
+        if (durationTimeText) durationTimeText.textContent = formatTime(audio.duration);
+        if (seekSlider) seekSlider.max = Math.floor(audio.duration);
     });
 
-    // Toggle Play/Pause
-    playPauseBtn.addEventListener("click", function () {
-        if (audio.paused) {
-            audio.play();
-            btnIcon.className = "fas fa-pause fs-5";
-        } else {
-            audio.pause();
-            btnIcon.className = "fas fa-play fs-5";
-        }
-    });
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener("click", function () {
+            if (audio.paused) {
+                audio.play();
+                if (btnIcon) btnIcon.className = "fas fa-pause fs-5";
+            } else {
+                audio.pause();
+                if (btnIcon) btnIcon.className = "fas fa-play fs-5";
+            }
+        });
+    }
 
-    // Update Slider & Current Time text during playback
     audio.addEventListener("timeupdate", function () {
-        seekSlider.value = Math.floor(audio.currentTime);
-        currentTimeText.textContent = formatTime(audio.currentTime);
+        if (seekSlider) seekSlider.value = Math.floor(audio.currentTime);
+        if (currentTimeText) currentTimeText.textContent = formatTime(audio.currentTime);
         
-        // Handle dynamic fallback if duration hasn't loaded immediately (Safari behavior)
-        if (durationTimeText.textContent === "0:00" && audio.duration) {
+        if (durationTimeText && durationTimeText.textContent === "0:00" && audio.duration) {
             durationTimeText.textContent = formatTime(audio.duration);
-            seekSlider.max = Math.floor(audio.duration);
+            if (seekSlider) seekSlider.max = Math.floor(audio.duration);
         }
     });
 
-    // Drag / Seek Audio positioning
-    seekSlider.addEventListener("input", function () {
-        audio.currentTime = seekSlider.value;
-        currentTimeText.textContent = formatTime(seekSlider.value);
-    });
+    if (seekSlider) {
+        seekSlider.addEventListener("input", function () {
+            audio.currentTime = seekSlider.value;
+            if (currentTimeText) currentTimeText.textContent = formatTime(seekSlider.value);
+        });
+    }
 
-    // Reset Player UI when track reaches the end
     audio.addEventListener("ended", function() {
-        btnIcon.className = "fas fa-play fs-5";
-        seekSlider.value = 0;
-        currentTimeText.textContent = "0:00";
+        if (btnIcon) btnIcon.className = "fas fa-play fs-5";
+        if (seekSlider) seekSlider.value = 0;
+        if (currentTimeText) currentTimeText.textContent = "0:00";
     });
 });
 </script>
-
 {% endblock content %}
-{% block script_addon %}
-{{ block.super }} <script src="{% static 'main/js/index.js' %}"></script>
-{% endblock script_addon %}
-
-
-
-$h3p@g_!!!

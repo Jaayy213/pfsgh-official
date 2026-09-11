@@ -172,6 +172,14 @@
                     <i class="fas fa-boxes me-2"></i>Client Products
                 </a>
 
+                <a class="nav-link {% if request.resolver_match.url_name == 'quote_dashboard' %}active{% endif %}" href="{% url 'quote_dashboard' %}">
+                    <i class="fas fa-file-invoice me-2"></i>Quote Requests
+                </a>
+
+                <a class="nav-link {% if request.resolver_match.url_name == 'rsvp_dashboard' %}active{% endif %}" href="{% url 'rsvp_dashboard' %}">
+                    <i class="fas fa-calendar-check me-2"></i>Event RSVPs
+                </a>
+
                 <a class="nav-link {% if request.resolver_match.url_name == 'manage_audio' %}active{% endif %}" href="{% url "manage_audio" %}">
                     <i class="fas fa-music me-2"></i>Audio Library
                 </a>
