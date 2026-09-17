@@ -5,20 +5,33 @@
 {% block extra_css %}
 <style>
     #content-area {
+        width: 100%;
+        max-width: 100%;
         min-width: 0;
-        width: calc(100% - 260px);
-        margin-left: 260px;
-        overflow-x: hidden;
-        background-color: #f8fafc;
+        margin-left: 0;
         padding: 1.5rem;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     @media (max-width: 991.98px) {
         #content-area {
             width: 100%;
+            max-width: 100%;
             margin-left: 0;
             padding: 1rem;
         }
+    }
+
+    .dashboard-panel,
+    .metric-card,
+    .table-responsive {
+        min-width: 0;
+    }
+
+    .table-responsive {
+        width: 100%;
+        max-width: 100%;
     }
 
     .metric-card {
@@ -179,24 +192,24 @@
             <div class="dashboard-panel h-100">
                 <h5 class="fw-bold mb-3 text-dark">Service Breakdown</h5>
                 
-                <div class="row g-2">
+                <div class="d-flex flex-column gap-2 px-1">
                     {% for stat in service_stats %}
-                    <div class="col-sm-6">
-                        <div class="p-2 border rounded bg-light">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="fw-semibold text-dark small text-truncate" title="{{ stat.label }}">{{ stat.label }}</span>
-                                <span class="badge bg-secondary-subtle text-dark border ms-1" style="font-size: 0.75rem;">{{ stat.count }}</span>
-                            </div>
-                            <div class="progress-bar-custom">
-                                <div class="progress-fill" style="width: {{ stat.pct }}%;"></div>
-                            </div>
-                            <div class="text-end mt-1">
+                    <div class="py-1">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="fw-semibold text-dark small text-truncate me-2" title="{{ stat.label }}">
+                                {{ stat.label }}
+                            </span>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="badge bg-secondary-subtle text-dark border" style="font-size: 0.7rem;">{{ stat.count }}</span>
                                 <span class="text-muted" style="font-size: 0.7rem;">{{ stat.pct }}%</span>
                             </div>
                         </div>
+                        <div class="progress-bar-custom" style="height: 4px;">
+                            <div class="progress-fill" style="width: {{ stat.pct }}%;"></div>
+                        </div>
                     </div>
                     {% empty %}
-                    <div class="col-12 text-center text-muted py-4">No service data available.</div>
+                    <div class="text-center text-muted py-3 small">No service data available.</div>
                     {% endfor %}
                 </div>
             </div>
@@ -436,6 +449,51 @@
                 </tbody>
             </table>
         </div>
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+            <span class="small text-muted">
+                Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} entries
+            </span>
+            <nav aria-label="Table Page Navigation">
+                <ul class="pagination pagination-sm mb-0">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_service %}&service={{ selected_service }}{% endif %}">
+                            Previous
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                    {% endif %}
+
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ i }}</span>
+                        </li>
+                        {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_service %}&service={{ selected_service }}{% endif %}">
+                                {{ i }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_service %}&service={{ selected_service }}{% endif %}">
+                            Next
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
     </div>
 </div>
 

@@ -42,7 +42,7 @@ def enquiry_dashboard(request):
     base_enquiries = Enquiry.objects.all()
     total_count = base_enquiries.count()
 
-    # 1. Initialize ALL statuses to 0
+    # Initialize ALL statuses to 0
     statuses_dict = dict(Enquiry.STATUS_CHOICES)
     all_status_counts = {key: 0 for key in statuses_dict.keys()}
     
@@ -74,10 +74,9 @@ def enquiry_dashboard(request):
             'pct': pct
         })
 
-    # Sort status list by count descending
     status_stats.sort(key=lambda x: x['count'], reverse=True)
 
-    # 2. Initialize ALL services to 0
+    # Initialize ALL services to 0
     services_dict = dict(Enquiry.SERVICE_CHOICES)
     all_service_counts = {key: 0 for key in services_dict.keys()}
 
@@ -99,10 +98,9 @@ def enquiry_dashboard(request):
             'pct': pct
         })
 
-    # Sort service list by count descending
     service_stats.sort(key=lambda x: x['count'], reverse=True)
 
-    # 3. Filter Table Results Separately
+    # Filter Table Results
     filtered_enquiries = base_enquiries.order_by("-created_at")
     selected_service = request.GET.get('service', '')
     selected_status = request.GET.get('status', '')
@@ -112,8 +110,14 @@ def enquiry_dashboard(request):
     if selected_status:
         filtered_enquiries = filtered_enquiries.filter(status=selected_status)
 
+    # --- PAGINATION ---
+    paginator = Paginator(filtered_enquiries, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "enquiries": filtered_enquiries,
+        "enquiries": page_obj,
+        "page_obj": page_obj,
         "services": Enquiry.SERVICE_CHOICES,
         "statuses": Enquiry.STATUS_CHOICES,
         "selected_service": selected_service,
