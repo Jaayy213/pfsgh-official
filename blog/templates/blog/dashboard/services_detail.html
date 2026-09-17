@@ -1,0 +1,842 @@
+{% extends "blog/dashboard/base_dashboard.html" %}
+
+{% block title %}Request Details - {{ req.ref_number }}{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --pfs-purple: #5C1D6D;
+        --pfs-purple-dark: #481557;
+        --pfs-orange: #fc7013;
+        --pfs-orange-soft: #fff5ed;
+        --pfs-purple-soft: #f7f0f9;
+        --pfs-text: #263238;
+        --pfs-muted: #6b7280;
+        --pfs-border: #e8eaf0;
+        --pfs-bg: #f6f7fb;
+    }
+
+    .request-detail-page {
+        color: var(--pfs-text);
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .request-detail-page .row {
+        max-width: 100%;
+    }
+
+    .request-hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 28px 30px;
+        margin-bottom: 24px;
+        color: #fff;
+        background:
+            radial-gradient(circle at 90% 10%, rgba(252,112,19,.30), transparent 28%),
+            linear-gradient(135deg, var(--pfs-purple), #722486);
+        box-shadow: 0 14px 35px rgba(92,29,109,.18);
+    }
+
+    .request-hero::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        right: -60px;
+        bottom: -90px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.08);
+    }
+
+    .request-ref {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 11px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.13);
+        border: 1px solid rgba(255,255,255,.18);
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .03em;
+    }
+
+    .request-hero h2 {
+        font-weight: 800;
+        margin: 10px 0 5px;
+    }
+
+    .request-hero p {
+        margin: 0;
+        color: rgba(255,255,255,.78);
+        font-size: .9rem;
+    }
+
+    .hero-actions {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-actions .btn {
+        border-radius: 10px;
+        font-weight: 700;
+        padding: 9px 15px;
+    }
+
+    .btn-back {
+        color: #fff;
+        border: 1px solid rgba(255,255,255,.35);
+        background: rgba(255,255,255,.10);
+    }
+
+    .btn-back:hover {
+        color: #fff;
+        background: rgba(255,255,255,.18);
+    }
+
+    .btn-delete {
+        background: #fff;
+        color: #b42318;
+        border: 0;
+    }
+
+    .detail-card {
+        background: #fff;
+        border: 1px solid var(--pfs-border);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(15,23,42,.055);
+        margin-bottom: 20px;
+    }
+
+    .detail-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 17px 20px;
+        border-bottom: 1px solid var(--pfs-border);
+        background: linear-gradient(to right, #fff, #fcfcfd);
+    }
+
+    .section-icon {
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 11px;
+        color: var(--pfs-purple);
+        background: var(--pfs-purple-soft);
+    }
+
+    .section-icon.orange {
+        color: var(--pfs-orange);
+        background: var(--pfs-orange-soft);
+    }
+
+    .detail-card-header h5 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    .detail-card-header small {
+        display: block;
+        margin-top: 2px;
+        color: var(--pfs-muted);
+        font-size: .75rem;
+    }
+
+    .detail-card-body {
+        padding: 20px;
+    }
+
+    .field {
+        height: 100%;
+        padding: 13px 14px;
+        border: 1px solid #edf0f4;
+        border-radius: 11px;
+        background: #fbfcfe;
+    }
+
+    .field-label {
+        display: block;
+        margin-bottom: 5px;
+        color: #7b8490;
+        font-size: .72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .035em;
+    }
+
+    .field-value {
+        color: #27313a;
+        font-size: .9rem;
+        font-weight: 600;
+        word-break: break-word;
+    }
+
+    .field-value.muted {
+        color: #9aa1a9;
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .service-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        font-size: .78rem;
+        font-weight: 800;
+    }
+
+    .service-pill.drying {
+        color: #157347;
+        background: #eaf7ef;
+    }
+
+    .service-pill.development {
+        color: #8a4b00;
+        background: #fff2d9;
+    }
+
+    .service-pill.combined {
+        color: var(--pfs-purple);
+        background: var(--pfs-purple-soft);
+    }
+
+    .status-yes,
+    .status-no {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 9px;
+        border-radius: 7px;
+        font-size: .76rem;
+        font-weight: 700;
+    }
+
+    .status-yes {
+        color: #157347;
+        background: #eaf7ef;
+    }
+
+    .status-no {
+        color: #6c757d;
+        background: #f0f2f4;
+    }
+
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 7px;
+    }
+
+    .detail-tag {
+        padding: 5px 9px;
+        border-radius: 7px;
+        color: #4b5563;
+        background: #f4f5f7;
+        border: 1px solid #e3e5e8;
+        font-size: .76rem;
+        font-weight: 600;
+    }
+
+    .long-field {
+        white-space: pre-line;
+        line-height: 1.65;
+    }
+
+    .product-image-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 13px;
+        border: 1px solid var(--pfs-border);
+        background: #f8f9fa;
+    }
+
+    .product-image-wrap img {
+        display: block;
+        width: 100%;
+        max-height: 340px;
+        object-fit: contain;
+        background: #f8f9fa;
+    }
+
+    .image-caption {
+        padding: 9px 12px;
+        border-top: 1px solid var(--pfs-border);
+        color: var(--pfs-muted);
+        background: #fff;
+        font-size: .75rem;
+    }
+
+    .sticky-side {
+        position: sticky;
+        top: 20px;
+    }
+
+    .signature-box {
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px dashed #d8dbe1;
+        background: #fafbfc;
+    }
+
+    .signature-name {
+        color: var(--pfs-purple);
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    @media (max-width: 991.98px) {
+        .sticky-side {
+            position: static;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .request-hero {
+            padding: 22px 18px;
+        }
+
+        .detail-card-body {
+            padding: 15px;
+        }
+
+        .hero-actions {
+            margin-top: 18px;
+        }
+    }
+</style>
+
+<div class="request-detail-page">
+
+    <!-- Hero / Header -->
+    <div class="request-hero">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <a href="{% url 'service_request_dashboard' %}" class="btn btn-back btn-sm mb-2">
+                    <i class="fas fa-arrow-left me-1"></i> Back to Service Requests
+                </a>
+
+                <div class="request-ref">
+                    <i class="fas fa-hashtag"></i>{{ req.ref_number }}
+                </div>
+
+                <h2>Service Request Details</h2>
+                <p>Complete client, service, product-development and project information.</p>
+            </div>
+
+            <div class="col-lg-4 text-lg-end hero-actions">
+                <a href="{% url 'service_request_delete' req.pk %}"
+                   class="btn btn-delete">
+                    <i class="fas fa-trash-alt me-1"></i> Delete Request
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- LEFT COLUMN -->
+        <div class="col-xl-4">
+            <div class="sticky-side">
+
+                <!-- Client Information -->
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <span class="section-icon"><i class="fas fa-user"></i></span>
+                        <div>
+                            <h5>Client Information</h5>
+                            <small>Contact and business details</small>
+                        </div>
+                    </div>
+
+                    <div class="detail-card-body">
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <div class="field">
+                                    <span class="field-label">Full / Company Name</span>
+                                    <div class="field-value">{{ req.full_name_or_company|default:"N/A" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xl-12">
+                                <div class="field">
+                                    <span class="field-label">Phone</span>
+                                    <div class="field-value">
+                                        {% if req.phone %}
+                                            <a href="tel:{{ req.phone }}" class="text-decoration-none">{{ req.phone }}</a>
+                                        {% else %}N/A{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xl-12">
+                                <div class="field">
+                                    <span class="field-label">Email</span>
+                                    <div class="field-value">
+                                        {% if req.email %}
+                                            <a href="mailto:{{ req.email }}" class="text-decoration-none">{{ req.email }}</a>
+                                        {% else %}N/A{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xl-12">
+                                <div class="field">
+                                    <span class="field-label">Registration Status</span>
+                                    <div class="field-value">{{ req.registration_status|default:"N/A" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field">
+                                    <span class="field-label">Business Address</span>
+                                    <div class="field-value long-field">{{ req.business_address|default:"N/A" }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Type -->
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <span class="section-icon orange"><i class="fas fa-cogs"></i></span>
+                        <div>
+                            <h5>Service Requested</h5>
+                            <small>Selected service pathway</small>
+                        </div>
+                    </div>
+
+                    <div class="detail-card-body">
+                        {% if req.service_choice == 'A' %}
+                            <span class="service-pill drying">
+                                <i class="fas fa-wind"></i> Drying Service Only
+                            </span>
+                        {% elif req.service_choice == 'B' %}
+                            <span class="service-pill development">
+                                <i class="fas fa-flask"></i> Product Development
+                            </span>
+                        {% elif req.service_choice == 'C' %}
+                            <span class="service-pill combined">
+                                <i class="fas fa-cubes"></i> Combined Service
+                            </span>
+                        {% else %}
+                            <span class="field-value muted">Not specified</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Project Parameters -->
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <span class="section-icon"><i class="fas fa-calendar-alt"></i></span>
+                        <div>
+                            <h5>Project Parameters</h5>
+                            <small>Timeline, budget and authorization</small>
+                        </div>
+                    </div>
+
+                    <div class="detail-card-body">
+                        <div class="row g-2">
+                            <div class="col-6 col-xl-12">
+                                <div class="field">
+                                    <span class="field-label">Preferred Start</span>
+                                    <div class="field-value">{{ req.preferred_start_date|default:"N/A" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-xl-12">
+                                <div class="field">
+                                    <span class="field-label">Target Completion</span>
+                                    <div class="field-value">{{ req.target_completion_date|default:"N/A" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field">
+                                    <span class="field-label">Indicative Budget</span>
+                                    <div class="field-value">{{ req.indicative_budget|default:"N/A" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field">
+                                    <span class="field-label">Special Requirements / Allergen Notes</span>
+                                    <div class="field-value long-field">{{ req.special_requirements|default:"None provided" }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="signature-box">
+                                    <span class="field-label">Typed Signature</span>
+                                    <div class="signature-name">
+                                        <i class="fas fa-signature me-1"></i>
+                                        {{ req.signature_typed_name|default:"N/A" }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field">
+                                    <span class="field-label">Declaration Accepted</span>
+                                    {% if req.declaration_accepted %}
+                                        <span class="status-yes"><i class="fas fa-check-circle"></i> Accepted</span>
+                                    {% else %}
+                                        <span class="status-no"><i class="fas fa-times-circle"></i> Not accepted</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-xl-8">
+
+            <!-- Dehydration Service -->
+            {% if req.service_choice == 'A' or req.service_choice == 'C' %}
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <span class="section-icon"><i class="fas fa-wind"></i></span>
+                    <div>
+                        <h5>Dehydration Service Details</h5>
+                        <small>Product preparation, drying parameters and processing requirements</small>
+                    </div>
+                </div>
+
+                <div class="detail-card-body">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Product Name</span>
+                                <div class="field-value">{{ req.product_name|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Quantity in Margarine Buckets</span>
+                                <div class="field-value">{{ req.quantity_margarine_buckets|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Current Form</span>
+                                <div class="field-value">{{ req.current_form|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Current Form (Other)</span>
+                                <div class="field-value">{{ req.current_form_other|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Expected Delivery Date</span>
+                                <div class="field-value">{{ req.delivery_date|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="field">
+                                <span class="field-label">Known Drying Temp.</span>
+                                <div class="field-value">{{ req.known_temperature|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="field">
+                                <span class="field-label">Known Drying Time</span>
+                                <div class="field-value">{{ req.known_time|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="field">
+                                <span class="field-label">Processing Details</span>
+                                <div class="field-value long-field">{{ req.processing_method_details|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Drying checklist -->
+                        <div class="col-12">
+                            <div class="field">
+                                <span class="field-label">Drying Readiness & Processing Checklist</span>
+
+                                <div class="row g-2 mt-1">
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">Product sorted?</span>
+                                            {% if req.is_sorted %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">Product cleaned/washed?</span>
+                                            {% if req.is_cleaned %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">Washing required at PFS?</span>
+                                            {% if req.washing_needed_at_pfs %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2">
+                                            <span class="small">Dried before?</span>
+                                            {% if req.has_dried_before %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">Previous result satisfactory?</span>
+                                            {% if req.previous_result_good %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">PFS decides parameters?</span>
+                                            {% if req.pfs_decide_parameters %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                            <span class="small">Sample test batch agreed?</span>
+                                            {% if req.agree_sample_test %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center py-2">
+                                            <span class="small">Delivery before 10:00 AM?</span>
+                                            {% if req.confirm_delivery_before_10am %}
+                                                <span class="status-yes"><i class="fas fa-check"></i> Yes</span>
+                                            {% else %}
+                                                <span class="status-no"><i class="fas fa-minus"></i> No</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product image -->
+                        {% if req.product_image %}
+                        <div class="col-12">
+                            <div class="field">
+                                <span class="field-label">Uploaded Product Image</span>
+                                <div class="product-image-wrap mt-2">
+                                    <img src="{{ req.product_image.url }}" alt="Uploaded product image">
+                                    <div class="image-caption">
+                                        <i class="fas fa-image me-1"></i> Product image submitted with the request
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Product Development -->
+            {% if req.service_choice == 'B' or req.service_choice == 'C' %}
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <span class="section-icon orange"><i class="fas fa-flask"></i></span>
+                    <div>
+                        <h5>Product Development Details</h5>
+                        <small>Formulation, market, packaging and product requirements</small>
+                    </div>
+                </div>
+
+                <div class="detail-card-body">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Product Idea / Intended Name</span>
+                                <div class="field-value long-field">{{ req.product_idea|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Current Production Method</span>
+                                <div class="field-value long-field">{{ req.current_production_method|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="field">
+                                <span class="field-label">Raw Materials & Ingredients List</span>
+                                <div class="field-value long-field">{{ req.raw_materials_list|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Intended Pack Size</span>
+                                <div class="field-value">{{ req.intended_pack_size|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Target Retail Price</span>
+                                <div class="field-value">{{ req.target_retail_price|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="field">
+                                <span class="field-label">Storage Condition</span>
+                                <div class="field-value">{{ req.storage_condition|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="field">
+                                <span class="field-label">Usage Method</span>
+                                <div class="field-value">{{ req.usage_method|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="field">
+                                <span class="field-label">Expected Shelf Life</span>
+                                <div class="field-value">{{ req.expected_shelf_life|default:"N/A" }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Multi-select fields -->
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Desired Product Form</span>
+                                {% if req.desired_product_form %}
+                                    <div class="tag-list">
+                                        {% for item in req.desired_product_form %}
+                                            <span class="detail-tag">{{ item }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-value muted">N/A</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Packaging Preference</span>
+                                {% if req.packaging_preference %}
+                                    <div class="tag-list">
+                                        {% for item in req.packaging_preference %}
+                                            <span class="detail-tag">{{ item }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-value muted">N/A</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Target Market</span>
+                                {% if req.target_market %}
+                                    <div class="tag-list">
+                                        {% for item in req.target_market %}
+                                            <span class="detail-tag">{{ item }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-value muted">N/A</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="field">
+                                <span class="field-label">Product Benefits</span>
+                                {% if req.product_benefits %}
+                                    <div class="tag-list">
+                                        {% for item in req.product_benefits %}
+                                            <span class="detail-tag">{{ item }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-value muted">N/A</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="field">
+                                <span class="field-label">Additional Services Needed</span>
+                                {% if req.additional_services %}
+                                    <div class="tag-list">
+                                        {% for item in req.additional_services %}
+                                            <span class="detail-tag">{{ item }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-value muted">N/A</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

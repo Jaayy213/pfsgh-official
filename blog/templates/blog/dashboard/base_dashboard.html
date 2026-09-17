@@ -172,6 +172,10 @@
                     <i class="fas fa-boxes me-2"></i>Client Products
                 </a>
 
+                <a class="nav-link {% if request.resolver_match.url_name == 'service_request_dashboard' or request.resolver_match.url_name == 'service_request_detail' %}active{% endif %}" href="{% url 'service_request_dashboard' %}">
+                    <i class="fas fa-clipboard-list me-2"></i>Service Requests
+                </a>
+
                 <a class="nav-link {% if request.resolver_match.url_name == 'quote_dashboard' %}active{% endif %}" href="{% url 'quote_dashboard' %}">
                     <i class="fas fa-file-invoice me-2"></i>Quote Requests
                 </a>

@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+
+{% block title %}Request Submitted | PFS Ghana{% endblock %}
+
+{% load static %}
+
+{% block styles_addon %}
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(44, 62, 80, 0.82), rgba(137, 15, 145, 0.82)), 
+                          url('{% static "main/images/minimal_lab_hero_background.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<div class="container my-5 text-center">
+  <div class="card p-5 mx-auto shadow-sm" style="max-width: 600px; border-radius: 15px;">
+    <div class="mb-3">
+      <i class="fas fa-check-circle fa-4x" style="color: #4CAF50;"></i>
+    </div>
+    <h2 style="color: #5C1D6D; font-weight: 800;">Request Submitted!</h2>
+    <p class="lead mt-3">Thank you for submitting your request to Pneuma Food Scientifics.</p>
+    
+    <div class="p-3 my-3" style="background-color: #f8f9fa; border-radius: 8px;">
+      <span class="text-muted d-block">Your Reference Number:</span>
+      <strong class="fs-4" style="color: #F7960F;">{{ ref_number }}</strong>
+    </div>
+
+    <p class="text-muted">An email confirmation has been sent to your inbox. We will review your project parameters and reach out soon.</p>
+
+    <div class="mt-4">
+      <a href="https://wa.me/233207935696?text=Hello%20PFS,%20I%20just%20submitted%20a%20request%20with%20reference%20{{ ref_number }}" 
+         target="_blank" class="btn btn-success btn-lg me-2">
+        <i class="fab fa-whatsapp me-2"></i> Contact on WhatsApp
+      </a>
+      <a href="/" class="btn btn-outline-secondary btn-lg">Return to Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

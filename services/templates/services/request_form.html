@@ -1,0 +1,583 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Service Request Form | PFS Ghana{% endblock %}
+
+{% block styles_addon %}
+<style>
+  :root {
+    --pfs-purple: #5C1D6D;
+    --pfs-purple-hover: #481557;
+    --pfs-orange: #fc7013;
+    --pfs-bg-accent: #f8fafc;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(44, 62, 80, 0.82), rgba(137, 15, 145, 0.82)), 
+                          url('{% static "main/images/food_lab_hero_background.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  .form-section-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 15px;
+  }
+
+  .form-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 2px solid var(--pfs-orange);
+    padding: 35px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .brand-icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 12px;
+    background: #fff3ea;
+    color: var(--pfs-orange);
+  }
+
+  .form-section-title {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-section-title i {
+    color: var(--pfs-orange);
+  }
+
+  /* Service Selector Cards */
+  .service-option-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: #ffffff;
+    height: 100%;
+  }
+
+  .service-option-card:hover {
+    border-color: var(--pfs-orange);
+    background: #fffaf7;
+  }
+
+  .service-option-card.active {
+    border-color: var(--pfs-purple);
+    background: rgba(92, 29, 109, 0.04);
+  }
+
+  .service-option-card i {
+    color: var(--pfs-purple);
+    margin-bottom: 8px;
+  }
+
+  .form-control, .form-select, textarea {
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid #ced4da;
+    font-size: 0.95rem;
+  }
+
+  .form-control:focus, .form-select:focus, textarea:focus {
+    border-color: var(--pfs-orange);
+    box-shadow: 0 0 0 0.25rem rgba(252, 112, 19, 0.20);
+  }
+
+  .btn-primary-custom {
+    background: var(--accent-color, #fc7013);
+    border: 2px solid var(--accent-color, #fc7013);
+    color: white;
+  }
+
+  .btn-primary-custom:hover {
+    background: transparent;
+    color: var(--accent-color, #fc7013);
+    box-shadow: 0 8px 25px rgba(252, 112, 19, 0.4);
+  }
+
+  .btn-primary-pfs {
+    background: var(--pfs-purple);
+    border: 2px solid var(--pfs-purple);
+    color: white;
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary-pfs:hover {
+    background: var(--pfs-purple-hover);
+    border-color: var(--pfs-purple-hover);
+    color: white;
+  }
+
+  .btn-secondary-custom {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+  }
+
+  .btn-secondary-custom:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+  }
+
+  .info-box-styled {
+    background-color: #fff8f1;
+    border-left: 4px solid var(--pfs-orange);
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #7c2d12;
+  }
+
+  .step-tab {
+    display: none;
+  }
+
+  .step-tab.active {
+    display: block;
+  }
+
+  .custom-file-wrapper {
+    background-color: var(--pfs-bg-accent);
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<div class="form-section-container">
+  <div class="form-card">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <div class="brand-icon-box">
+        <i class="fas fa-clipboard-list"></i>
+      </div>
+      <h3 class="fw-bold text-dark mb-1">Service Request Form</h3>
+      <p class="text-muted small mb-0">Request for <strong class="text-dark">Dehydration</strong> or <strong class="text-dark">Product Development</strong> Services</p>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress mb-4" style="height: 6px; border-radius: 10px; background-color: #e2e8f0;">
+      <div id="pfsProgressBar" class="progress-bar" role="progressbar" style="width: 33%; background-color: var(--pfs-orange);"></div>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" id="pfsDynamicForm" novalidate>
+      {% csrf_token %}
+
+      <!-- STEP 1: Service Selection & Client Details -->
+      <div class="step-tab active" id="step-1">
+        <h6 class="form-section-title">
+          <i class="fas fa-cogs"></i> Step 1: Select Service Required
+        </h6>
+        
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="service-option-card" id="cardA" onclick="selectService('A')">
+              <i class="fas fa-wind fa-2x d-block"></i>
+              <strong class="d-block text-dark small">Drying Service Only</strong>
+              <span class="text-muted" style="font-size: 0.78rem;">Dehydrator processing</span>
+              <input type="radio" name="service_choice" value="A" id="choiceA" class="d-none">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service-option-card" id="cardB" onclick="selectService('B')">
+              <i class="fas fa-flask fa-2x d-block"></i>
+              <strong class="d-block text-dark small">Product Development</strong>
+              <span class="text-muted" style="font-size: 0.78rem;">Formulation & R&D</span>
+              <input type="radio" name="service_choice" value="B" id="choiceB" class="d-none">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service-option-card" id="cardC" onclick="selectService('C')">
+              <i class="fas fa-cubes fa-2x d-block"></i>
+              <strong class="d-block text-dark small">Combined Service</strong>
+              <span class="text-muted" style="font-size: 0.78rem;">Development + Drying</span>
+              <input type="radio" name="service_choice" value="C" id="choiceC" class="d-none">
+            </div>
+          </div>
+        </div>
+
+        <h6 class="form-section-title">
+          <i class="fas fa-user"></i> Client Information
+        </h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Full / Company Name*</label>
+            {{ form.full_name_or_company }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Phone Number*</label>
+            {{ form.phone }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Email Address*</label>
+            {{ form.email }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Business Registration Status*</label>
+            {{ form.registration_status }}
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold text-dark small">Business Address*</label>
+            {{ form.business_address }}
+          </div>
+        </div>
+
+        <div class="text-end mt-4">
+          <button type="button" class="btn btn-primary-pfs" onclick="nextStep(2)">
+            Next <i class="fas fa-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Service Specifications -->
+      <div class="step-tab" id="step-2">
+        
+        <!-- Section 2A: Drying Service -->
+        <div id="sec-2a" class="d-none">
+          <h6 class="form-section-title">
+            <i class="fas fa-temperature-high"></i> Dehydration Specifications
+          </h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Product Name</label>
+              {{ form.product_name }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Quantity in Margarine Buckets</label>
+              {{ form.quantity_margarine_buckets }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Current Form</label>
+              {{ form.current_form }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Current Form (Other)</label>
+              {{ form.current_form_other }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Upload Product Image</label>
+              <div class="custom-file-wrapper">
+                {{ form.product_image }}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Expected Delivery Date</label>
+              {{ form.delivery_date }}
+            </div>
+            
+            <div class="col-12">
+              <label class="form-label fw-semibold text-dark small">Processing Details</label>
+              {{ form.processing_method_details }}
+            </div>
+
+            <!-- Parameters & History -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Known Drying Temp</label>
+              {{ form.known_temperature }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Known Drying Time</label>
+              {{ form.known_time }}
+            </div>
+
+            <!-- Checkbox Matrix Header -->
+            <div class="col-12 mb-2">
+              <label class="form-label fw-semibold text-dark small d-block mb-1">
+                Drying Readiness & Processing Checklist
+              </label>
+              <span class="text-muted small d-block">
+                <i class="fas fa-info-circle me-1 text-primary"></i>Check the box for <strong>Yes</strong>, or leave it unchecked for <strong>No</strong>.
+              </span>
+            </div>
+
+            <!-- Checkbox Matrix Columns -->
+            <div class="col-md-6">
+              <div class="form-check mt-1">
+                {{ form.is_sorted }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.is_sorted.id_for_label }}">Has product been sorted?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.is_cleaned }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.is_cleaned.id_for_label }}">Has product been cleaned/washed?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.washing_needed_at_pfs }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.washing_needed_at_pfs.id_for_label }}">Washing required at PFS facility?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.has_dried_before }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.has_dried_before.id_for_label }}">Has this product been dried before?</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-check mt-1">
+                {{ form.previous_result_good }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.previous_result_good.id_for_label }}">Previous drying result satisfactory?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.pfs_decide_parameters }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.pfs_decide_parameters.id_for_label }}">Allow PFS to decide parameters?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.agree_sample_test }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.agree_sample_test.id_for_label }}">Agree to sample test batch?</label>
+              </div>
+              <div class="form-check mt-2">
+                {{ form.confirm_delivery_before_10am }}
+                <label class="form-check-label small text-dark ms-1" for="{{ form.confirm_delivery_before_10am.id_for_label }}">Confirm delivery before 10:00 AM?</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2B: Product Development -->
+        <div id="sec-2b" class="d-none mt-3">
+          <h6 class="form-section-title">
+            <i class="fas fa-vial"></i> Product Development & Additional Services
+          </h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Product Idea / Intended Name</label>
+              {{ form.product_idea }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Current Production Method</label>
+              {{ form.current_production_method }}
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold text-dark small">Raw Materials & Ingredients List</label>
+              {{ form.raw_materials_list }}
+            </div>
+
+            <!-- Parameters Grid -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Intended Pack Size</label>
+              {{ form.intended_pack_size }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Target Retail Price</label>
+              {{ form.target_retail_price }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold text-dark small">Storage Condition</label>
+              {{ form.storage_condition }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold text-dark small">Usage Method</label>
+              {{ form.usage_method }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold text-dark small">Expected Shelf Life</label>
+              {{ form.expected_shelf_life }}
+            </div>
+
+            <!-- Multiple Choice Fields explicitly iterated to avoid <ul>/<li> styling issues -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Desired Product Form</label>
+              {% for check in form.desired_product_form %}
+                <div class="form-check">
+                  {{ check.tag }}
+                  <label class="form-check-label small text-dark ms-1" for="{{ check.id_for_label }}">{{ check.choice_label }}</label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Packaging Preference</label>
+              {% for check in form.packaging_preference %}
+                <div class="form-check">
+                  {{ check.tag }}
+                  <label class="form-check-label small text-dark ms-1" for="{{ check.id_for_label }}">{{ check.choice_label }}</label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Target Market</label>
+              {% for check in form.target_market %}
+                <div class="form-check">
+                  {{ check.tag }}
+                  <label class="form-check-label small text-dark ms-1" for="{{ check.id_for_label }}">{{ check.choice_label }}</label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-dark small">Product Benefits</label>
+              {% for check in form.product_benefits %}
+                <div class="form-check">
+                  {{ check.tag }}
+                  <label class="form-check-label small text-dark ms-1" for="{{ check.id_for_label }}">{{ check.choice_label }}</label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold text-dark small">Additional Services Needed</label>
+              {% for check in form.additional_services %}
+                <div class="form-check">
+                  {{ check.tag }}
+                  <label class="form-check-label small text-dark ms-1" for="{{ check.id_for_label }}">{{ check.choice_label }}</label>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary-custom" onclick="nextStep(1)">
+            <i class="fas fa-arrow-left me-1"></i> Back
+          </button>
+          <button type="button" class="btn btn-primary-pfs" onclick="nextStep(3)">
+            Next <i class="fas fa-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Timelines & Submission -->
+      <div class="step-tab" id="step-3">
+        <h6 class="form-section-title">
+          <i class="fas fa-calendar-alt"></i> Project Parameters & Final Terms
+        </h6>
+        
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Preferred Start Date*</label>
+            {{ form.preferred_start_date }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Target Completion Date*</label>
+            {{ form.target_completion_date }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Indicative Budget Range*</label>
+            {{ form.indicative_budget }}
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-dark small">Typed Signature (Full Name)*</label>
+            {{ form.signature_typed_name }}
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold text-dark small">Special Requirements / Allergen Notes</label>
+            {{ form.special_requirements }}
+          </div>
+        </div>
+
+        <!-- Info Note Box -->
+        <div id="dryingTermsBox" class="info-box-styled my-4 d-none">
+          <strong>Drying Fee Note:</strong> GHS 10/hr per 2 buckets. Rate: GHS 10-25/hr. Labour: GHS 150/day per staff. 70% upfront required. We do not dry highly scented or very watery products.
+        </div>
+
+        <div class="form-check my-3">
+          {{ form.declaration_accepted }}
+          <label class="form-check-label text-dark small ms-1" for="{{ form.declaration_accepted.id_for_label }}">
+            I confirm all provided information is accurate and confidential.
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary-custom" onclick="nextStep(2)">
+            <i class="fas fa-arrow-left me-1"></i> Back
+          </button>
+          <button type="submit" class="btn btn-primary-custom fw-bold px-4 py-2">
+            Submit <i class="fas fa-paper-plane ms-2"></i>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  let currentService = 'A';
+
+  function selectService(type) {
+    currentService = type;
+    document.querySelectorAll('.service-option-card').forEach(card => card.classList.remove('active'));
+    
+    const choiceInput = document.getElementById(`choice${type}`);
+    if (choiceInput) {
+      choiceInput.checked = true;
+      const card = document.getElementById(`card${type}`);
+      if (card) {
+        card.classList.add('active');
+      }
+    }
+    updateBranchVisibility();
+  }
+
+  function updateBranchVisibility() {
+    const sec2a = document.getElementById('sec-2a');
+    const sec2b = document.getElementById('sec-2b');
+    const termsBox = document.getElementById('dryingTermsBox');
+
+    if (currentService === 'A') {
+      sec2a.classList.remove('d-none');
+      sec2b.classList.add('d-none');
+      termsBox.classList.remove('d-none');
+    } else if (currentService === 'B') {
+      sec2a.classList.add('d-none');
+      sec2b.classList.remove('d-none');
+      termsBox.classList.add('d-none');
+    } else {
+      sec2a.classList.remove('d-none');
+      sec2b.classList.remove('d-none');
+      termsBox.classList.remove('d-none');
+    }
+  }
+
+  function nextStep(step) {
+    updateBranchVisibility();
+    document.querySelectorAll('.step-tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(`step-${step}`).classList.add('active');
+    
+    let progress = step === 1 ? '33%' : step === 2 ? '66%' : '100%';
+    document.getElementById('pfsProgressBar').style.width = progress;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialVal = '{{ form.service_choice.value|default:"A" }}';
+    selectService(initialVal);
+    updateBranchVisibility();
+  });
+</script>
+{% endblock content %}

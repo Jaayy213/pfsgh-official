@@ -3,6 +3,7 @@ from . import views
 from enquiries.views import enquiry_dashboard, export_enquiries
 from main.views import manage_audio, manage_video, edit_audio, edit_video, delete_audio, delete_video
 from events.views import rsvp_dashboard, rsvp_delete, rsvp_edit
+from services.views import service_request_dashboard, service_request_detail, service_request_delete
 
 
 urlpatterns = [
@@ -32,6 +33,11 @@ urlpatterns = [
     path('dashboard/rsvps/', rsvp_dashboard, name='rsvp_dashboard'),
     path('dashboard/rsvps/<int:pk>/edit/', rsvp_edit, name='rsvp_edit'),
     path('dashboard/rsvps/<int:pk>/delete/', rsvp_delete, name='rsvp_delete'),
+
+    # Services (Dehydration & Product Development)
+    path('dashboard/services/', service_request_dashboard, name='service_request_dashboard'),
+    path('dashboard/services/<int:pk>/', service_request_detail, name='service_request_detail'),
+    path('dashboard/services/<int:pk>/delete/', service_request_delete, name='service_request_delete'),
 
     # Product Tags & Products
     path('dashboard/product_tags', views.product_tags, name='product_tags'),
