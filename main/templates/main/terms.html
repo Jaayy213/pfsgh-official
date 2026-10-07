@@ -1,0 +1,280 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Terms of Service | Pneuma Food Scientifics{% endblock title %}
+
+{% block meta_tags %}
+<meta name="description" content="Review the Terms of Service and Terms of Use for Pneuma Food Scientifics, covering consultancy agreements, PFS Connect portal usage, payment structures, and regulatory engagement protocols.">
+<meta property="og:title" content="Terms of Service | Pneuma Food Scientifics">
+<meta property="og:description" content="Terms governing the use of Pneuma Food Scientifics' consulting services, dehydration facilities, lab testing access, and the PFS Connect digital platform.">
+<meta property="og:url" content="{% url 'terms' %}">
+{% endblock meta_tags %}
+
+{% block styles_addon %}
+<style>
+  .legal-header {
+    background: linear-gradient(135deg, #0f2b48 0%, #1a436e 100%);
+    color: #ffffff;
+    padding: 60px 0 40px;
+  }
+  .legal-content h2 {
+    color: #0f2b48;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+  }
+  .legal-content h3 {
+    color: #1a436e;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content ul, .legal-content ol {
+    padding-left: 1.25rem;
+  }
+  .legal-content li {
+    margin-bottom: 0.5rem;
+  }
+  .legal-sidebar .card {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 8px;
+  }
+  .legal-nav-link {
+    color: #495057;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  .legal-nav-link:hover, .legal-nav-link.active {
+    background-color: #f1f5f9;
+    color: #0f2b48;
+  }
+</style>
+{% endblock styles_addon %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="legal-header">
+  <div class="container text-center">
+    <h1 class="fw-bold display-5">Terms of Service & Use</h1>
+    <p class="lead mb-0">Rules and conditions governing our consultancy services and digital portal.</p>
+    <div class="mt-3 text-white-50">
+      <small><i class="far fa-calendar-alt me-2"></i>Effective Date: October 7, 2026 | Last Updated: October 7, 2026</small>
+    </div>
+  </div>
+</section>
+
+<!-- Content Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Sticky Table of Contents Sidebar -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="legal-sidebar sticky-top" style="top: 100px;">
+          <div class="card p-3">
+            <h6 class="fw-bold text-uppercase text-muted mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Contents</h6>
+            <nav class="nav flex-column gap-1" id="legal-nav">
+              <a class="legal-nav-link" href="#section-1">1. Acceptance of Terms</a>
+              <a class="legal-nav-link" href="#section-2">2. Scope of Services</a>
+              <a class="legal-nav-link" href="#section-3">3. Payment Terms & Fees</a>
+              <a class="legal-nav-link" href="#section-4">4. Client Responsibilities</a>
+              <a class="legal-nav-link" href="#section-5">5. Regulatory Disclaimers</a>
+              <a class="legal-nav-link" href="#section-6">6. Portal Usage (PFS Connect)</a>
+              <a class="legal-nav-link" href="#section-7">7. Intellectual Property</a>
+              <a class="legal-nav-link" href="#section-8">8. Limitation of Liability</a>
+              <a class="legal-nav-link" href="#section-9">9. Governing Law</a>
+              <a class="legal-nav-link" href="#section-10">10. Contact Information</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Legal Document -->
+      <div class="col-lg-9">
+        <div class="card border-0 shadow-sm p-4 p-md-5 bg-white legal-content">
+          
+          <p class="lead text-secondary">
+            Welcome to <strong>Pneuma Food Scientifics</strong> ("PFS," "we," "us," or "our"). These Terms of Service ("Terms") set forth the binding legal agreement governing your access to and use of our official website (<a href="{% url 'home' %}" class="text-decoration-none">pfsgh.com</a>), the <strong>PFS Connect</strong> portal, and our professional scientific, regulatory, and business consulting services.
+          </p>
+
+          <p>By engaging our consulting services, registering an account on PFS Connect, or submitting enquiry forms, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+
+          <hr class="my-4">
+
+          <!-- Section 1 -->
+          <div id="section-1">
+            <h2><i class="fas fa-file-contract text-primary me-2"></i>1. Acceptance of Terms</h2>
+            <p>By utilizing any service or digital platform provided by Pneuma Food Scientifics, you affirm that you are at least 18 years of age and possess the legal capacity to enter into a binding contract on behalf of yourself or your corporate entity. If you do not agree to these Terms, you must immediately refrain from using our services and website.</p>
+          </div>
+
+          <!-- Section 2 -->
+          <div id="section-2">
+            <h2><i class="fas fa-briefcase text-primary me-2"></i>2. Scope of Scientific & Consulting Services</h2>
+            <p>Pneuma Food Scientifics provides specialized technical and commercialization advisory services across the food, cosmetics, wellness, and herbal sectors, including:</p>
+            <ul>
+              <li><strong>Regulatory Compliance & Coaching:</strong> Guidance on product registrations, labeling standards, and audit readiness for the Ghana Food and Drugs Authority (FDA) and Ghana Standards Authority (GSA).</li>
+              <li><strong>Product Formulation & R&D:</strong> Standardized recipe development, shelf-life testing oversight, and sensory evaluation.</li>
+              <li><strong>Factory & Equipment Layouts:</strong> Technical facility layout advisory, hazard mitigation, and code-compliant equipment sourcing.</li>
+              <li><strong>Commercial Food Dehydration:</strong> Commercial processing and dehydration of plant and agricultural products.</li>
+              <li><strong>Laboratory Testing Access:</strong> Analytical, microbiological, and chemical test facilitation via LinkinLabs and accredited laboratory partners.</li>
+              <li><strong>Business Advisory & Coaching:</strong> Drafting business plans, financial projections, and operational quality management systems (HACCP).</li>
+            </ul>
+          </div>
+
+          <!-- Section 3 -->
+          <div id="section-3">
+            <h2><i class="fas fa-wallet text-primary me-2"></i>3. Service Pricing, Payment Terms & Refunds</h2>
+
+            <h3>A. General Consultancy Rates</h3>
+            <ul>
+              <li>Base initial consultation and business registration guidance fees start from <strong>GHS 500</strong>, unless otherwise agreed in a written scope of work.</li>
+            </ul>
+
+            <h3>B. Deposit Structure for Custom Deliverables</h3>
+            <ul>
+              <li><strong>Quality Assurance Manuals & Custom Documentation:</strong> Execution requires an upfront, non-refundable commitment deposit of <strong>50%</strong> of the total quoted fee. The remaining balance of 50% is due immediately upon delivery of the initial draft for review.</li>
+            </ul>
+
+            <h3>C. Commercial Dehydration Fees</h3>
+            <ul>
+              <li>Commercial dehydration services are charged based on machine hours (ranging between <strong>GHS 10 to GHS 25 per hour</strong>) plus labor fees (starting from <strong>GHS 100 per day per staff member</strong>).</li>
+              <li>Clients must pay a mandatory <strong>70% upfront deposit</strong> before drying operations commence. The remaining balance must be cleared prior to releasing the processed product.</li>
+            </ul>
+
+            <h3>D. Third-Party & Statutory Fees</h3>
+            <ul>
+              <li>All official government registration, inspection, and statutory filing fees charged by the Ghana FDA, GSA, or municipal assemblies are separate from PFS consulting charges and must be borne directly by the client.</li>
+            </ul>
+
+            <h3>E. Refund Policy</h3>
+            <ul>
+              <li>Due to the tailored nature of scientific research, technical formulation, and administrative preparation, upfront commitment fees and deposits are strictly <strong>non-refundable</strong> once work has commenced.</li>
+            </ul>
+          </div>
+
+          <!-- Section 4 -->
+          <div id="section-4">
+            <h2><i class="fas fa-user-check text-primary me-2"></i>4. Client Responsibilities & Obligations</h2>
+            <p>To ensure timely and successful regulatory execution, clients agree to:</p>
+            <ul>
+              <li><strong>Accuracy of Information:</strong> Provide truthful, complete, and accurate records, including business registration documents, Ghana Card/TIN copies, recipe formulations, and facility address detail.</li>
+              <li><strong>Facility Standard Maintenance:</strong> Maintain operational cleanliness, sanitation, and food handler health protocols in accordance with PFS guidance and FDA minimum standards.</li>
+              <li><strong>Timely Document Submission:</strong> Provide requested documentation, facility access, or sample batches within agreed timelines to prevent regulatory delays.</li>
+            </ul>
+          </div>
+
+          <!-- Section 5 -->
+          <div id="section-5">
+            <h2><i class="fas fa-exclamation-triangle text-primary me-2"></i>5. Regulatory & Certification Disclaimers</h2>
+            <ul>
+              <li><strong>Independent Authority:</strong> Pneuma Food Scientifics is an independent technical consultancy. Final certification, registration, and license issuance remain under the sole discretion of government statutory bodies (e.g., Ghana FDA, GSA).</li>
+              <li><strong>No Guarantee of Approval:</strong> While PFS applies scientific integrity and expert regulatory preparation, PFS does not guarantee automatic approval by state regulators if the client fails inspection criteria, conceals recipe details, or alters facilities post-audit.</li>
+            </ul>
+          </div>
+
+          <!-- Section 6 -->
+          <div id="section-6">
+            <h2><i class="fas fa-users-cog text-primary me-2"></i>6. PFS Connect Portal Terms of Use</h2>
+            <p>Access to the <strong>PFS Connect</strong> portal (Client, Associate, Consultant, Supervisor, and Administrator role workspaces) is governed by the following rules:</p>
+            <ul>
+              <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials. Any activity conducted through your account is your legal responsibility.</li>
+              <li><strong>Authorized Role Use:</strong> Users must access only the workspace designated for their assigned role (e.g., Client, Associate, or Consultant) and must not attempt unauthorized escalation of account privileges.</li>
+              <li><strong>Prohibited Conduct:</strong> Users shall not upload malicious code, attempt unauthorized data extraction, or submit fraudulent regulatory compliance documents through the portal.</li>
+            </ul>
+          </div>
+
+          <!-- Section 7 -->
+          <div id="section-7">
+            <h2><i class="fas fa-copyright text-primary me-2"></i>7. Intellectual Property Rights</h2>
+            <ul>
+              <li><strong>Client IP:</strong> The client retains sole ownership of pre-existing proprietary product formulas, recipes, brand logos, and trade secrets submitted to PFS.</li>
+              <li><strong>PFS IP:</strong> All custom quality management manuals, standard operating procedures (SOPs), technical templates, training frameworks, website copy, graphics, and PFS Connect software codes prepared by PFS remain the intellectual property of Pneuma Food Scientifics unless explicitly transferred under a written agreement.</li>
+            </ul>
+          </div>
+
+          <!-- Section 8 -->
+          <div id="section-8">
+            <h2><i class="fas fa-shield-alt text-primary me-2"></i>8. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by Ghanaian law, Pneuma Food Scientifics, its founder, officers, associates, and consultants shall not be held liable for any indirect, incidental, consequential, or punitive damages resulting from:</p>
+            <ul>
+              <li>Delays caused by third-party state regulatory agencies (FDA/GSA) or official inspection backlogs.</li>
+              <li>Product spoilage, batch failure, or financial loss resulting from a client’s failure to adhere to prescribed storage, formulation, or sanitation protocols.</li>
+              <li>Unforeseen utility outages affecting commercial dehydration processing times.</li>
+            </ul>
+          </div>
+
+          <!-- Section 9 -->
+          <div id="section-9">
+            <h2><i class="fas fa-gavel text-primary me-2"></i>9. Governing Law & Dispute Resolution</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the <strong>Republic of Ghana</strong>. Any dispute, controversy, or claim arising out of or relating to these Terms or our services shall first be submitted to good-faith negotiation. If unresolved, it shall be settled through mediation or arbitration in Accra, Ghana.</p>
+          </div>
+
+          <!-- Section 10 -->
+          <div id="section-10">
+            <h2><i class="fas fa-envelope text-primary me-2"></i>10. Contact Information</h2>
+            <p>For questions or formal inquiries regarding these Terms of Service, please contact us at:</p>
+            
+            <div class="row g-3 mt-2">
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h6 class="fw-bold mb-1"><i class="fas fa-building text-primary me-2"></i>Pneuma Food Scientifics</h6>
+                  <p class="small text-muted mb-0">Zibra Street, Pokuase, Accra, Ghana</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h6 class="fw-bold mb-1"><i class="fas fa-paper-plane text-primary me-2"></i>Email Support</h6>
+                  <p class="small text-muted mb-0"><a href="mailto:pneumaconsult@gmail.com" class="text-decoration-none">pneumaconsult@gmail.com</a></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h6 class="fw-bold mb-1"><i class="fas fa-phone text-primary me-2"></i>Telephone Numbers</h6>
+                  <p class="small text-muted mb-0">+233 24 104 3139 / +233 50 338 6203</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h6 class="fw-bold mb-1"><i class="fas fa-globe text-primary me-2"></i>Official Website</h6>
+                  <p class="small text-muted mb-0"><a href="{% url 'home' %}" class="text-decoration-none">https://pfsgh.com</a></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block script_addon %}
+<script>
+  // Simple smooth scroll activation for sidebar navigation
+  document.querySelectorAll('#legal-nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 120,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+{% endblock script_addon %}

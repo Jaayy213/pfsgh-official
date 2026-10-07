@@ -72,6 +72,22 @@ def contact(request):
     return render(request, 'main/contact.html', context)
 
 
+# Privacy Policy page
+def privacy(request):
+    context = {
+
+    }
+    return render(request, 'main/privacy.html', context)
+
+
+# Terms of Service page
+def terms(request):
+    context = {
+
+    }
+    return render(request, 'main/terms.html', context)
+
+
 # Central Login Page
 def pfs_connect(request):
     context = {
