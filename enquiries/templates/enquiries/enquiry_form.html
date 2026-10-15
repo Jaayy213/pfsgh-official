@@ -252,7 +252,7 @@
 
             <!-- Submit -->
             <div class="mt-4 pt-2">
-                <button type="submit" class="btn btn-primary-custom">
+                <button type="submit" id="submitEnquiryBtn" class="btn btn-primary-custom">
                     Submit Enquiry <i class="fas fa-paper-plane ms-2"></i>
                 </button>
             </div>
@@ -260,4 +260,26 @@
         </form>
     </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    const submitBtn = document.getElementById('submitEnquiryBtn');
+
+    if (form && submitBtn) {
+      form.addEventListener('submit', function(e) {
+        // Let HTML5 native validation run first; if invalid, don't disable
+        if (!form.checkValidity()) {
+          return;
+        }
+
+        // Disable the button to prevent duplicate submissions
+        submitBtn.disabled = true;
+        
+        // Update text and add a loading spinner
+        submitBtn.innerHTML = 'Submitting Enquiry... <i class="fas fa-spinner fa-spin ms-2"></i>';
+      });
+    }
+  });
+</script>
 {% endblock content %}

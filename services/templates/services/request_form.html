@@ -578,6 +578,19 @@
     const initialVal = '{{ form.service_choice.value|default:"A" }}';
     selectService(initialVal);
     updateBranchVisibility();
+
+    const form = document.getElementById('pfsDynamicForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          // Disable the button to prevent double-clicks
+          submitBtn.disabled = true;
+          // Optionally update UI text / show processing state
+          submitBtn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin ms-2"></i>';
+        }
+      });
+    }
   });
 </script>
 {% endblock content %}

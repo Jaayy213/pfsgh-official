@@ -165,3 +165,29 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const quoteForm = document.getElementById('quoteForm');
+  
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', function(e) {
+      // Find the submit button inside the form actions
+      const submitBtn = quoteForm.querySelector('button[type="submit"]');
+      
+      if (submitBtn) {
+        // Let HTML5 native validation run first; exit if invalid
+        if (!quoteForm.checkValidity()) {
+          return;
+        }
+
+        // Disable the button to prevent duplicate clicks
+        submitBtn.disabled = true;
+        
+        // Update button text and add a spinner icon
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Submitting Quote Request...';
+      }
+    });
+  }
+});
+</script>
